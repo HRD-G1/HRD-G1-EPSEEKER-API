@@ -12,7 +12,9 @@ import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
 import org.khmeracademy.epseeker.entities.Expert;
 import org.khmeracademy.epseeker.repositories.provider.ExpertProvider;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface ExpertRespository {
 
 	
