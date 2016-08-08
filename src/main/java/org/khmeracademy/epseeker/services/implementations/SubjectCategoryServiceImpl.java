@@ -26,26 +26,42 @@ public class SubjectCategoryServiceImpl implements SubjectCategoryService{
 
 	@Override
 	public SubjectCategory findOne(int subjectCategoryID) {
-		// TODO Auto-generated method stub
-		return null;
+		try{
+			return subjectCategoryRepository.findOne(subjectCategoryID);
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public boolean save(SubjectCategory subCate) {
-		// TODO Auto-generated method stub
-		return false;
+		try{
+			return subjectCategoryRepository.save(subCate);
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
 	public boolean update(SubjectCategory subCate) {
-		// TODO Auto-generated method stub
-		return false;
+		try{
+			return subjectCategoryRepository.update(subCate);
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
-	public boolean delete(SubjectCategory subCate) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean delete(int subjectCategoryID) {
+		try{
+			return subjectCategoryRepository.delete(subjectCategoryID);
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	

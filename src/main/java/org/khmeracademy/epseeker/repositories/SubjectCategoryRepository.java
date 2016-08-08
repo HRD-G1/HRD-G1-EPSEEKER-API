@@ -37,18 +37,18 @@ public interface SubjectCategoryRepository {
 	boolean update(SubjectCategory sub);
 	
 	@Delete(SQL.DELETE)
-	boolean delete(SubjectCategory sub);
+	boolean delete(int subjectCategoryID);
 
 	interface SQL{
 		String SELECT = "SELECT * FROM exp_subject_category";
 		
 		String SELECTONE = "SELECT * FROM exp_subject_category WHERE subject_category_id = #{subjectCategoryID}";
 		
-		String INSERT = "INSERT	INTO exp_subject_cotegory (subject_category_name) values(#{subjectCategoryName})";
+		String INSERT = "INSERT	INTO exp_subject_category (subject_category_name) values(#{subjectCategoryName})";
 		
-			String UPDATE = "UPDATE exp_subject_category SET subject_category_name = #{subjectCategoryName} WHERE subject_category_id = #{subjectCategoryId}";
+		String UPDATE = "UPDATE exp_subject_category SET subject_category_name = #{subjectCategoryName} WHERE subject_category_id = #{subjectCategoryID}";
 		
-		String DELETE = "DELETE exp_subject_category WHERE subject_category_id = #{subjectCategoryId}";
+		String DELETE = "DELETE FROM exp_subject_category WHERE subject_category_id = #{subjectCategoryId}";
 	}
 	
 }

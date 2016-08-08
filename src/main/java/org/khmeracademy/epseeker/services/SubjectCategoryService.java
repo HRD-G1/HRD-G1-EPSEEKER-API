@@ -12,6 +12,6 @@ public interface SubjectCategoryService {
 	
 	boolean update(org.khmeracademy.epseeker.entities.SubjectCategory subCate);
 	
-	boolean delete(org.khmeracademy.epseeker.entities.SubjectCategory subCate);
+	boolean delete(int subjectCategoryID);
 	
 }
