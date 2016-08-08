@@ -1,26 +1,17 @@
 package org.khmeracademy.epseeker.entities;
 
 public class Subject {
-	
+
 	private int subjectID;
 	private String subjectName;
-	private String subjectCategoryID;
+	private int subjectCategoryID;
 	
+
 	public Subject() {
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @param subjectID
-	 * @param subjectName
-	 * @param subjectCategoryID
-	 */
-	public Subject(int subjectID, String subjectName, String subjectCategoryID) {
-		this.subjectID = subjectID;
-		this.subjectName = subjectName;
-		this.subjectCategoryID = subjectCategoryID;
-	}
-
+	
 	/**
 	 * @return the subjectID
 	 */
@@ -29,7 +20,8 @@ public class Subject {
 	}
 
 	/**
-	 * @param subjectID the subjectID to set
+	 * @param subjectID
+	 *            the subjectID to set
 	 */
 	public void setSubjectID(int subjectID) {
 		this.subjectID = subjectID;
@@ -43,7 +35,8 @@ public class Subject {
 	}
 
 	/**
-	 * @param subjectName the subjectName to set
+	 * @param subjectName
+	 *            the subjectName to set
 	 */
 	public void setSubjectName(String subjectName) {
 		this.subjectName = subjectName;
@@ -52,17 +45,16 @@ public class Subject {
 	/**
 	 * @return the subjectCategoryID
 	 */
-	public String getSubjectCategoryID() {
+	public int getSubjectCategoryID() {
 		return subjectCategoryID;
 	}
 
 	/**
-	 * @param subjectCategoryID the subjectCategoryID to set
+	 * @param subjectCategoryID
+	 *            the subjectCategoryID to set
 	 */
-	public void setSubjectCategoryID(String subjectCategoryID) {
+	public void setSubjectCategoryID(int subjectCategoryID) {
 		this.subjectCategoryID = subjectCategoryID;
 	}
-	
-	
-	
+
 }

@@ -37,7 +37,10 @@ public class SubjectController {
 		return subjectService.delete(subjectID);
 	}
 	
+<<<<<<< HEAD
 	public boolean test(){
 		return false;
 	}
+=======
+>>>>>>> branch 'master' of https://github.com/HRD-G1/HRD-G1-EPSEEKER-API.git
 }
