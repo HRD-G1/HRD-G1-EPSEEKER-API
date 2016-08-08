@@ -4,7 +4,7 @@ public class ExpertSubjectDetail {
 
 	private int expertID;
 	private int subjectID;
-	private String subjectDetailLevel;
+	private String expertSubjectDetailLevel;
 	
 	public ExpertSubjectDetail() {
 		// TODO Auto-generated constructor stub
@@ -18,7 +18,7 @@ public class ExpertSubjectDetail {
 	public ExpertSubjectDetail(int expertID, int subjectID, String subjectDetailLevel) {
 		this.expertID = expertID;
 		this.subjectID = subjectID;
-		this.subjectDetailLevel = subjectDetailLevel;
+		this.expertSubjectDetailLevel = subjectDetailLevel;
 	}
 
 	/**
@@ -53,14 +53,14 @@ public class ExpertSubjectDetail {
 	 * @return the subjectDetailLevel
 	 */
 	public String getSubjectDetailLevel() {
-		return subjectDetailLevel;
+		return expertSubjectDetailLevel;
 	}
 
 	/**
 	 * @param subjectDetailLevel the subjectDetailLevel to set
 	 */
 	public void setSubjectDetailLevel(String subjectDetailLevel) {
-		this.subjectDetailLevel = subjectDetailLevel;
+		this.expertSubjectDetailLevel = subjectDetailLevel;
 	}
 	
 	
