@@ -6,7 +6,7 @@ public class ExperienceDetail {
 	private int institutionID;
 	private int majorID;
 	private String experienceStartYear;
-	private String expertienceEndYear;
+	private String experienceEndYear;
 	
 	public ExperienceDetail() {
 		// TODO Auto-generated constructor stub
@@ -25,7 +25,7 @@ public class ExperienceDetail {
 		this.institutionID = institutionID;
 		this.majorID = majorID;
 		this.experienceStartYear = experienceStartYear;
-		this.expertienceEndYear = expertienceEndYear;
+		this.experienceEndYear = expertienceEndYear;
 	}
 
 	/**
@@ -88,14 +88,14 @@ public class ExperienceDetail {
 	 * @return the expertienceEndYear
 	 */
 	public String getExpertienceEndYear() {
-		return expertienceEndYear;
+		return experienceEndYear;
 	}
 
 	/**
 	 * @param expertienceEndYear the expertienceEndYear to set
 	 */
 	public void setExpertienceEndYear(String expertienceEndYear) {
-		this.expertienceEndYear = expertienceEndYear;
+		this.experienceEndYear = expertienceEndYear;
 	}
 	
 	

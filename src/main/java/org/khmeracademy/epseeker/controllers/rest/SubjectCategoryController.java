@@ -17,7 +17,7 @@ public class SubjectCategoryController {
 	@Autowired
 	SubjectCategoryService subjectCategoryService;
 
-	@RequestMapping(value="/rest/	", method = RequestMethod.GET)
+	@RequestMapping(value="/rest/subjectcategory", method = RequestMethod.GET)
 	public ArrayList<SubjectCategory> findAll(){
 		return subjectCategoryService.findAll(); 
 	}

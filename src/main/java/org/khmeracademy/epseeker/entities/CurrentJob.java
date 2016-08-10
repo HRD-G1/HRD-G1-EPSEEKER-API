@@ -6,8 +6,8 @@ public class CurrentJob {
 	private int institutionID;
 	private int positionID;
 	private double salary;
-	private String instiutionPhone;
-	private String institutioinEmail;
+	private String institutionPhone;
+	private String institutionEmail;
 	
 	public CurrentJob() {
 		// TODO Auto-generated constructor stub
@@ -27,8 +27,8 @@ public class CurrentJob {
 		this.institutionID = institutionID;
 		this.positionID = positionID;
 		this.salary = salary;
-		this.instiutionPhone = instiutionPhone;
-		this.institutioinEmail = institutioinEmail;
+		this.institutionPhone = instiutionPhone;
+		this.institutionEmail = institutioinEmail;
 	}
 
 	/**
@@ -88,33 +88,33 @@ public class CurrentJob {
 	}
 
 	/**
-	 * @return the instiutionPhone
+	 * @return the institutionPhone
 	 */
-	public String getInstiutionPhone() {
-		return instiutionPhone;
+	public String getInstitutionPhone() {
+		return institutionPhone;
 	}
 
 	/**
-	 * @param instiutionPhone the instiutionPhone to set
+	 * @param institutionPhone the institutionPhone to set
 	 */
-	public void setInstiutionPhone(String instiutionPhone) {
-		this.instiutionPhone = instiutionPhone;
+	public void setInstitutionPhone(String institutionPhone) {
+		this.institutionPhone = institutionPhone;
 	}
 
 	/**
-	 * @return the institutioinEmail
+	 * @return the institutionEmail
 	 */
-	public String getInstitutioinEmail() {
-		return institutioinEmail;
+	public String getInstitutionEmail() {
+		return institutionEmail;
 	}
 
 	/**
-	 * @param institutioinEmail the institutioinEmail to set
+	 * @param institutionEmail the institutionEmail to set
 	 */
-	public void setInstitutioinEmail(String institutioinEmail) {
-		this.institutioinEmail = institutioinEmail;
+	public void setInstitutionEmail(String institutionEmail) {
+		this.institutionEmail = institutionEmail;
 	}
-	
-	
+
+		
 	
 }
