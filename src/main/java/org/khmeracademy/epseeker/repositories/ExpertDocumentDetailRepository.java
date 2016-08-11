@@ -56,7 +56,9 @@ public interface ExpertDocumentDetailRepository {
 				+ "file_path = #{filePath},"
 				+ "description = #{description} "
 				+ "WHERE "
-				+ "expert_id = #{expertID} ";
+				+ "expert_id = #{expertID} "
+				+ "AND file_document_id = #{fileDocumentID} "
+				+ "AND file_path = #{filePath}";
 		
 		String DELETE = "DELETE FROM exp_expert_document_detail "
 				+ "WHERE expert_id  = #{expertID} "

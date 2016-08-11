@@ -13,38 +13,10 @@ public class Expert {
 	private int expertGeneration;
 	private String expertAdvanceCourse;
 	private String expertGender;
+	private int kaID;
 	
 	public Expert() {
 		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @param expertID
-	 * @param expertFirstName
-	 * @param expertLastName
-	 * @param expertPhone1
-	 * @param expertPhoto
-	 * @param expertStatus
-	 * @param expertPhone2
-	 * @param expertEmail
-	 * @param expertGeneration
-	 * @param expertAdvanceCourse
-	 * @param expertGender
-	 */
-	public Expert(int expertID, String expertFirstName, String expertLastName, String expertPhone1, String expertPhoto,
-			String expertStatus, String expertPhone2, String expertEmail, int expertGeneration,
-			String expertAdvanceCourse, String expertGender) {
-		this.expertID = expertID;
-		this.expertFirstName = expertFirstName;
-		this.expertLastName = expertLastName;
-		this.expertPhone1 = expertPhone1;
-		this.expertPhoto = expertPhoto;
-		this.expertStatus = expertStatus;
-		this.expertPhone2 = expertPhone2;
-		this.expertEmail = expertEmail;
-		this.expertGeneration = expertGeneration;
-		this.expertAdvanceCourse = expertAdvanceCourse;
-		this.expertGender = expertGender;
 	}
 
 	/**
@@ -204,6 +176,51 @@ public class Expert {
 	@Override
 	public String toString() {
 		return getExpertID() + " " + getExpertFirstName() +  " " + getExpertLastName() + " " + getExpertPhone1() + " " + getExpertStatus() + " " + getExpertPhone2() + " " + getExpertEmail() + " " + getExpertGeneration() + " " + getExpertAdvanceCourse() + " " + getExpertGender();
+	}
+
+	/**
+	 * @return the kaID
+	 */
+	public int getKaID() {
+		return kaID;
+	}
+
+	/**
+	 * @param kaID the kaID to set
+	 */
+	public void setKaID(int kaID) {
+		this.kaID = kaID;
+	}
+
+	/**
+	 * @param expertID
+	 * @param expertFirstName
+	 * @param expertLastName
+	 * @param expertPhone1
+	 * @param expertPhoto
+	 * @param expertStatus
+	 * @param expertPhone2
+	 * @param expertEmail
+	 * @param expertGeneration
+	 * @param expertAdvanceCourse
+	 * @param expertGender
+	 * @param kaID
+	 */
+	public Expert(int expertID, String expertFirstName, String expertLastName, String expertPhone1, String expertPhoto,
+			String expertStatus, String expertPhone2, String expertEmail, int expertGeneration,
+			String expertAdvanceCourse, String expertGender, int kaID) {
+		this.expertID = expertID;
+		this.expertFirstName = expertFirstName;
+		this.expertLastName = expertLastName;
+		this.expertPhone1 = expertPhone1;
+		this.expertPhoto = expertPhoto;
+		this.expertStatus = expertStatus;
+		this.expertPhone2 = expertPhone2;
+		this.expertEmail = expertEmail;
+		this.expertGeneration = expertGeneration;
+		this.expertAdvanceCourse = expertAdvanceCourse;
+		this.expertGender = expertGender;
+		this.kaID = kaID;
 	}
 	
 	

@@ -31,7 +31,8 @@ public interface ExpertRespository {
 		@Result(property="expertEmail", column="expert_email"),
 		@Result(property="expertGeneration", column="expert_generation"),
 		@Result(property="expertAdvanceCourse", column="expert_advance_course"),
-		@Result(property="expertGender", column="expert_gender")
+		@Result(property="expertGender", column="expert_gender"),
+		@Result(property="kaID", column="ka_id")
 	})
 	ArrayList<Expert> findAll();
 	
@@ -47,7 +48,8 @@ public interface ExpertRespository {
 		@Result(property="expertEmail", column="expert_email"),
 		@Result(property="expertGeneration", column="expert_generation"),
 		@Result(property="expertAdvanceCourse", column="expert_advance_course"),
-		@Result(property="expertGender", column="expert_gender")
+		@Result(property="expertGender", column="expert_gender"),
+		@Result(property="kaID", column="ka_id")
 	})
 	Expert findOne(@Param("expertID") int expertID);
 	
@@ -67,12 +69,12 @@ public interface ExpertRespository {
 	interface SQL{
 		String SELECT = "SELECT * FROM exp_expert";
 		
-		String SELECTONE = "SELECT * FROM expert_expert WHERE expert_id = #{expertID}";
+		String SELECTONE = "SELECT * FROM exp_expert WHERE expert_id = #{expertID}";
 		
 		String INSERT = "INSERT INTO "
 				+ "exp_expert "
-				+ "(expert_firstname, expert_lastname, expert_phone1, expert_photo, expert_status, expert_phone2, expert_email, expert_generation, expert_advance_course, expert_gender) "
-				+ "VALUES(#{expertFirstName}, #{expertLastName}, #{expertPhone1}, #{expertPhoto}, #{expertStatus}, #{expertPhone2}, #{expertEmail}, #{expertGeneration}, #{expertAdvanceCourse}, #{expertGender})";
+				+ "(expert_firstname, expert_lastname, expert_phone1, expert_photo, expert_status, expert_phone2, expert_email, expert_generation, expert_advance_course, expert_gender, ka_id) "
+				+ "VALUES(#{expertFirstName}, #{expertLastName}, #{expertPhone1}, #{expertPhoto}, #{expertStatus}, #{expertPhone2}, #{expertEmail}, #{expertGeneration}, #{expertAdvanceCourse}, #{expertGender}, #{kaID})";
 		
 		String UPDATE = "UPDATE exp_expert SET "
 				+ "expert_firstname  = #{expertFirstName}, "
@@ -82,11 +84,10 @@ public interface ExpertRespository {
 				+ "expert_status = #{expertStatus}, "
 				+ "expert_phone2 = #{expertPhone2}, "
 				+ "expert_email = #{expertEmail}, "
-				
-				
 				+ "expert_generation  = #{expertGeneration}, "
 				+ "expert_advance_course = #{expertAdvanceCourse}, "
-				+ "expert_gender = #{expertGender} "
+				+ "expert_gender = #{expertGender},"
+				+ "ka_id = #{kaID} "
 				+ "WHERE expert_id = #{expertID}";
 		
 		String DELETE = "DELETE FROM exp_expert "
