@@ -3,7 +3,7 @@ package org.khmeracademy.epseeker.entities;
 public class CityOrProvince {
 
 	private int cityOrProvinceID;
-	private int cityOrProvinceName;
+	private String cityOrProvinceName;
 	private int countryID;
 	
 	public CityOrProvince() {
@@ -15,7 +15,7 @@ public class CityOrProvince {
 	 * @param cityOrProvinceName
 	 * @param countryID
 	 */
-	public CityOrProvince(int cityOrProvinceID, int cityOrProvinceName, int countryID) {
+	public CityOrProvince(int cityOrProvinceID, String cityOrProvinceName, int countryID) {
 		this.cityOrProvinceID = cityOrProvinceID;
 		this.cityOrProvinceName = cityOrProvinceName;
 		this.countryID = countryID;
@@ -38,14 +38,14 @@ public class CityOrProvince {
 	/**
 	 * @return the cityOrProvinceName
 	 */
-	public int getCityOrProvinceName() {
+	public String getCityOrProvinceName() {
 		return cityOrProvinceName;
 	}
 
 	/**
 	 * @param cityOrProvinceName the cityOrProvinceName to set
 	 */
-	public void setCityOrProvinceName(int cityOrProvinceName) {
+	public void setCityOrProvinceName(String cityOrProvinceName) {
 		this.cityOrProvinceName = cityOrProvinceName;
 	}
 

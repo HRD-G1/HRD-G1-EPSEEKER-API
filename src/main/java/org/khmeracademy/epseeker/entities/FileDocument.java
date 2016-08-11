@@ -4,7 +4,7 @@ public class FileDocument {
 
 	private int fileID;
 	private String fileName;
-	private String fielDescription;
+	private String fileDescription;
 
 	public FileDocument() {
 		// TODO Auto-generated constructor stub
@@ -18,7 +18,7 @@ public class FileDocument {
 	public FileDocument(int fileID, String fileName, String fielDescription) {
 		this.fileID = fileID;
 		this.fileName = fileName;
-		this.fielDescription = fielDescription;
+		this.fileDescription = fielDescription;
 	}
 
 	/**
@@ -53,14 +53,14 @@ public class FileDocument {
 	 * @return the fielDescription
 	 */
 	public String getFielDescription() {
-		return fielDescription;
+		return fileDescription;
 	}
 
 	/**
 	 * @param fielDescription the fielDescription to set
 	 */
 	public void setFielDescription(String fielDescription) {
-		this.fielDescription = fielDescription;
+		this.fileDescription = fielDescription;
 	}
 	
 	

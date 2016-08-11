@@ -3,8 +3,8 @@ package org.khmeracademy.epseeker.entities;
 public class ExpertDocumentDetail {
 
 	private int expertID;
-	private int FileDocumentId;
-	private String expertImage;
+	private int fileDocumentID;
+	private String filePath;
 	private String description;
 	
 	public ExpertDocumentDetail() {
@@ -13,14 +13,14 @@ public class ExpertDocumentDetail {
 
 	/**
 	 * @param expertID
-	 * @param fileDocumentId
-	 * @param expertImage
+	 * @param fileDocumentID
+	 * @param filePath
 	 * @param description
 	 */
-	public ExpertDocumentDetail(int expertID, int fileDocumentId, String expertImage, String description) {
+	public ExpertDocumentDetail(int expertID, int fileDocumentID, String filePath, String description) {
 		this.expertID = expertID;
-		FileDocumentId = fileDocumentId;
-		this.expertImage = expertImage;
+		this.fileDocumentID = fileDocumentID;
+		this.filePath = filePath;
 		this.description = description;
 	}
 
@@ -39,31 +39,31 @@ public class ExpertDocumentDetail {
 	}
 
 	/**
-	 * @return the fileDocumentId
+	 * @return the fileDocumentID
 	 */
-	public int getFileDocumentId() {
-		return FileDocumentId;
+	public int getFileDocumentID() {
+		return fileDocumentID;
 	}
 
 	/**
-	 * @param fileDocumentId the fileDocumentId to set
+	 * @param fileDocumentID the fileDocumentID to set
 	 */
-	public void setFileDocumentId(int fileDocumentId) {
-		FileDocumentId = fileDocumentId;
+	public void setFileDocumentID(int fileDocumentID) {
+		this.fileDocumentID = fileDocumentID;
 	}
 
 	/**
-	 * @return the expertImage
+	 * @return the filePath
 	 */
-	public String getExpertImage() {
-		return expertImage;
+	public String getFilePath() {
+		return filePath;
 	}
 
 	/**
-	 * @param expertImage the expertImage to set
+	 * @param filePath the filePath to set
 	 */
-	public void setExpertImage(String expertImage) {
-		this.expertImage = expertImage;
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
 	}
 
 	/**
@@ -79,6 +79,7 @@ public class ExpertDocumentDetail {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	
 	
 }

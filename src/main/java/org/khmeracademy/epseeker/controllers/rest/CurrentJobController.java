@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import org.khmeracademy.epseeker.entities.CurrentJob;
 import org.khmeracademy.epseeker.services.CurrentJobService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,10 +22,9 @@ public class CurrentJobController {
 		return currentJobService.findAll();
 	}
 	
+	
 	@RequestMapping(value="/rest/currentjob", method = RequestMethod.POST)
 	boolean save(@RequestBody CurrentJob currentJob){
-		System.out.println("FUcCK");
-		System.out.println(currentJob.getInstitutionPhone());
 		return currentJobService.save(currentJob); 
 	}
 	
