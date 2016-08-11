@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -17,13 +18,13 @@ public class ExpertDocumentDetailController {
 	@Autowired
 	FileDocumentDetailService fileDocumentDetailService;
 	
-	@RequestMapping(value="rest/expertdocumentdetail", method = RequestMethod.GET)
+	@RequestMapping(value="rest/allexpertdocumentdetail", method = RequestMethod.GET)
 	ArrayList<ExpertDocumentDetail> findAll(){
 		return fileDocumentDetailService.findAll();
 	}
 	
-	@RequestMapping(value="rest/expertdocumentdetail/{expertID}/{fileDocumentID}/{filePath}", method = RequestMethod.GET)
-	ExpertDocumentDetail findOne(@PathVariable("expertID")int expertID, @PathVariable("fileDocumentID")int fileDocumentID, @PathVariable("filePath")String filePath){
+	@RequestMapping(value="rest/expertdocumentdetail", method = RequestMethod.GET)
+	ExpertDocumentDetail findOne(@RequestParam("expertID")int expertID, @RequestParam("fileDocumentID")int fileDocumentID, @RequestParam("filePath")String filePath){
 		System.out.println(filePath);
 		return fileDocumentDetailService.findOne(expertID, fileDocumentID, filePath);
 	}

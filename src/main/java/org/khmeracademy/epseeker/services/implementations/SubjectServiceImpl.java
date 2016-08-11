@@ -64,6 +64,16 @@ public class SubjectServiceImpl implements SubjectService{
 		return false;
 	}
 
+	@Override
+	public ArrayList<Subject> findAllBySubjectCategory(int subjectCategoryID) {
+		try{
+			return subjectRepository.findAllBySubjectCategory(subjectCategoryID);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	
 	
 }

@@ -22,6 +22,11 @@ public class SubjectController {
 		return subjectService.findAll(); 
 	}
 	
+	@RequestMapping(value="/rest/subject/bysubjectcategory/{subjectCategoryID}", method = RequestMethod.GET)
+	public ArrayList<Subject> findAllBySubjectCotegory(@PathVariable("subjectCategoryID")int subjectCategoryID){
+		return subjectService.findAllBySubjectCategory(subjectCategoryID);
+	}
+	
 	@RequestMapping(value="/rest/subject", method = RequestMethod.POST)
 	public boolean save(@RequestBody Subject sub){
 		return subjectService.save(sub);

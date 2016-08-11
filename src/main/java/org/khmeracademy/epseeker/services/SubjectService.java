@@ -10,6 +10,8 @@ public interface SubjectService {
 	
 	Subject findOne(int subjectID);
 	
+	ArrayList<Subject> findAllBySubjectCategory(int subjectCategoryID);
+	
 	boolean save(Subject sub);
 	
 	boolean update(Subject sub);
