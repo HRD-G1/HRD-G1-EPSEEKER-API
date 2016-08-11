@@ -27,7 +27,6 @@ public class CountryServiceImpl implements CountryService{
 	@Override
 	public boolean save(Country country) {
 		try{
-			System.out.println(country.getCountryName());
 			return countryRepository.save(country);
 		}catch(Exception e){
 			e.printStackTrace();

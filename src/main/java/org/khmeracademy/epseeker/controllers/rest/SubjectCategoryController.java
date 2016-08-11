@@ -27,6 +27,11 @@ public class SubjectCategoryController {
 		return subjectCategoryService.save(subCate);
 	}
 	
+	@RequestMapping(value="/rest/subjectcategory/byname/{subjectCategoryName}", method = RequestMethod.GET)
+	public SubjectCategory findOneByName(@PathVariable("subjectCategoryName")String subjectCategoryName){
+		return subjectCategoryService.findOneByName(subjectCategoryName);
+	}
+	
 	@RequestMapping(value="/rest/subjectcategory", method = RequestMethod.PUT)
 	public boolean update(@RequestBody SubjectCategory subCate){
 		return subjectCategoryService.update(subCate);

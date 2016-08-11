@@ -64,6 +64,16 @@ public class SubjectCategoryServiceImpl implements SubjectCategoryService{
 		}
 	}
 
+	@Override
+	public SubjectCategory findOneByName(String subjectCategoryName) {
+		try{
+			return subjectCategoryRepository.findOneByName(subjectCategoryName);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	
 	
 }

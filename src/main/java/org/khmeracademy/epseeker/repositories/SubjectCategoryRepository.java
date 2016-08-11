@@ -30,6 +30,13 @@ public interface SubjectCategoryRepository {
 	})
 	SubjectCategory findOne(@Param("subjectCategoryID")int subjectCategoryID);
 	
+	@Select(SQL.SELECTONEBYNAME)
+	@Results({
+		@Result(property="subjectCategoryID", column="subject_category_id"),
+		@Result(property="subjectCategoryName", column="subject_category_name")
+	})
+	SubjectCategory findOneByName(@Param("subjectCategoryName")String subjectCategoryName);
+	
 	@Insert(SQL.INSERT)
 	boolean save(SubjectCategory sub);
 	
@@ -43,6 +50,8 @@ public interface SubjectCategoryRepository {
 		String SELECT = "SELECT * FROM exp_subject_category";
 		
 		String SELECTONE = "SELECT * FROM exp_subject_category WHERE subject_category_id = #{subjectCategoryID}";
+		
+		String SELECTONEBYNAME = "SELECT * FROM exp_subject_category WHERE subject_category_name = #{subjectCategoryName}";
 		
 		String INSERT = "INSERT	INTO exp_subject_category (subject_category_name) values(#{subjectCategoryName})";
 		
