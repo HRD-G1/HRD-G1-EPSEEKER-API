@@ -1,9 +1,12 @@
 package org.khmeracademy.epseeker.entities;
 
+import java.util.List;
+
 public class SubjectCategory {
 
 	private int subjectCategoryID;
 	private String subjectCategoryName;
+	private List<Subject> subjects;
 	
 	public SubjectCategory() {
 		// TODO Auto-generated constructor stub
@@ -45,8 +48,21 @@ public class SubjectCategory {
 	public void setSubjectCategoryName(String subjectCategoryName) {
 		this.subjectCategoryName = subjectCategoryName;
 	}
-	
-	
-	
+
+	public int getSubjectCategoryID() {
+		return subjectCategoryID;
+	}
+
+	public void setSubjectCategoryID(int subjectCategoryID) {
+		this.subjectCategoryID = subjectCategoryID;
+	}
+
+	public List<Subject> getSubjects() {
+		return subjects;
+	}
+
+	public void setSubjects(List<Subject> subjects) {
+		this.subjects = subjects;
+	}
 	
 }

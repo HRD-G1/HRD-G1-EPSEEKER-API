@@ -1,14 +1,17 @@
 package org.khmeracademy.epseeker.repositories;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.khmeracademy.epseeker.entities.Subject;
 import org.khmeracademy.epseeker.entities.SubjectCategory;
 import org.springframework.stereotype.Repository;
 
@@ -19,7 +22,9 @@ public interface SubjectCategoryRepository {
 	@Select("SELECT * FROM exp_subject_category")
 	@Results({
 		@Result(property="subjectCategoryID", column="subject_category_id"),
-		@Result(property="subjectCategoryName", column="subject_category_name")
+		@Result(property="subjectCategoryName", column="subject_category_name"),
+		@Result(property="subjects", javaType=List.class, column="subject_category_id", //new
+			many = @Many(select="findAllBySubjectCategory"))//new
 	})
 	ArrayList<SubjectCategory> findAll();
 	
@@ -45,8 +50,23 @@ public interface SubjectCategoryRepository {
 	
 	@Delete(SQL.DELETE)
 	boolean delete(int subjectCategoryID);
-
+	
+	
+	//new
+	@Select(SQL.SELECTWITHCONDITION)
+	@Results({
+		@Result(property="subjectID", column="subject_id"),
+		@Result(property="subjectName", column="subject_name"),
+		@Result(property="subjectCategoryID", column="subject_category_id")
+	})
+	ArrayList<Subject> findAllBySubjectCategory(@Param("subject_category_id")int subjectCategoryID);
+	//new
+	
+	
 	interface SQL{
+		
+		String SELECTWITHCONDITION = "SELECT * FROM exp_subject WHERE subject_category_id = #{subject_category_id}";
+		
 		String SELECT = "SELECT * FROM exp_subject_category";
 		
 		String SELECTONE = "SELECT * FROM exp_subject_category WHERE subject_category_id = #{subjectCategoryID}";

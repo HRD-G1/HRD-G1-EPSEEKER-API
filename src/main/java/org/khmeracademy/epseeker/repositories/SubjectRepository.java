@@ -27,7 +27,7 @@ public interface SubjectRepository {
 		@Result(property="subjectName", column="subject_name"),
 		@Result(property="subjectCategoryID", column="subject_category_id")
 	})
-	ArrayList<Subject> findAllBySubjectCategory(@Param("subjectCategoryID")int subjectCategoryID);
+	ArrayList<Subject> findAllBySubjectCategory(@Param("subject_category_id")int subjectCategoryID);
 	
 	@Select(SQL.SELECTONE)
 	@Results({
@@ -51,7 +51,7 @@ public interface SubjectRepository {
 		
 		String SELECTONE = "SELECT * FROM exp_subject WHERE subject_name = #{subjectID}";
 		
-		String SELECTWITHCONDITION = "SELECT * FROM exp_subject WHERE subject_category_id = #{subjectCategoryID}";
+		String SELECTWITHCONDITION = "SELECT * FROM exp_subject WHERE subject_category_id = #{subject_category_id}";
 		
 		String INSERT = "INSERT	INTO exp_subject (subject_name, subject_category_id) VALUES(#{subjectName}, #{subjectCategoryID})";
 		
