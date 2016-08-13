@@ -22,6 +22,11 @@ public class ExpertLanguageDetailController {
 		return expertLanguageDetailService.findAll();
 	}
 	
+	@RequestMapping(value="/rest/expertlanguagedetail/{expertID}", method = RequestMethod.GET)
+	public ArrayList<ExpertLanguageDetail> findAllByExpertID(@PathVariable("expertID")int expertID){
+		return expertLanguageDetailService.findAllByExpertID(expertID);
+	}
+	
 	@RequestMapping(value="/rest/expertlanguagedetail", method = RequestMethod.POST)
 	public boolean save(@RequestBody ExpertLanguageDetail expertLanguageDetail){
 		return expertLanguageDetailService.save(expertLanguageDetail);

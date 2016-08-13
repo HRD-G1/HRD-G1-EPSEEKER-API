@@ -54,4 +54,14 @@ public class ExpertLanguageDetailServiceImpl implements ExpertLanguageDetailServ
 		return false;
 	}
 
+	@Override
+	public ArrayList<ExpertLanguageDetail> findAllByExpertID(int expertID) {
+		try{
+			return expertLanguageDetailRepository.findAllByExpertID(expertID);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

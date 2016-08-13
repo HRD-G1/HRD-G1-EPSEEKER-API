@@ -27,6 +27,11 @@ public class CurrentAddressController {
 		return currentAddressService.findOne(expertID);
 	}
 	
+	@RequestMapping(value="/rest/currentAddressFull/{expertID}", method = RequestMethod.GET)
+	CurrentAddress findOneByExpertID(@PathVariable("expertID")int expertID){
+		return currentAddressService.findOneByExpertID(expertID);
+	}
+	
 	@RequestMapping(value="/rest/currentAddress", method = RequestMethod.POST)
 	boolean save(@RequestBody CurrentAddress currentAddress){
 		return currentAddressService.save(currentAddress);

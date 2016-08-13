@@ -22,6 +22,11 @@ public class ExpertSubjectDetailController {
 		return expertSubjectDetailService.findAll();
 	}
 	
+	@RequestMapping(value="/rest/expertsubjectdetail/{expertID}", method = RequestMethod.GET)
+	ArrayList<ExpertSubjectDetail> findAllByExpertID(@PathVariable("expertID")int expertID){
+		return expertSubjectDetailService.findAllByExpertID(expertID);
+	}
+	
 	@RequestMapping(value="/rest/expertsubjectdetail", method = RequestMethod.POST)
 	boolean save(@RequestBody ExpertSubjectDetail expertSubjectDetail){
 		return expertSubjectDetailService.save(expertSubjectDetail);

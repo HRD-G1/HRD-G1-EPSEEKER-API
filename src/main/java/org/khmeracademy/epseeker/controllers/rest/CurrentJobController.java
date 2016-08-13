@@ -23,6 +23,11 @@ public class CurrentJobController {
 	}
 	
 	
+	@RequestMapping(value="/rest/currentjob/{expertID}", method = RequestMethod.GET)
+	ArrayList<CurrentJob> findAllByExpertID(@PathVariable("expertID")int expertID){
+		return currentJobService.findAllByExpertID(expertID);
+	}
+
 	@RequestMapping(value="/rest/currentjob", method = RequestMethod.POST)
 	boolean save(@RequestBody CurrentJob currentJob){
 		return currentJobService.save(currentJob); 

@@ -1,9 +1,16 @@
 package org.khmeracademy.epseeker.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Language {
 
+	@JsonProperty("LANGUAGE_ID")
 	private int languageID;
+	
+	@JsonProperty("LANGUAGE_NAME")
 	private String languageName;
+	
+	@JsonProperty("LANGUAGE_DESCRIPTION")
 	private String languageDescription;
 	
 	

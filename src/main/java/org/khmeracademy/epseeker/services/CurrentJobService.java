@@ -9,6 +9,8 @@ public interface CurrentJobService {
 
 	ArrayList<CurrentJob> findAll();
 	
+	ArrayList<CurrentJob> findAllByExpertID(int expertID);
+	
 	boolean save(CurrentJob currentJob);
 	
 	boolean update(CurrentJob currentJob);

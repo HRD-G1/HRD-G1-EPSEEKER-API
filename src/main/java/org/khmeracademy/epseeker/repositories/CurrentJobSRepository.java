@@ -26,6 +26,20 @@ public interface CurrentJobSRepository {
 	})
 	ArrayList<CurrentJob> findAll();
 	
+	@Select(SQL.SELECT_ALL_BY_EXPERT_ID)
+	@Results({
+		@Result(property="expertID", column="expert_id"),
+		@Result(property="institutionID", column="institution_id"),
+		@Result(property="positionID", column="position_id"),
+		@Result(property="salary", column="salary"),
+		@Result(property="institutionPhone", column="institution_phone"),
+		@Result(property="institutionEmail", column="institution_email"),
+		@Result(property="institutionName", column="institution_name"),
+		@Result(property="institutionAddress", column="institution_address"),
+		@Result(property="positionName", column="position_name")
+	})
+	ArrayList<CurrentJob> findAllByExpertID(@Param("expertID")int expertID);
+	
 	@Insert(SQL.INSERT)
 	boolean save(CurrentJob currentJob);
 	
@@ -38,6 +52,12 @@ public interface CurrentJobSRepository {
 	interface SQL{
 		
 		String SELECT = "SELECT * FROM exp_current_job";
+		
+		String SELECT_ALL_BY_EXPERT_ID = "SELECT * "
+				+ "FROM exp_current_job as cur "
+				+ "INNER JOIN exp_institutions as ints ON cur.institution_id = ints.institution_id "
+				+ "INNER JOIN exp_positions as pos ON cur.position_id = pos.position_id "
+				+ "WHERE cur.expert_id = #{expertID}";
 		
 		String INSERT = "INSERT INTO exp_current_job "
 				+ "(expert_id, institution_id, position_id, salary, institution_phone, institution_email) "

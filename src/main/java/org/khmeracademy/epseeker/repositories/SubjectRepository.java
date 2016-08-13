@@ -17,7 +17,8 @@ public interface SubjectRepository {
 	@Results({
 		@Result(property="subjectID", column="subject_id"),
 		@Result(property="subjectName", column="subject_name"),
-		@Result(property="subjectCategoryID", column="subject_category_id")
+		@Result(property="subjectCategoryID", column="subject_category_id"),
+		@Result(property="subjectCategoryName", column="subject_category_name")
 	})
 	ArrayList<Subject> findAll();
 	
@@ -47,7 +48,14 @@ public interface SubjectRepository {
 	boolean delete(int subjectID);
 	
 	interface SQL{
-		String SELECT = "SELECT * FROM exp_subject";
+		String SELECT = "SELECT "
+						+ "sub.subject_id as subject_id, " 
+						+ "sub.subject_name as subject_name, "
+						+ "\"subCat\".subject_category_name as subject_category_name,"
+						+ "\"subCat\".subject_category_id as subject_category_id "
+						+ "FROM "
+						+ "exp_subject_category as \"subCat\" "
+						+ "INNER JOIN exp_subject as sub ON  \"subCat\".subject_category_id = sub.subject_category_id";
 		
 		String SELECTONE = "SELECT * FROM exp_subject WHERE subject_name = #{subjectID}";
 		

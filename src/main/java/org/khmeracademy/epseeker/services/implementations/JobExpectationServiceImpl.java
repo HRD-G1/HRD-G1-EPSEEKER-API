@@ -54,4 +54,14 @@ public class JobExpectationServiceImpl implements JobExpectationService{
 		return false;
 	}
 
+	@Override
+	public ArrayList<JobExpectation> findAllByExpertID(int expertID) {
+		try{
+			return jobExpectationRepository.findAllByExpertID(expertID);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

@@ -8,6 +8,8 @@ public interface ExpertLanguageDetailService {
 
 	ArrayList<ExpertLanguageDetail> findAll();
 	
+	ArrayList<ExpertLanguageDetail> findAllByExpertID(int expertID);
+	
 	boolean save(ExpertLanguageDetail expertLanguageDetail);
 	
 	boolean update(ExpertLanguageDetail expertLanguageDetail);

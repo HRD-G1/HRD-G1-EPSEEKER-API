@@ -27,6 +27,11 @@ public class POBController {
 		return pobService.findOne(expertID);
 	}
 	
+	@RequestMapping(value="/rest/pobFull/{expertID}", method = RequestMethod.GET)
+	POB findOneByExpertID(@PathVariable("expertID")int expertID){
+		return pobService.findOneByExpertID(expertID);
+	}
+	
 	@RequestMapping(value="/rest/pob", method = RequestMethod.POST)
 	boolean save(@RequestBody POB pob){
 		return pobService.save(pob);

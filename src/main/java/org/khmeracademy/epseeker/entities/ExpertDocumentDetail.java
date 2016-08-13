@@ -1,11 +1,23 @@
 package org.khmeracademy.epseeker.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class ExpertDocumentDetail {
 
+	@JsonProperty("EXPERT_ID")
 	private int expertID;
+	
+	@JsonProperty("FILE_DOCUMENT_ID")
 	private int fileDocumentID;
+	
+	@JsonProperty("FILE_PATH")
 	private String filePath;
+	
+	@JsonProperty("DESCRIPTION")
 	private String description;
+	
+	@JsonProperty("FILE_NAME")
+	private String fileName;
 	
 	public ExpertDocumentDetail() {
 		// TODO Auto-generated constructor stub
@@ -80,6 +92,37 @@ public class ExpertDocumentDetail {
 		this.description = description;
 	}
 
+	/**
+	 * @return the fileName
+	 */
+	public String getFileName() {
+		return fileName;
+	}
+
+	/**
+	 * @param fileName the fileName to set
+	 */
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	/**
+	 * @param expertID
+	 * @param fileDocumentID
+	 * @param filePath
+	 * @param description
+	 * @param fileName
+	 */
+	public ExpertDocumentDetail(int expertID, int fileDocumentID, String filePath, String description,
+			String fileName) {
+		this.expertID = expertID;
+		this.fileDocumentID = fileDocumentID;
+		this.filePath = filePath;
+		this.description = description;
+		this.fileName = fileName;
+	}
+
+	
 	
 	
 }

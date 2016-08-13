@@ -54,4 +54,15 @@ public class CurrentJobServiceImpl implements CurrentJobService {
 		return false;
 	}
 
+	@Override
+	public ArrayList<CurrentJob> findAllByExpertID(int expertID) {
+		try{
+			System.out.println(expertID);
+			return currentJobRepository.findAllByExpertID(expertID);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

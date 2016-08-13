@@ -8,6 +8,8 @@ public interface FileDocumentDetailService {
 
 	ArrayList<ExpertDocumentDetail> findAll();
 	
+	ArrayList<ExpertDocumentDetail> findAllByExpertID(int expertID);
+	
 	ExpertDocumentDetail findOne(int expertID, int fileDocumentID, String filePath);
 	
 	boolean save(ExpertDocumentDetail expertDocumentDetail);

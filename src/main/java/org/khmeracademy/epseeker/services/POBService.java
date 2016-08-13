@@ -10,6 +10,8 @@ public interface POBService {
 	
 	POB findOne(int expertID);
 	
+	POB findOneByExpertID(int expertID);
+	
 	boolean save(POB pob);
 	
 	boolean update(POB pob);

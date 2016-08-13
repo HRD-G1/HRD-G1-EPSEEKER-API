@@ -23,6 +23,18 @@ public interface ExpertSubjectDetailRepository {
 	})
 	ArrayList<ExpertSubjectDetail> findAll();
 	
+	@Select(SQL.SELECT_ALL_EXPERT_ID)
+	@Results({
+		@Result(property="expertID", column="expert_id"),
+		@Result(property="subjectID", column="subject_id"),
+		@Result(property="expertSubjectDetailLevel", column="expert_subject_detail_level"),
+		@Result(property="subjectName", column="subject_name"),
+		@Result(property="subjectCategoryID", column="subject_category_id"),
+		@Result(property="subjectCategoryName", column="subject_category_name")
+		
+	})
+	ArrayList<ExpertSubjectDetail> findAllByExpertID(@Param("expertID")int expertID);
+	
 	@Insert(SQL.INSERT)
 	boolean save(ExpertSubjectDetail expertSubjectDetail);
 	
@@ -34,6 +46,12 @@ public interface ExpertSubjectDetailRepository {
 	
 	interface SQL{
 		String SELECT = "SELECT * FROM exp_expert_subject_detail";
+		
+		String SELECT_ALL_EXPERT_ID = "SELECT subd.*, sub.*, subc.subject_category_name "
+				+ "FROM exp_expert_subject_detail subd "
+				+ "INNER JOIN exp_subject sub ON subd.subject_id = sub.subject_id "
+				+ "INNER JOIN exp_subject_category subc ON subc.subject_category_id = sub.subject_category_id "
+				+ "WHERE subd.expert_id = #{expertID}";
 		
 		String INSERT = "INSERT INTO exp_expert_subject_detail"
 				+ "(expert_id, subject_id, expert_subject_detail_level)"

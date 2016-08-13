@@ -1,8 +1,13 @@
 package org.khmeracademy.epseeker.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Country {
 
+	@JsonProperty("COUNTRY_ID")
 	private int countryID;
+	
+	@JsonProperty("COUNTRY_NAME")
 	private String countryName;
 	
 	public Country() {

@@ -53,7 +53,7 @@ public interface SubjectCategoryRepository {
 	
 	
 	//new
-	@Select(SQL.SELECTWITHCONDITION)
+	@Select(SQL.SELECT_WITH_CONDITION)
 	@Results({
 		@Result(property="subjectID", column="subject_id"),
 		@Result(property="subjectName", column="subject_name"),
@@ -65,7 +65,7 @@ public interface SubjectCategoryRepository {
 	
 	interface SQL{
 		
-		String SELECTWITHCONDITION = "SELECT * FROM exp_subject WHERE subject_category_id = #{subject_category_id}";
+		String SELECT_WITH_CONDITION = "SELECT * FROM exp_subject WHERE subject_category_id = #{subject_category_id}";
 		
 		String SELECT = "SELECT * FROM exp_subject_category";
 		

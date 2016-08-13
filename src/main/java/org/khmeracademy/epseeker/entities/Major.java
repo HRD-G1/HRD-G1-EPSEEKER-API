@@ -1,8 +1,13 @@
 package org.khmeracademy.epseeker.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Major {
 
+	@JsonProperty("MAJOR_ID")
 	private int majorID;
+	
+	@JsonProperty("MAJOR_NAME")
 	private String majorName;
 	
 	public Major() {

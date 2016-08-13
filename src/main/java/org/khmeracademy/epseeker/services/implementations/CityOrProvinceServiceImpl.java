@@ -54,4 +54,14 @@ public class CityOrProvinceServiceImpl implements CityOrProvinceService{
 		return false;
 	}
 
+	@Override
+	public ArrayList<CityOrProvince> findAllByCountry(int countryID) {
+		try{
+			return cityOrProvinceReposity.findAllByCountry(countryID);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

@@ -1,9 +1,16 @@
 package org.khmeracademy.epseeker.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class University {
 
+	@JsonProperty("UNIVERSITY_ID")
 	private int universityID;
+	
+	@JsonProperty("UNIVERSITY_NAME")
 	private String universityName;
+	
+	@JsonProperty("UNIVERSITY_DESCRIPTION")
 	private String universityDescription;
 	
 	public University() {

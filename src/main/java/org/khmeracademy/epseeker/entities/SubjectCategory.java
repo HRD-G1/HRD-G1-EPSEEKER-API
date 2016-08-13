@@ -2,10 +2,17 @@ package org.khmeracademy.epseeker.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class SubjectCategory {
 
+	@JsonProperty("SUBJECT_CATEOGRY_ID")
 	private int subjectCategoryID;
+	
+	@JsonProperty("SUBJECT_CATEGORY_NAME")
 	private String subjectCategoryName;
+	
+	@JsonProperty("SUBJECT")
 	private List<Subject> subjects;
 	
 	public SubjectCategory() {

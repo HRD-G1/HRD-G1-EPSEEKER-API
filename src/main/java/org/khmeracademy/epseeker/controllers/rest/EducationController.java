@@ -25,6 +25,11 @@ public class EducationController {
 		return educationService.findAll();
 	}
 	
+	@RequestMapping(value="/rest/education/{expertID}", method = RequestMethod.GET)
+	ArrayList<Education> findAllByExpertID(@PathVariable("expertID")int expertID){		
+		return educationService.findAllByExpertID(expertID);
+	}
+	
 	@RequestMapping(value="/rest/education", method = RequestMethod.POST)
 	boolean save(@RequestBody Education edu){
 		return educationService.save(edu);

@@ -25,6 +25,19 @@ public interface ExperienceDetailRepository {
 	})
 	ArrayList<ExperienceDetail> findAll();
 	
+	@Select(SQL.SELECT_ALL_BY_EXPERT_ID)
+	@Results({
+		@Result(property="expertID", column="expert_id"),
+		@Result(property="institutionID", column="institution_id"),
+		@Result(property="majorID", column="major_id"),
+		@Result(property="experienceStartYear", column="experience_start_year"),
+		@Result(property="experienceEndYear", column="experience_end_year"),
+		@Result(property="majorName", column="major_name"),
+		@Result(property="institutionName", column="institution_name"),
+		@Result(property="institutionAddress", column="institution_address")
+	})
+	ArrayList<ExperienceDetail> findAllByExpertID(@Param("expertID")int expertID);
+	
 	@Insert(SQL.INSERT)
 	boolean save(ExperienceDetail experienceDetail);
 	
@@ -36,6 +49,12 @@ public interface ExperienceDetailRepository {
 	
 	interface SQL{
 		String SELECT = "SELECT * FROM exp_experience_detail";
+		
+		String SELECT_ALL_BY_EXPERT_ID = "	SELECT * "
+				+ "FROM exp_experience_detail as expe "
+				+ "INNER JOIN exp_major as maj ON expe.major_id = maj.major_id "
+				+ "INNER JOIN exp_institutions as ints ON ints.institution_id = expe.institution_id "
+				+ "WHERE expe.expert_id = #{expertID}"; 
 		
 		String INSERT = "INSERT INTO exp_experience_detail "
 				+ "(expert_id, institution_id, major_id, experience_start_year, experience_end_year) "

@@ -53,6 +53,16 @@ public class ExperienceDetailServiceImpl implements ExperienceDetailService{
 		}
 		return false;
 	}
+
+	@Override
+	public ArrayList<ExperienceDetail> findAllByExpertID(int expertID) {
+		try{
+			return experienceDetailRepository.findAllByExpertID(expertID);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	
 }

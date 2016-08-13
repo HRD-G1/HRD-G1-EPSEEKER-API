@@ -54,4 +54,14 @@ public class EducationServiceImpl implements EducationService{
 		return false;
 	}
 
+	@Override
+	public ArrayList<Education> findAllByExpertID(int expertID) {
+		try{
+			return educationRepository.findAllByExpertID(expertID);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

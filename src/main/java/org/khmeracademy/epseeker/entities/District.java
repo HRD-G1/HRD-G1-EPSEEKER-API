@@ -1,9 +1,16 @@
 package org.khmeracademy.epseeker.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class District {
 
+	@JsonProperty("DISTRICT_ID")
 	private int districtID;
+	
+	@JsonProperty("DISTRICT_NAME")
 	private String districtName;
+	
+	@JsonProperty("CITY_OR_PROVINCE_ID")
 	private int cityOrProvinceID;
 	
 	public District() {

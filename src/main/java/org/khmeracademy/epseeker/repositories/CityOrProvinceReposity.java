@@ -23,6 +23,14 @@ public interface CityOrProvinceReposity {
 	})
 	ArrayList<CityOrProvince> findAll();
 	
+	@Select(SQL.SELECTAllBYCOUNTRY)
+	@Results({
+		@Result(property="cityOrProvinceID", column="city_or_province_id"),
+		@Result(property="cityOrProvinceName", column="city_or_province_name"),
+		@Result(property="countryID", column="country_id")
+	})
+	ArrayList<CityOrProvince> findAllByCountry(@Param("countryID")int countryID);
+	
 	@Insert(SQL.INSERT)
 	boolean save(CityOrProvince cityOrProvince);
 	
@@ -34,6 +42,9 @@ public interface CityOrProvinceReposity {
 
 	interface SQL{
 		String SELECT = "SELECT * FROM exp_city_or_provinces";
+		
+		String SELECTAllBYCOUNTRY = "SELECT * FROM exp_city_or_provinces "
+				+ "WHERE country_id = #{countryID}";
 		
 		String INSERT = "INSERT INTO exp_city_or_provinces "
 				+ "(city_or_province_name, country_id) "

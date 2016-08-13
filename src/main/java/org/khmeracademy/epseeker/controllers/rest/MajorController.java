@@ -33,8 +33,8 @@ public class MajorController {
 		return majorService.update(maj);
 	}
 	
-	@RequestMapping(value="/rest/major/majorID", method = RequestMethod.DELETE)
-	boolean delete(@PathVariable("majorID")int majorID){
+	@RequestMapping(value="/rest/major/{majorID}", method = RequestMethod.DELETE)
+	boolean delete(@PathVariable("majorID")int majorID){		
 		return majorService.delete(majorID);
 	}
 }

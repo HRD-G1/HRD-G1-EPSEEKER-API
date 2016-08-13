@@ -1,9 +1,16 @@
 package org.khmeracademy.epseeker.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class FileDocument {
 
+	@JsonProperty("FILE_ID")
 	private int fileID;
+	
+	@JsonProperty("FILE_NAME")
 	private String fileName;
+	
+	@JsonProperty("FILE_DESCRIPTION")
 	private String fileDescription;
 
 	public FileDocument() {

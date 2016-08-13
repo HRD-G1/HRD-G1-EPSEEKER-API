@@ -54,6 +54,16 @@ public class ExpertSubjectDetailServiceImpl implements ExpertSubjectDetailServic
 		return false;
 	}
 
+	@Override
+	public ArrayList<ExpertSubjectDetail> findAllByExpertID(int expertID) {
+		try{
+			return expertSubjectDetailRepository.findAllByExpertID(expertID);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	
 	
 }

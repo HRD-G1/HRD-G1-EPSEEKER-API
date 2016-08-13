@@ -10,6 +10,8 @@ public interface CurrentAddressService {
 	
 	CurrentAddress findOne(int expertID);
 	
+	CurrentAddress findOneByExpertID(int expertiD);
+	
 	boolean save(CurrentAddress currentAddress);
 	
 	boolean update(CurrentAddress currentAddress);

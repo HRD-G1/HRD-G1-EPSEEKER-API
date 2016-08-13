@@ -1,31 +1,35 @@
 package org.khmeracademy.epseeker.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class ExperienceDetail {
 
+	@JsonProperty("EXPERT_ID")
 	private int expertID;
+	
+	@JsonProperty("INSTITUTION_ID")
 	private int institutionID;
+	
+	@JsonProperty("INSTITUTION_NAME")
+	private String institutionName;
+	
+	@JsonProperty("INSTITUTION_ADDRESS")
+	private String institutionAddress;
+	
+	@JsonProperty("MAJOR_ID")
 	private int majorID;
+	
+	@JsonProperty("MAJOR_NAME")
+	private String majorName;
+	
+	@JsonProperty("EXPERIENCE_START_YEAR")
 	private String experienceStartYear;
+	
+	@JsonProperty("EXPERIENCE_END_YEAR")
 	private String experienceEndYear;
 	
 	public ExperienceDetail() {
 		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @param expertID
-	 * @param institutionID
-	 * @param majorID
-	 * @param experienceStartYear
-	 * @param expertienceEndYear
-	 */
-	public ExperienceDetail(int expertID, int institutionID, int majorID, String experienceStartYear,
-			String expertienceEndYear) {
-		this.expertID = expertID;
-		this.institutionID = institutionID;
-		this.majorID = majorID;
-		this.experienceStartYear = experienceStartYear;
-		this.experienceEndYear = expertienceEndYear;
 	}
 
 	/**
@@ -57,6 +61,34 @@ public class ExperienceDetail {
 	}
 
 	/**
+	 * @return the institutionName
+	 */
+	public String getInstitutionName() {
+		return institutionName;
+	}
+
+	/**
+	 * @param institutionName the institutionName to set
+	 */
+	public void setInstitutionName(String institutionName) {
+		this.institutionName = institutionName;
+	}
+
+	/**
+	 * @return the institutionAddress
+	 */
+	public String getInstitutionAddress() {
+		return institutionAddress;
+	}
+
+	/**
+	 * @param institutionAddress the institutionAddress to set
+	 */
+	public void setInstitutionAddress(String institutionAddress) {
+		this.institutionAddress = institutionAddress;
+	}
+
+	/**
 	 * @return the majorID
 	 */
 	public int getMajorID() {
@@ -68,6 +100,20 @@ public class ExperienceDetail {
 	 */
 	public void setMajorID(int majorID) {
 		this.majorID = majorID;
+	}
+
+	/**
+	 * @return the marjorName
+	 */
+	public String getMajorName() {
+		return majorName;
+	}
+
+	/**
+	 * @param marjorName the marjorName to set
+	 */
+	public void setMajorName(String marjorName) {
+		this.majorName = marjorName;
 	}
 
 	/**
@@ -85,19 +131,41 @@ public class ExperienceDetail {
 	}
 
 	/**
-	 * @return the expertienceEndYear
+	 * @return the experienceEndYear
 	 */
-	public String getExpertienceEndYear() {
+	public String getExperienceEndYear() {
 		return experienceEndYear;
 	}
 
 	/**
-	 * @param expertienceEndYear the expertienceEndYear to set
+	 * @param experienceEndYear the experienceEndYear to set
 	 */
-	public void setExpertienceEndYear(String expertienceEndYear) {
-		this.experienceEndYear = expertienceEndYear;
+	public void setExperienceEndYear(String experienceEndYear) {
+		this.experienceEndYear = experienceEndYear;
 	}
-	
+
+	/**
+	 * @param expertID
+	 * @param institutionID
+	 * @param institutionName
+	 * @param institutionAddress
+	 * @param majorID
+	 * @param marjorName
+	 * @param experienceStartYear
+	 * @param experienceEndYear
+	 */
+	public ExperienceDetail(int expertID, int institutionID, String institutionName, String institutionAddress,
+			int majorID, String majorName, String experienceStartYear, String experienceEndYear) {
+		this.expertID = expertID;
+		this.institutionID = institutionID;
+		this.institutionName = institutionName;
+		this.institutionAddress = institutionAddress;
+		this.majorID = majorID;
+		this.majorName = majorName;
+		this.experienceStartYear = experienceStartYear;
+		this.experienceEndYear = experienceEndYear;
+	}
+
 	
 	
 }

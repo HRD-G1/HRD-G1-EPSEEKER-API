@@ -1,30 +1,29 @@
 package org.khmeracademy.epseeker.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class JobExpectation {
 
+	@JsonProperty("EXPERT_ID")
 	private int expertID;
+
+	@JsonProperty("POSITION_ID")
 	private int positionID;
+
+	@JsonProperty("POSITION_NAME")
+	private String positionName;
+
+	@JsonProperty("MIN_SALARY")
 	private double minSalary;
+
+	@JsonProperty("MAX_SALARY")
 	private double maxSalary;
+
+	@JsonProperty("LOCATION")
 	private String location;
-	
+
 	public JobExpectation() {
 		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @param expertID
-	 * @param positionID
-	 * @param minSalary
-	 * @param maxSalary
-	 * @param location
-	 */
-	public JobExpectation(int expertID, int positionID, double minSalary, double maxSalary, String location) {
-		this.expertID = expertID;
-		this.positionID = positionID;
-		this.minSalary = minSalary;
-		this.maxSalary = maxSalary;
-		this.location = location;
 	}
 
 	/**
@@ -35,7 +34,8 @@ public class JobExpectation {
 	}
 
 	/**
-	 * @param expertID the expertID to set
+	 * @param expertID
+	 *            the expertID to set
 	 */
 	public void setExpertID(int expertID) {
 		this.expertID = expertID;
@@ -49,10 +49,26 @@ public class JobExpectation {
 	}
 
 	/**
-	 * @param positionID the positionID to set
+	 * @param positionID
+	 *            the positionID to set
 	 */
 	public void setPositionID(int positionID) {
 		this.positionID = positionID;
+	}
+
+	/**
+	 * @return the positionName
+	 */
+	public String getPositionName() {
+		return positionName;
+	}
+
+	/**
+	 * @param positionName
+	 *            the positionName to set
+	 */
+	public void setPositionName(String positionName) {
+		this.positionName = positionName;
 	}
 
 	/**
@@ -63,7 +79,8 @@ public class JobExpectation {
 	}
 
 	/**
-	 * @param minSalary the minSalary to set
+	 * @param minSalary
+	 *            the minSalary to set
 	 */
 	public void setMinSalary(double minSalary) {
 		this.minSalary = minSalary;
@@ -77,7 +94,8 @@ public class JobExpectation {
 	}
 
 	/**
-	 * @param maxSalary the maxSalary to set
+	 * @param maxSalary
+	 *            the maxSalary to set
 	 */
 	public void setMaxSalary(double maxSalary) {
 		this.maxSalary = maxSalary;
@@ -91,12 +109,29 @@ public class JobExpectation {
 	}
 
 	/**
-	 * @param location the location to set
+	 * @param location
+	 *            the location to set
 	 */
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	
-	
-	
+
+	/**
+	 * @param expertID
+	 * @param positionID
+	 * @param positionName
+	 * @param minSalary
+	 * @param maxSalary
+	 * @param location
+	 */
+	public JobExpectation(int expertID, int positionID, String positionName, double minSalary, double maxSalary,
+			String location) {
+		this.expertID = expertID;
+		this.positionID = positionID;
+		this.positionName = positionName;
+		this.minSalary = minSalary;
+		this.maxSalary = maxSalary;
+		this.location = location;
+	}
+
 }

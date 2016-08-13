@@ -23,6 +23,15 @@ public interface ExpertLanguageDetailRepository {
 	})
 	ArrayList<ExpertLanguageDetail> findAll();
 	
+	@Select(SQL.SELECT_ALL_BY_EXPERT_ID)
+	@Results({
+		@Result(property="expertID", column="expert_id"),
+		@Result(property="languageID", column="language_id"),
+		@Result(property="mention", column="mention"),
+		@Result(property="languageName", column="language_name")
+	})
+	ArrayList<ExpertLanguageDetail> findAllByExpertID(@Param("expertID")int expertID);
+	
 	@Insert(SQL.INSERT)
 	boolean save(ExpertLanguageDetail expertLanguageDetail);
 	
@@ -34,6 +43,11 @@ public interface ExpertLanguageDetailRepository {
 
 	interface SQL{
 		String SELECT = "SELECT * FROM exp_expert_language_detail";
+		
+		String SELECT_ALL_BY_EXPERT_ID = "SELECT elang.*, lang.language_name "
+				+"FROM exp_expert_language_detail as elang "
+				+"INNER JOIN exp_language as lang ON elang.language_id = lang.language_id "
+				+"WHERE elang.expert_id = #{expertID}";
 		
 		String INSERT = "INSERT INTO exp_expert_language_detail "
 				+ "(expert_id, language_id, mention) "

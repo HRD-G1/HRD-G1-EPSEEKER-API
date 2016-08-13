@@ -25,6 +25,17 @@ public interface JobExpectationRepository {
 	})
 	ArrayList<JobExpectation> findAll();
 	
+	@Select(SQL.SELECT_ALL_BY_EXPERT_ID)
+	@Results({
+		@Result(property="expertID", column="expert_id"),
+		@Result(property="positionID", column="position_id"),
+		@Result(property="minSalary", column="min_salary"),
+		@Result(property="location", column="location"),
+		@Result(property="maxSalary", column="max_salary"),
+		@Result(property="positionName", column="position_name")
+	})
+	ArrayList<JobExpectation> findAllByExpertID(@Param("expertID")int expertID);
+	
 	@Insert(SQL.INSERT)
 	boolean save(JobExpectation jobExpectation);
 	
@@ -39,6 +50,11 @@ public interface JobExpectationRepository {
 		
 		String SELECT = "SELECT * FROM "
 				+ "exp_job_expectation";
+		
+		String SELECT_ALL_BY_EXPERT_ID = "SELECT * "
+				+ "FROM exp_positions as pos "
+				+ "INNER JOIN exp_job_expectation as jobs ON jobs.position_id = pos.position_id "
+				+ "WHERE jobs.expert_id = #{expertID}";
 		
 		String INSERT = "INSERT INTO "
 				+ "exp_job_expectation "

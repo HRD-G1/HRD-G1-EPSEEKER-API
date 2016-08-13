@@ -63,6 +63,16 @@ public class CurrentAddressServiceImpl implements CurrentAddressService{
 		}
 		return null;
 	}
+
+	@Override
+	public CurrentAddress findOneByExpertID(int expertiD) {
+		try{
+			return currentAddressRepository.findOneByExpertID(expertiD);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	
 }

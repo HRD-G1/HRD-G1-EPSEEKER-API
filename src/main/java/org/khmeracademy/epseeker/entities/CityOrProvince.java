@@ -1,9 +1,16 @@
 package org.khmeracademy.epseeker.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class CityOrProvince {
 
+	@JsonProperty("CITY_OR_PROVINCE_ID")
 	private int cityOrProvinceID;
+	
+	@JsonProperty("CITY_OR_PROVINCE_NAME")
 	private String cityOrProvinceName;
+	
+	@JsonProperty("COUNTRY_ID")
 	private int countryID;
 	
 	public CityOrProvince() {

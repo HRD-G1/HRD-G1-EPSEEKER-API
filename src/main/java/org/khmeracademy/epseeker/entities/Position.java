@@ -1,8 +1,13 @@
 package org.khmeracademy.epseeker.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Position {
 
+	@JsonProperty("POSITION_ID")
 	private int positionID;
+	
+	@JsonProperty("POSITION_NAME")
 	private String positionName;
 	
 	public Position() {

@@ -22,6 +22,11 @@ public class CityOrProvinceController {
 		return cityOrProvinceService.findAll();
 	}
 	
+	@RequestMapping(value="/rest/cityorprovince/findAllBy/{countryID}", method = RequestMethod.GET)
+	ArrayList<CityOrProvince> findAllByCountry(@PathVariable("countryID")int countryID){
+		return cityOrProvinceService.findAllByCountry(countryID);
+	}
+	
 	@RequestMapping(value="/rest/cityorprovince", method = RequestMethod.POST)
 	boolean save(@RequestBody CityOrProvince cityOrProvince){
 		return cityOrProvinceService.save(cityOrProvince);

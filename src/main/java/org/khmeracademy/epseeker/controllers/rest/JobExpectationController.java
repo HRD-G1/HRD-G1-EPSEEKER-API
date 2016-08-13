@@ -22,6 +22,11 @@ public class JobExpectationController {
 		return jobExpectationService.findAll();
 	}
 	
+	@RequestMapping(value="/rest/jobexpectation/{expertID}", method = RequestMethod.GET)
+	ArrayList<JobExpectation> findAllByExpertID(@PathVariable("expertID")int expertID){
+		return jobExpectationService.findAllByExpertID(expertID);
+	}
+	
 	@RequestMapping(value="/rest/jobexpectation", method = RequestMethod.POST)
 	boolean save(@RequestBody JobExpectation jobExpectation){
 		return jobExpectationService.save(jobExpectation);				

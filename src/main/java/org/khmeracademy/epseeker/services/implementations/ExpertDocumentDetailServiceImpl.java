@@ -65,5 +65,15 @@ public class ExpertDocumentDetailServiceImpl implements FileDocumentDetailServic
 		return false;
 	}
 
+	@Override
+	public ArrayList<ExpertDocumentDetail> findAllByExpertID(int expertID) {
+		try{
+			return expertDocumentDetailRepository.findAllByExpertID(expertID);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 
 }

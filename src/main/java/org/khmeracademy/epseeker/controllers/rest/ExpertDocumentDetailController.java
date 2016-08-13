@@ -23,6 +23,11 @@ public class ExpertDocumentDetailController {
 		return fileDocumentDetailService.findAll();
 	}
 	
+	@RequestMapping(value="rest/allexpertdocumentdetail/{expertID}", method = RequestMethod.GET)
+	ArrayList<ExpertDocumentDetail> findAllByExpertID(@PathVariable("expertID")int expertID){
+		return fileDocumentDetailService.findAllByExpertID(expertID);
+	}
+	
 	@RequestMapping(value="rest/expertdocumentdetail", method = RequestMethod.GET)
 	ExpertDocumentDetail findOne(@RequestParam("expertID")int expertID, @RequestParam("fileDocumentID")int fileDocumentID, @RequestParam("filePath")String filePath){
 		System.out.println(filePath);

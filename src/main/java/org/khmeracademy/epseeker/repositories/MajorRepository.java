@@ -43,7 +43,7 @@ public interface MajorRepository {
 				+ "WHERE major_id = #{majorID}";
 		
 		String DELETE = "DELETE FROM exp_major "
-				+ "WHERE major_id = #{major_id}";
+				+ "WHERE major_id = #{majorID}";
 	}
 	
 }

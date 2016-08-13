@@ -1,10 +1,21 @@
 package org.khmeracademy.epseeker.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class ExpertLanguageDetail {
 
+	
+	@JsonProperty("EXPERT_ID")
 	private int expertID;
+	
+	@JsonProperty("LANGUAGE_ID")
 	private int languageID;
+	
+	@JsonProperty("MENTION")
 	private String mention;
+	
+	@JsonProperty("LANGUAGE_NAME")
+	private String languageName;
 	
 	public ExpertLanguageDetail() {
 		// TODO Auto-generated constructor stub
@@ -62,6 +73,34 @@ public class ExpertLanguageDetail {
 	public void setMention(String mention) {
 		this.mention = mention;
 	}
+
+	/**
+	 * @return the languageName
+	 */
+	public String getLanguageName() {
+		return languageName;
+	}
+
+	/**
+	 * @param languageName the languageName to set
+	 */
+	public void setLanguageName(String languageName) {
+		this.languageName = languageName;
+	}
+
+	/**
+	 * @param expertID
+	 * @param languageID
+	 * @param mention
+	 * @param languageName
+	 */
+	public ExpertLanguageDetail(int expertID, int languageID, String mention, String languageName) {
+		this.expertID = expertID;
+		this.languageID = languageID;
+		this.mention = mention;
+		this.languageName = languageName;
+	}
+	
 	
 	
 	

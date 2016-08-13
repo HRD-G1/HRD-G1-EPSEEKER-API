@@ -8,6 +8,8 @@ public interface JobExpectationService {
 
 	ArrayList<JobExpectation> findAll();
 	
+	ArrayList<JobExpectation> findAllByExpertID(int expertID);
+	
 	boolean save(JobExpectation jobExpectation);
 	
 	boolean update(JobExpectation jobExpectation);

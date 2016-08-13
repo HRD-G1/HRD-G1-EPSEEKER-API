@@ -8,6 +8,8 @@ public interface ExpertSubjectDetailService {
 
 	ArrayList<ExpertSubjectDetail> findAll();
 	
+	ArrayList<ExpertSubjectDetail> findAllByExpertID(int expertID);
+	
 	boolean save(ExpertSubjectDetail expertSubjectDetail);
 	
 	boolean update(ExpertSubjectDetail expertSubjectDetail);

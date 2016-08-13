@@ -22,6 +22,11 @@ public class ExperienceController {
 		return experienceDetailService.findAll();
 	}
 	
+	@RequestMapping(value="/rest/experiencedetail/{expertID}", method = RequestMethod.GET)
+	ArrayList<ExperienceDetail> findAllByExpertID(@PathVariable("expertID")int expertID){
+		return experienceDetailService.findAllByExpertID(expertID);
+	}
+	
 	@RequestMapping(value="/rest/experiencedetail", method = RequestMethod.POST)
 	boolean save(@RequestBody ExperienceDetail experienceDetail){
 		return experienceDetailService.save(experienceDetail);

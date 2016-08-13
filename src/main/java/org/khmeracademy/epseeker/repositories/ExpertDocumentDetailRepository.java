@@ -24,6 +24,16 @@ public interface ExpertDocumentDetailRepository {
 	})
 	ArrayList<ExpertDocumentDetail> findAll();
 	
+	@Select(SQL.SELECT_ALL_BY_EXPERT_ID)
+	@Results({
+		@Result(property="expertID", column="expert_id"),
+		@Result(property="fileDocumentID", column="file_document_id"),
+		@Result(property="filePath", column="file_path"),
+		@Result(property="description", column="description"),
+		@Result(property="fileName", column="file_name")
+	})
+	ArrayList<ExpertDocumentDetail> findAllByExpertID(@Param("expertID")int expertID);
+	
 	@Select(SQL.SELECTONE)
 	@Results({
 		@Result(property="expertID", column="expert_id"),
@@ -32,6 +42,7 @@ public interface ExpertDocumentDetailRepository {
 		@Result(property="description", column="description")
 	})
 	ExpertDocumentDetail findOne(@Param("expertID")int expertID, @Param("fileDocumentID")int fileDocumentID, @Param("filePath")String filePath);
+	
 	
 	@Insert(SQL.INSERT)
 	boolean save(ExpertDocumentDetail expertDocumentDetail);
@@ -46,6 +57,11 @@ public interface ExpertDocumentDetailRepository {
 		String SELECT = "SELECT * FROM exp_expert_document_detail";
 		
 		String SELECTONE = "SELECT * FROM exp_expert_document_detail WHERE expert_id = #{expertID} AND file_document_id = #{fileDocumentID} AND file_path = #{filePath}";
+		
+		String SELECT_ALL_BY_EXPERT_ID = "SELECT doc.*, fil.file_name "
+				+"FROM exp_expert_document_detail as doc "
+				+"INNER JOIN exp_file_document as fil ON doc.file_document_id = fil.file_id "
+				+"WHERE expert_id = #{expertID}";
 		
 		String INSERT = "INSERT INTO exp_expert_document_detail "
 				+ "(expert_id, file_document_id, file_path, description) "

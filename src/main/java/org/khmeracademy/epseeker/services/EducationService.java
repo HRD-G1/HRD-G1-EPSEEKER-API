@@ -8,6 +8,8 @@ public interface EducationService {
 
 	ArrayList<Education> findAll();
 	
+	ArrayList<Education> findAllByExpertID(int expertID);
+	
 	boolean save(Education edu);
 	
 	boolean update(Education edu);

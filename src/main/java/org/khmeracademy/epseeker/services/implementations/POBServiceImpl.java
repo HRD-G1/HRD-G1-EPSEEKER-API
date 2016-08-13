@@ -63,6 +63,16 @@ public class POBServiceImpl implements POBService{
 		}
 		return false;
 	}
+
+	@Override
+	public POB findOneByExpertID(int expertID) {
+		try{
+			return pobRepository.findOneByExpertID(expertID);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	
 	
