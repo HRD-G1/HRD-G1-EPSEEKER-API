@@ -15,7 +15,10 @@ public class Subject {
 	private int subjectCategoryID;
 	
 	@JsonProperty("SUBJECT_CATEGORY_NAME")
-	private String subjectCategoryName;	
+	private String subjectCategoryName;
+	
+	@JsonProperty("NUMBER_OF_EXPERT_EACH_SKIL")
+	private int numberOfExpertEachSkilll;
 	
 
 	public Subject() {
@@ -42,17 +45,23 @@ public class Subject {
 
 
 
+	
+
+
 	/**
 	 * @param subjectID
 	 * @param subjectName
 	 * @param subjectCategoryID
 	 * @param subjectCategoryName
+	 * @param numberOfExpertEachSkilll
 	 */
-	public Subject(int subjectID, String subjectName, int subjectCategoryID, String subjectCategoryName) {
+	public Subject(int subjectID, String subjectName, int subjectCategoryID, String subjectCategoryName,
+			int numberOfExpertEachSkilll) {
 		this.subjectID = subjectID;
 		this.subjectName = subjectName;
 		this.subjectCategoryID = subjectCategoryID;
 		this.subjectCategoryName = subjectCategoryName;
+		this.numberOfExpertEachSkilll = numberOfExpertEachSkilll;
 	}
 
 
@@ -102,4 +111,24 @@ public class Subject {
 		this.subjectCategoryID = subjectCategoryID;
 	}
 
+
+
+	/**
+	 * @return the numberOfExpertEachSkilll
+	 */
+	public int getNumberOfExpertEachSkilll() {
+		return numberOfExpertEachSkilll;
+	}
+
+
+
+	/**
+	 * @param numberOfExpertEachSkilll the numberOfExpertEachSkilll to set
+	 */
+	public void setNumberOfExpertEachSkilll(int numberOfExpertEachSkilll) {
+		this.numberOfExpertEachSkilll = numberOfExpertEachSkilll;
+	}
+
+	
+	
 }

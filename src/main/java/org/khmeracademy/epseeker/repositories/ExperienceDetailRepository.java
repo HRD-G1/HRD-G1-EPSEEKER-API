@@ -34,7 +34,8 @@ public interface ExperienceDetailRepository {
 		@Result(property="experienceEndYear", column="experience_end_year"),
 		@Result(property="majorName", column="major_name"),
 		@Result(property="institutionName", column="institution_name"),
-		@Result(property="institutionAddress", column="institution_address")
+		@Result(property="institutionAddress", column="institution_address"),
+		@Result(property="projectExperience", column="project_experience")
 	})
 	ArrayList<ExperienceDetail> findAllByExpertID(@Param("expertID")int expertID);
 	

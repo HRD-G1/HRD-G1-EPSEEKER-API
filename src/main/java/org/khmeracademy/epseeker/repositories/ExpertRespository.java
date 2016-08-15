@@ -60,7 +60,7 @@ public interface ExpertRespository {
 	})
 	ArrayList<Expert> findAll();
 	
-	@Select(SQL.SELECTONE)
+	@SelectProvider(type=ExpertProvider.class, method="selectOneExpertByID")
 	@Results({
 		@Result(property="expertID", column="expert_id"),
 		@Result(property="expertFirstName", column="expert_firstname"),
@@ -95,9 +95,6 @@ public interface ExpertRespository {
 	
 	@Delete(SQL.DELETE)
 	boolean delete(@Param("expertID")int expertID);
-	
-	@SelectProvider(type=ExpertProvider.class, method = "selectExpert")
-	boolean test(@Param("a") int a, @Param("b") int b);
 	
 	
 	//new

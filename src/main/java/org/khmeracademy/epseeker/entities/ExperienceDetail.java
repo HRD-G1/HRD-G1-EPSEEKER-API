@@ -28,6 +28,9 @@ public class ExperienceDetail {
 	@JsonProperty("EXPERIENCE_END_YEAR")
 	private String experienceEndYear;
 	
+	@JsonProperty("PROJECT_EXPERIENCE")
+	private String projectExperience;
+	
 	public ExperienceDetail() {
 		// TODO Auto-generated constructor stub
 	}
@@ -145,17 +148,33 @@ public class ExperienceDetail {
 	}
 
 	/**
+	 * @return the projectExperience
+	 */
+	public String getProjectExperience() {
+		return projectExperience;
+	}
+
+	/**
+	 * @param projectExperience the projectExperience to set
+	 */
+	public void setProjectExperience(String projectExperience) {
+		this.projectExperience = projectExperience;
+	}
+
+	/**
 	 * @param expertID
 	 * @param institutionID
 	 * @param institutionName
 	 * @param institutionAddress
 	 * @param majorID
-	 * @param marjorName
+	 * @param majorName
 	 * @param experienceStartYear
 	 * @param experienceEndYear
+	 * @param projectExperience
 	 */
 	public ExperienceDetail(int expertID, int institutionID, String institutionName, String institutionAddress,
-			int majorID, String majorName, String experienceStartYear, String experienceEndYear) {
+			int majorID, String majorName, String experienceStartYear, String experienceEndYear,
+			String projectExperience) {
 		this.expertID = expertID;
 		this.institutionID = institutionID;
 		this.institutionName = institutionName;
@@ -164,8 +183,10 @@ public class ExperienceDetail {
 		this.majorName = majorName;
 		this.experienceStartYear = experienceStartYear;
 		this.experienceEndYear = experienceEndYear;
+		this.projectExperience = projectExperience;
 	}
 
+	
 	
 	
 }

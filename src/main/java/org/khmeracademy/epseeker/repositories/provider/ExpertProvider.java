@@ -6,17 +6,17 @@ import org.apache.ibatis.jdbc.SQL;
 
 public class ExpertProvider {
 	
-	public String selectExpert(Map<String, Object> params){
+	public String selectOneExpertByID(Map<String, Object> obj){
 		
-		String sql = new SQL(){{
-			SELECT("");
-			FROM("");
-			
-			WHERE("");
-			WHERE("");
+		int expertID = (int) obj.get("param1");
+		
+		String sql = new SQL(){{			
+			SELECT("*");
+			FROM("exp_expert");
+			WHERE("expert_id = " + expertID);
 		}}.toString();
 		
-		return "";
+		return sql;
 	}
 	
 	
