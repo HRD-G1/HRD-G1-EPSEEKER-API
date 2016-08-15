@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.One;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
@@ -33,6 +32,13 @@ public interface SubjectRepository {
 		@Result(property="numberOfExpertEachSkilll", column="number_of_expert_each_skills")
 	})
 	ArrayList<Subject> findAllBySubjectCategory(@Param("subjectCategoryID")int subjectCategoryID);
+	
+	@Select(SQL.SELECT_COUNT_SKILL_SET)
+	@Results({
+		@Result(property="subjectCategoryName", column="subject_category_name"),
+		@Result(property="numOfSkills", column="num_of_skill_set")
+	})
+	ArrayList<Subject> countSkill();
 	
 	@Select(SQL.SELECTONE)
 	@Results({
@@ -64,6 +70,10 @@ public interface SubjectRepository {
 		String SELECTONE = "SELECT * FROM exp_subject WHERE subject_name = #{subjectCategoryID}";
 		
 		String SELECTWITHCONDITION = "SELECT * FROM exp_subject WHERE subject_category_id = #{subject_category_id}";
+		
+		String SELECT_COUNT_SKILL_SET = "SELECT v_statistic_skill_set.subject_category_name, sum(num) as num_of_skill_set" 
+				+"FROM v_statistic_skill_set "
+				+"GROUP BY v_statistic_skill_set.subject_category_name";
 		
 		String SELECT_COUNT_EXPERT_SKILLS = "SELECT "
 				+"sub.subject_id, "

@@ -16,11 +16,14 @@ public class ExperienceDetail {
 	@JsonProperty("INSTITUTION_ADDRESS")
 	private String institutionAddress;
 	
-	@JsonProperty("MAJOR_ID")
-	private int majorID;
+	@JsonProperty("PERIOD")
+	private String period;
 	
-	@JsonProperty("MAJOR_NAME")
-	private String majorName;
+	@JsonProperty("POSITION_ID")
+	private String positionID;
+	
+	@JsonProperty("POSITION_NAME")
+	private String positionName;
 	
 	@JsonProperty("EXPERIENCE_START_YEAR")
 	private String experienceStartYear;
@@ -33,6 +36,33 @@ public class ExperienceDetail {
 	
 	public ExperienceDetail() {
 		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param expertID
+	 * @param institutionID
+	 * @param institutionName
+	 * @param institutionAddress
+	 * @param period
+	 * @param positionID
+	 * @param positionName
+	 * @param experienceStartYear
+	 * @param experienceEndYear
+	 * @param projectExperience
+	 */
+	public ExperienceDetail(int expertID, int institutionID, String institutionName, String institutionAddress,
+			String period, String positionID, String positionName, String experienceStartYear, String experienceEndYear,
+			String projectExperience) {
+		this.expertID = expertID;
+		this.institutionID = institutionID;
+		this.institutionName = institutionName;
+		this.institutionAddress = institutionAddress;
+		this.period = period;
+		this.positionID = positionID;
+		this.positionName = positionName;
+		this.experienceStartYear = experienceStartYear;
+		this.experienceEndYear = experienceEndYear;
+		this.projectExperience = projectExperience;
 	}
 
 	/**
@@ -92,31 +122,45 @@ public class ExperienceDetail {
 	}
 
 	/**
-	 * @return the majorID
+	 * @return the period
 	 */
-	public int getMajorID() {
-		return majorID;
+	public String getPeriod() {
+		return period;
 	}
 
 	/**
-	 * @param majorID the majorID to set
+	 * @param period the period to set
 	 */
-	public void setMajorID(int majorID) {
-		this.majorID = majorID;
+	public void setPeriod(String period) {
+		this.period = period;
 	}
 
 	/**
-	 * @return the marjorName
+	 * @return the positionID
 	 */
-	public String getMajorName() {
-		return majorName;
+	public String getPositionID() {
+		return positionID;
 	}
 
 	/**
-	 * @param marjorName the marjorName to set
+	 * @param positionID the positionID to set
 	 */
-	public void setMajorName(String marjorName) {
-		this.majorName = marjorName;
+	public void setPositionID(String positionID) {
+		this.positionID = positionID;
+	}
+
+	/**
+	 * @return the positionName
+	 */
+	public String getPositionName() {
+		return positionName;
+	}
+
+	/**
+	 * @param positionName the positionName to set
+	 */
+	public void setPositionName(String positionName) {
+		this.positionName = positionName;
 	}
 
 	/**
@@ -161,32 +205,5 @@ public class ExperienceDetail {
 		this.projectExperience = projectExperience;
 	}
 
-	/**
-	 * @param expertID
-	 * @param institutionID
-	 * @param institutionName
-	 * @param institutionAddress
-	 * @param majorID
-	 * @param majorName
-	 * @param experienceStartYear
-	 * @param experienceEndYear
-	 * @param projectExperience
-	 */
-	public ExperienceDetail(int expertID, int institutionID, String institutionName, String institutionAddress,
-			int majorID, String majorName, String experienceStartYear, String experienceEndYear,
-			String projectExperience) {
-		this.expertID = expertID;
-		this.institutionID = institutionID;
-		this.institutionName = institutionName;
-		this.institutionAddress = institutionAddress;
-		this.majorID = majorID;
-		this.majorName = majorName;
-		this.experienceStartYear = experienceStartYear;
-		this.experienceEndYear = experienceEndYear;
-		this.projectExperience = projectExperience;
-	}
-
-	
-	
-	
+		
 }

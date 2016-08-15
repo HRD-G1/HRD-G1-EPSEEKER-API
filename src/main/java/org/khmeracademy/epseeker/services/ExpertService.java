@@ -8,6 +8,8 @@ public interface ExpertService {
 
 	ArrayList<Expert> findAll();
 	
+	ArrayList<Expert> findAllByRandom();
+	
 	Expert findOne(int expertID);
 	
 	boolean save(Expert exp);

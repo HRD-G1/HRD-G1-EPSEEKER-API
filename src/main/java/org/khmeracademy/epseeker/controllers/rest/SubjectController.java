@@ -22,6 +22,11 @@ public class SubjectController {
 		return subjectService.findAll(); 
 	}
 	
+	@RequestMapping(value="/rest/subject/count", method = RequestMethod.GET)
+	public ArrayList<Subject> countSkill(){
+		return subjectService.countSkill();
+	}
+	
 	@RequestMapping(value="/rest/subject/bysubjectcategory/{subjectCategoryID}", method = RequestMethod.GET)
 	public ArrayList<Subject> findAllBySubjectCotegory(@PathVariable("subjectCategoryID")int subjectCategoryID){
 		return subjectService.findAllBySubjectCategory(subjectCategoryID);

@@ -21,6 +21,11 @@ public class ExpertController {
 	public ArrayList<Expert> findAll(){
 		return expertService.findAll();
 	}
+		
+	@RequestMapping(value="/rest/expertbyrandom", method = RequestMethod.GET)
+	public ArrayList<Expert> findAllByRandom(){
+		return expertService.findAllByRandom();
+	}
 	
 	@RequestMapping(value="/rest/expert/{expertID}", method = RequestMethod.GET)
 	public Expert findOne(@PathVariable("expertID") int expertID){

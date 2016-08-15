@@ -74,6 +74,16 @@ public class SubjectServiceImpl implements SubjectService{
 		return null;
 	}
 
+	@Override
+	public ArrayList<Subject> countSkill() {
+		try{
+			return subjectRepository.countSkill();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	
 	
 }

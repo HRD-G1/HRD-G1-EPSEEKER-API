@@ -46,6 +46,7 @@ public interface ExpertRespository {
 		@Result(property="expertGeneration", column="expert_generation"),
 		@Result(property="expertAdvanceCourse", column="expert_advance_course"),
 		@Result(property="expertGender", column="expert_gender"),
+		@Result(property="dob", column="expert_dob"),
 		@Result(property="kaID", column="ka_id"),
 		@Result(property="projectLinkDemo", column="project_link_demo"),
 		@Result(property="educations", javaType=List.class, column="expert_id", many = @Many(select="findAllEducationsByExpertID")),
@@ -53,12 +54,25 @@ public interface ExpertRespository {
 		@Result(property="languages", javaType=List.class, column="expert_id", many = @Many(select="findAllLanguagesByExpertID")),
 		@Result(property="expertDocuments", javaType=List.class, column="expert_id", many = @Many(select="findAllFileDocumentsByExpertID")),
 		@Result(property="expertExperiences", javaType=List.class, column="expert_id", many = @Many(select="findAllExperiencesByExpertID")),
-		@Result(property="currentJobs", javaType=List.class, column="expert_id", many = @Many(select="findAllCurrentJobsByExpertID")),
+		/*@Result(property="currentJobs", javaType=List.class, column="expert_id", many = @Many(select="findAllCurrentJobsByExpertID")),*/
 		@Result(property="jobExpectations", column="expert_id", many = @Many(select="findAllJobExpectationsByExpertID")),
 		@Result(property="currentAddress", column="expert_id", one = @One(select="findOneCurrentAddressByExpertID")),
 		@Result(property="placeOfBirth", column="expert_id", one = @One(select="findOnePOBByExpertID"))
 	})
 	ArrayList<Expert> findAll();
+	
+	
+	@Select(SQL.SELECT_RANDOM)
+	@Results({
+		@Result(property="expertID", column="expert_id"),
+		@Result(property="expertFirstName", column="expert_firstname"),
+		@Result(property="expertLastName", column="expert_lastname"),
+		@Result(property="expertPhoto", column="expert_photo"),				
+		@Result(property="expertAdvanceCourse", column="expert_advance_course"),
+		@Result(property="currentAddress", column="", one = @One(select="findOneCurrentAddressByExpertID"))
+	})
+	ArrayList<Expert> findAllByRandom();
+	
 	
 	@SelectProvider(type=ExpertProvider.class, method="selectOneExpertByID")
 	@Results({
@@ -73,6 +87,7 @@ public interface ExpertRespository {
 		@Result(property="expertGeneration", column="expert_generation"),
 		@Result(property="expertAdvanceCourse", column="expert_advance_course"),
 		@Result(property="expertGender", column="expert_gender"),
+		@Result(property="dob", column="expert_dob"),
 		@Result(property="kaID", column="ka_id"),
 		@Result(property="projectLinkDemo", column="project_link_demo"),
 		@Result(property="educations", javaType=List.class, column="expert_id", many = @Many(select="findAllEducationsByExpertID")),
@@ -80,7 +95,7 @@ public interface ExpertRespository {
 		@Result(property="languages", javaType=List.class, column="expert_id", many = @Many(select="findAllLanguagesByExpertID")),
 		@Result(property="expertDocuments", javaType=List.class, column="expert_id", many = @Many(select="findAllFileDocumentsByExpertID")),
 		@Result(property="expertExperiences", javaType=List.class, column="expert_id", many = @Many(select="findAllExperiencesByExpertID")),
-		@Result(property="currentJobs", javaType=List.class, column="expert_id", many = @Many(select="findAllCurrentJobsByExpertID")),
+		/*@Result(property="currentJobs", javaType=List.class, column="expert_id", many = @Many(select="findAllCurrentJobsByExpertID")),*/
 		@Result(property="jobExpectations", column="expert_id", many = @Many(select="findAllJobExpectationsByExpertID")),
 		@Result(property="currentAddress", column="expert_id", one = @One(select="findOneCurrentAddressByExpertID")),
 		@Result(property="placeOfBirth", column="expert_id", one = @One(select="findOnePOBByExpertID"))
@@ -145,10 +160,9 @@ public interface ExpertRespository {
 	@Results({
 		@Result(property="expertID", column="expert_id"),
 		@Result(property="institutionID", column="institution_id"),
-		@Result(property="majorID", column="major_id"),
-		@Result(property="experienceStartYear", column="experience_start_year"),
-		@Result(property="experienceEndYear", column="experience_end_year"),
-		@Result(property="majorName", column="major_name"),
+		@Result(property="positionID", column="position_id"),
+		@Result(property="period", column="period"),
+		@Result(property="positionName", column="position_name"),
 		@Result(property="institutionName", column="institution_name"),
 		@Result(property="institutionAddress", column="institution_address")
 	})
@@ -211,6 +225,8 @@ public interface ExpertRespository {
 	interface SQL{
 		String SELECT = "SELECT * FROM exp_expert";
 		
+		String SELECT_RANDOM = "SELECT * FROM exp_expert ORDER BY random() LIMIT 5";
+		
 		String SELECTONE = "SELECT * FROM exp_expert WHERE expert_id = #{expertID}";
 		
 		String INSERT = "INSERT INTO "
@@ -261,7 +277,7 @@ public interface ExpertRespository {
 		
 		String SELECT_ALL_EXPERIENCES_BY_EXPERT_ID = "	SELECT * "
 				+ "FROM exp_experience_detail as expe "
-				+ "INNER JOIN exp_major as maj ON expe.major_id = maj.major_id "
+				+ "INNER JOIN exp_positions as maj ON expe.position_id = maj.position_id "
 				+ "INNER JOIN exp_institutions as ints ON ints.institution_id = expe.institution_id "
 				+ "WHERE expe.expert_id = #{expertID}"; 
 		
@@ -279,17 +295,17 @@ public interface ExpertRespository {
 		String SELECT_ONE_OF_CURRENT_ADDRESS_BY_EXPERT_ID = "SELECT cur.*, ccc.country_name, cit.city_or_province_name, dis.district_name, com.commune_name "
 				+"FROM exp_current_address as cur " 
 				+"INNER JOIN exp_city_or_provinces as cit ON cur.city_or_province_id = cit.city_or_province_id "
-				+"INNER JOIN exp_districts as dis ON dis.district_id = cur.district_id "
-				+"INNER JOIN exp_communes as com ON cur.commune_id = com.commune_id "
-				+"INNER JOIN exp_countries as ccc ON ccc.country_id = cur.country_id "
+				+"LEFT JOIN exp_districts as dis ON dis.district_id = cur.district_id "
+				+"LEFT JOIN exp_communes as com ON cur.commune_id = com.commune_id "
+				+"LEFT JOIN exp_countries as ccc ON ccc.country_id = cur.country_id "
 				+"WHERE cur.expert_id = #{expertID}";
 		
 		String SELECT_ONE_OF_POB_BY_EXPERT_ID = "SELECT pob.*, ccc.country_name, cit.city_or_province_name, dis.district_name, com.commune_name "
 				+"FROM exp_pob as pob " 
 				+"INNER JOIN exp_city_or_provinces as cit ON pob.city_or_province_id = cit.city_or_province_id "
-				+"INNER JOIN exp_districts as dis ON dis.district_id = pob.district_id "
-				+"INNER JOIN exp_communes as com ON pob.commune_id = com.commune_id "
-				+"INNER JOIN exp_countries as ccc ON ccc.country_id = pob.country_id "
+				+"LEFT JOIN exp_districts as dis ON dis.district_id = pob.district_id "
+				+"LEFT JOIN exp_communes as com ON pob.commune_id = com.commune_id "
+				+"LEFT JOIN exp_countries as ccc ON ccc.country_id = pob.country_id "
 				+"WHERE pob.expert_id = #{expertID}";
 	}
 	

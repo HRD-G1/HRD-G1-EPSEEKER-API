@@ -57,6 +57,16 @@ public class ExpertServiceImpl implements ExpertService{
 		}
 	}
 
+	@Override
+	public ArrayList<Expert> findAllByRandom() {
+		try{
+			return expertRepository.findAllByRandom();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	
 	
 }
