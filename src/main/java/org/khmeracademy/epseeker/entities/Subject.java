@@ -16,7 +16,7 @@ public class Subject {
 	@JsonProperty("SUBJECT_CATEGORY_NAME")
 	private String subjectCategoryName;
 
-	@JsonProperty("NUMBER_OF_EXPERT_EACH_SKIL")
+	@JsonProperty("NUMBER_OF_EXPERT_EACH_SKILL")
 	private int numberOfExpertEachSkilll;
 
 	@JsonProperty("NUM_OF_SKILLS")
