@@ -34,15 +34,6 @@ public interface SubjectRepository {
 	})
 	ArrayList<Subject> findAllBySubjectCategory(@Param("subjectCategoryID")int subjectCategoryID);
 	
-	/*@Select(SQL.SELECT_COUNT_EXPERT_SKILLS)
-	@Results({
-		@Result(property="subjectID", column="subject_id"),
-		@Result(property="subjectName", column="subject_name"),
-		@Result(property="subjectCategoryID", column="subject_category_id"),		
-		@Result(property="numberOfExpertEachSkilll", column="number_of_expert_each_skills")
-	})
-	ArrayList<Subject> selectCountExpertSkill(@Param("subjectCategoryID")int subjectCategoryID);*/
-	
 	@Select(SQL.SELECTONE)
 	@Results({
 		@Result(property="subjectID", column="subject_id"),
@@ -81,7 +72,7 @@ public interface SubjectRepository {
 				+"COUNT (esub.subject_id) AS number_of_expert_each_skills "
 			+"FROM "
 				+"exp_subject sub "
-			+"INNER JOIN exp_expert_subject_detail esub ON sub.subject_id = esub.subject_id "
+			+"LEFT JOIN exp_expert_subject_detail esub ON sub.subject_id = esub.subject_id "
 			+"WHERE "
 				+"sub.subject_category_id = #{subjectCategoryID} "
 			+"GROUP BY "
