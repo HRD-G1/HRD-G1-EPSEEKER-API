@@ -68,10 +68,9 @@ public interface ExpertRespository {
 		@Result(property="expertFirstName", column="expert_firstname"),
 		@Result(property="expertLastName", column="expert_lastname"),
 		@Result(property="expertPhoto", column="expert_photo"),				
-		@Result(property="expertAdvanceCourse", column="expert_advance_course"),
-		@Result(property="currentAddress", column="", one = @One(select="findOneCurrentAddressByExpertID"))
-	})
-	ArrayList<Expert> findAllByRandom();
+		@Result(property="expertAdvanceCourse", column="expert_advance_course")
+	}) 
+	ArrayList<Expert> findAllByRandom(); /*@Result(property="currentAddress", column="", one = @One(select="findOneCurrentAddressByExpertID"))*/
 	
 	
 	@SelectProvider(type=ExpertProvider.class, method="selectOneExpertByID")

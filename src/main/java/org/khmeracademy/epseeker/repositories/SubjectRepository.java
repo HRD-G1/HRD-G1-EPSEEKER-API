@@ -71,7 +71,7 @@ public interface SubjectRepository {
 		
 		String SELECTWITHCONDITION = "SELECT * FROM exp_subject WHERE subject_category_id = #{subject_category_id}";
 		
-		String SELECT_COUNT_SKILL_SET = "SELECT v_statistic_skill_set.subject_category_name, sum(num) as num_of_skill_set" 
+		String SELECT_COUNT_SKILL_SET = "SELECT v_statistic_skill_set.subject_category_name, sum(num) as num_of_skill_set " 
 				+"FROM v_statistic_skill_set "
 				+"GROUP BY v_statistic_skill_set.subject_category_name";
 		
