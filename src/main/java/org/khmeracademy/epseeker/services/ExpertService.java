@@ -3,6 +3,7 @@ package org.khmeracademy.epseeker.services;
 import java.util.ArrayList;
 
 import org.khmeracademy.epseeker.entities.Expert;
+import org.khmeracademy.epseeker.utils.Pagination;
 
 public interface ExpertService {
 
@@ -10,7 +11,7 @@ public interface ExpertService {
 	
 	ArrayList<Expert> findAllByRandom();
 	
-	ArrayList<Expert> findExpertsBySubjectID(int subjectID);
+	ArrayList<Expert> findExpertsBySubjectID(int subjectID, Pagination pagination);
 	
 	Expert findOne(int expertID);
 	

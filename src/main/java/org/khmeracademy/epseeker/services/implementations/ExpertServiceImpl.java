@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.khmeracademy.epseeker.entities.Expert;
 import org.khmeracademy.epseeker.repositories.ExpertRespository;
 import org.khmeracademy.epseeker.services.ExpertService;
+import org.khmeracademy.epseeker.utils.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -68,10 +69,10 @@ public class ExpertServiceImpl implements ExpertService {
 	}
 
 	@Override
-	public ArrayList<Expert> findExpertsBySubjectID(int subjectID) {
-		System.out.println(subjectID);
+	public ArrayList<Expert> findExpertsBySubjectID(int subjectID, Pagination pagination) {
 		try {
-			return expertRepository.findExpertsBySubjectID(subjectID);
+			pagination.setTotalCount(expertRepository.count(subjectID));
+			return expertRepository.findExpertsBySubjectID(subjectID, pagination);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -23,8 +23,8 @@ import org.khmeracademy.epseeker.entities.ExpertLanguageDetail;
 import org.khmeracademy.epseeker.entities.ExpertSubjectDetail;
 import org.khmeracademy.epseeker.entities.JobExpectation;
 import org.khmeracademy.epseeker.entities.POB;
-import org.khmeracademy.epseeker.repositories.ExperienceDetailRepository.SQL;
 import org.khmeracademy.epseeker.repositories.provider.ExpertProvider;
+import org.khmeracademy.epseeker.utils.Pagination;
 import org.springframework.stereotype.Repository;
 
 @SuppressWarnings("unused")
@@ -109,7 +109,10 @@ public interface ExpertRespository {
 		@Result(property="expertAdvanceCourse", column="expert_advance_course"),
 		@Result(property="jobExpectations", column="expert_id", many = @Many(select="findAllJobExpectationsByExpertID"))
 	})
-	ArrayList<Expert> findExpertsBySubjectID(@Param("subjectID")int subjectID);
+	ArrayList<Expert> findExpertsBySubjectID(@Param("subjectID")int subjectID, @Param("pagination") Pagination pagination);
+	
+	@Select(SQL.RELACE_VIEW_ALL_EXPERTS_BY_SUBJECT_ID_COUNT)
+	public Long count(@Param("subjectID")int subjectID);
 	
 	@Insert(SQL.INSERT)
 	boolean save(Expert exp);
@@ -242,7 +245,15 @@ public interface ExpertRespository {
 		+" FROM exp_expert_subject_detail as esd " 
 		+" INNER JOIN exp_expert as ex ON ex.expert_id = esd.expert_id " 
 		+" INNER JOIN exp_job_expectation as jex on ex.expert_id = jex.expert_id "
-		+" WHERE esd.subject_id = #{subjectID}";
+		+" WHERE esd.subject_id = #{subjectID} "
+		+ "LIMIT #{pagination.limit} " // 10
+		+ "OFFSET #{pagination.offset} "; // 40
+		
+		String RELACE_VIEW_ALL_EXPERTS_BY_SUBJECT_ID_COUNT = "SELECT COUNT(ex.expert_id) AS TOTAL_COUNT " 
+				+" FROM exp_expert_subject_detail as esd " 
+				+" INNER JOIN exp_expert as ex ON ex.expert_id = esd.expert_id " 
+				+" INNER JOIN exp_job_expectation as jex on ex.expert_id = jex.expert_id "
+				+" WHERE esd.subject_id = #{subjectID}" ; 
 		
 		String SELECTONE = "SELECT * FROM exp_expert WHERE expert_id = #{expertID}";
 		
