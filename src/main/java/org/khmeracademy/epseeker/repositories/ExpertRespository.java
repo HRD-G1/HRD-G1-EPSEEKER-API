@@ -101,6 +101,16 @@ public interface ExpertRespository {
 	})
 	Expert findOne(@Param("expertID") int expertID);
 	
+	@Select(SQL.REPLACE_VIEW_ALL_EXPERTS_BY_SUBJECT_ID)
+	@Results({
+		@Result(property="expertID", column="expert_id"),
+		@Result(property="expertFirstName", column="expert_firstname"),
+		@Result(property="expertLastName", column="expert_lastname"),
+		@Result(property="expertAdvanceCourse", column="expert_advance_course"),
+		@Result(property="jobExpectations", column="expert_id", many = @Many(select="findAllJobExpectationsByExpertID"))
+	})
+	ArrayList<Expert> findExpertsBySubjectID(@Param("subjectID")int subjectID);
+	
 	@Insert(SQL.INSERT)
 	boolean save(Expert exp);
 	
@@ -181,6 +191,8 @@ public interface ExpertRespository {
 	})
 	ArrayList<CurrentJob> findAllCurrentJobsByExpertID(@Param("expertID")int expertID);
 	
+	/*ArrayList<>*/
+	
 	@Select(SQL.SELECT_ALL_JOB_EXPECTATIONS_BY_EXPERT_ID)
 	@Results({
 		@Result(property="expertID", column="expert_id"),
@@ -225,6 +237,12 @@ public interface ExpertRespository {
 		String SELECT = "SELECT * FROM exp_expert";
 		
 		String SELECT_RANDOM = "SELECT * FROM exp_expert ORDER BY random() LIMIT 5";
+		
+		String REPLACE_VIEW_ALL_EXPERTS_BY_SUBJECT_ID = "SELECT ex.expert_id, ex.expert_firstname, ex.expert_lastname, ex.expert_advance_course, jex.min_salary, jex.max_salary " 
+		+" FROM exp_expert_subject_detail as esd " 
+		+" INNER JOIN exp_expert as ex ON ex.expert_id = esd.expert_id " 
+		+" INNER JOIN exp_job_expectation as jex on ex.expert_id = jex.expert_id "
+		+" WHERE esd.subject_id = #{subjectID}";
 		
 		String SELECTONE = "SELECT * FROM exp_expert WHERE expert_id = #{expertID}";
 		

@@ -9,17 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ExpertServiceImpl implements ExpertService{
+public class ExpertServiceImpl implements ExpertService {
 
 	@Autowired
 	ExpertRespository expertRepository;
-	
+
 	@Override
 	public ArrayList<Expert> findAll() {
-		try{
+		try {
 			System.out.println(expertRepository.findAll());
 			return expertRepository.findAll();
-		}catch(Exception e){
+		} catch (Exception e) {
 			System.out.println("Failed");
 			e.printStackTrace();
 			return null;
@@ -27,7 +27,7 @@ public class ExpertServiceImpl implements ExpertService{
 	}
 
 	@Override
-	public Expert findOne(int expertID) {		
+	public Expert findOne(int expertID) {
 		return expertRepository.findOne(expertID);
 	}
 
@@ -38,10 +38,10 @@ public class ExpertServiceImpl implements ExpertService{
 
 	@Override
 	public boolean update(Expert exp) {
-		try{
+		try {
 			System.out.println(exp.toString());
 			return expertRepository.update(exp);
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return false;
@@ -49,9 +49,9 @@ public class ExpertServiceImpl implements ExpertService{
 
 	@Override
 	public boolean delete(int expertID) {
-		try{
+		try {
 			return expertRepository.delete(expertID);
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
@@ -59,14 +59,23 @@ public class ExpertServiceImpl implements ExpertService{
 
 	@Override
 	public ArrayList<Expert> findAllByRandom() {
-		try{
+		try {
 			return expertRepository.findAllByRandom();
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 
-	
-	
+	@Override
+	public ArrayList<Expert> findExpertsBySubjectID(int subjectID) {
+		System.out.println(subjectID);
+		try {
+			return expertRepository.findExpertsBySubjectID(subjectID);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

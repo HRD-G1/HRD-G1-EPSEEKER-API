@@ -79,6 +79,11 @@ public class Expert {
 	public Expert() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+
+
 
 	/**
 	 * @return the expertID
@@ -480,6 +485,7 @@ public class Expert {
 		this.jobExpectations = jobExpectations;
 		this.currentAddress = currentAddress;
 		this.placeOfBirth = placeOfBirth;
-	}
+	}	
+	
 
 }
