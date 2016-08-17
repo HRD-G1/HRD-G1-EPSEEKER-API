@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.khmeracademy.epseeker.entities.CurrentAddress;
 import org.khmeracademy.epseeker.entities.Expert;
+import org.khmeracademy.epseeker.entities.Subject;
 import org.khmeracademy.epseeker.services.ExpertService;
 import org.khmeracademy.epseeker.utils.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +69,13 @@ public class ExpertController {
 	@RequestMapping(value="/rest/expert/{expertID}", method = RequestMethod.DELETE)
 	public boolean delete(@PathVariable("expertID") int expertID){
 		return expertService.delete(expertID);
+	}
+		
+	@RequestMapping(value="/rest/expert/advance", method = RequestMethod.POST)
+	public ArrayList<Expert> advanceSearch(@RequestBody Expert expert){
+		System.out.println(expert.getCurrentJobs().get(0).getInstitutionAddress());
+		System.out.println(expert.getSubjects().get(1).getSubjectID() );
+		return null;
 	}
 	
 }
