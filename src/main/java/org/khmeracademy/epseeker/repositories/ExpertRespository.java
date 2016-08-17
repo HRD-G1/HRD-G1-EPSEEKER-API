@@ -54,7 +54,7 @@ public interface ExpertRespository {
 		@Result(property="languages", javaType=List.class, column="expert_id", many = @Many(select="findAllLanguagesByExpertID")),
 		@Result(property="expertDocuments", javaType=List.class, column="expert_id", many = @Many(select="findAllFileDocumentsByExpertID")),
 		@Result(property="expertExperiences", javaType=List.class, column="expert_id", many = @Many(select="findAllExperiencesByExpertID")),
-		/*@Result(property="currentJobs", javaType=List.class, column="expert_id", many = @Many(select="findAllCurrentJobsByExpertID")),*/
+		@Result(property="currentJobs", javaType=List.class, column="expert_id", many = @Many(select="findAllCurrentJobsByExpertID")),
 		@Result(property="jobExpectations", column="expert_id", many = @Many(select="findAllJobExpectationsByExpertID")),
 		@Result(property="currentAddress", column="expert_id", one = @One(select="findOneCurrentAddressByExpertID")),
 		@Result(property="placeOfBirth", column="expert_id", one = @One(select="findOnePOBByExpertID"))
@@ -94,7 +94,7 @@ public interface ExpertRespository {
 		@Result(property="languages", javaType=List.class, column="expert_id", many = @Many(select="findAllLanguagesByExpertID")),
 		@Result(property="expertDocuments", javaType=List.class, column="expert_id", many = @Many(select="findAllFileDocumentsByExpertID")),
 		@Result(property="expertExperiences", javaType=List.class, column="expert_id", many = @Many(select="findAllExperiencesByExpertID")),
-		/*@Result(property="currentJobs", javaType=List.class, column="expert_id", many = @Many(select="findAllCurrentJobsByExpertID")),*/
+		@Result(property="currentJobs", javaType=List.class, column="expert_id", many = @Many(select="findAllCurrentJobsByExpertID")),
 		@Result(property="jobExpectations", column="expert_id", many = @Many(select="findAllJobExpectationsByExpertID")),
 		@Result(property="currentAddress", column="expert_id", one = @One(select="findOneCurrentAddressByExpertID")),
 		@Result(property="placeOfBirth", column="expert_id", one = @One(select="findOnePOBByExpertID"))

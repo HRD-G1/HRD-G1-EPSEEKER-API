@@ -68,23 +68,6 @@ public class CurrentJob {
 		this.institutionID = institutionID;
 	}
 
-	
-
-	/**
-	 * @return the institutionAddress
-	 */
-	public String getInstitutionAddress() {
-		return institutionAddress;
-	}
-
-
-	/**
-	 * @param institutionAddress the institutionAddress to set
-	 */
-	public void setInstitutionAddress(String institutionAddress) {
-		this.institutionAddress = institutionAddress;
-	}
-
 
 	/**
 	 * @return the positionID
@@ -167,18 +150,18 @@ public class CurrentJob {
 
 
 	/**
-	 * @return the intitutionAddress
+	 * @return the institutionAddress
 	 */
-	public String getIntitutionAddress() {
-		return institutionName;
+	public String getInstitutionAddress() {
+		return institutionAddress;
 	}
 
 
 	/**
-	 * @param intitutionAddress the intitutionAddress to set
+	 * @param institutionAddress the institutionAddress to set
 	 */
-	public void setIntitutionAddress(String intitutionAddress) {
-		this.institutionName = intitutionAddress;
+	public void setInstitutionAddress(String institutionAddress) {
+		this.institutionAddress = institutionAddress;
 	}
 
 
@@ -222,8 +205,6 @@ public class CurrentJob {
 		this.institutionName = institutionName;
 	}
 
-
-	
 		
 	
 }
