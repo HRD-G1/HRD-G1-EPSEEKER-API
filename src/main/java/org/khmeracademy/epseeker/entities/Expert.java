@@ -76,14 +76,15 @@ public class Expert {
 	@JsonProperty("PLACE_OF_BIRTH")
 	private POB placeOfBirth;
 
+	@JsonProperty("MAX_AGE")
+	private int maxAge;
+	
+	@JsonProperty("MIN_AGE")
+	private int minAge;
+
 	public Expert() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-
-
-
 
 	/**
 	 * @return the expertID
@@ -429,6 +430,36 @@ public class Expert {
 	public void setPlaceOfBirth(POB placeOfBirth) {
 		this.placeOfBirth = placeOfBirth;
 	}
+	
+	
+
+	/**
+	 * @return the maxAge
+	 */
+	public int getMaxAge() {
+		return maxAge;
+	}
+
+	/**
+	 * @param maxAge the maxAge to set
+	 */
+	public void setMaxAge(int maxAge) {
+		this.maxAge = maxAge;
+	}
+
+	/**
+	 * @return the minAge
+	 */
+	public int getMinAge() {
+		return minAge;
+	}
+
+	/**
+	 * @param minAge the minAge to set
+	 */
+	public void setMinAge(int minAge) {
+		this.minAge = minAge;
+	}
 
 	/**
 	 * @param expertID
@@ -454,6 +485,8 @@ public class Expert {
 	 * @param jobExpectations
 	 * @param currentAddress
 	 * @param placeOfBirth
+	 * @param maxAge
+	 * @param minAge
 	 */
 	public Expert(int expertID, String expertFirstName, String expertLastName, String expertPhone1, String expertPhoto,
 			String expertStatus, String expertPhone2, String expertEmail, int expertGeneration,
@@ -461,7 +494,7 @@ public class Expert {
 			ArrayList<Education> educations, ArrayList<Subject> subjects, ArrayList<Language> languages,
 			ArrayList<ExpertDocumentDetail> expertDocuments, ArrayList<ExperienceDetail> expertExperiences,
 			ArrayList<CurrentJob> currentJobs, ArrayList<JobExpectation> jobExpectations, CurrentAddress currentAddress,
-			POB placeOfBirth) {
+			POB placeOfBirth, int maxAge, int minAge) {
 		this.expertID = expertID;
 		this.expertFirstName = expertFirstName;
 		this.expertLastName = expertLastName;
@@ -485,7 +518,9 @@ public class Expert {
 		this.jobExpectations = jobExpectations;
 		this.currentAddress = currentAddress;
 		this.placeOfBirth = placeOfBirth;
-	}	
-	
+		this.maxAge = maxAge;
+		this.minAge = minAge;
+	}
+
 
 }
