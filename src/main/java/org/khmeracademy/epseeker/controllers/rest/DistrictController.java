@@ -1,6 +1,8 @@
 package org.khmeracademy.epseeker.controllers.rest;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.khmeracademy.epseeker.entities.District;
 import org.khmeracademy.epseeker.services.DistrictService;
@@ -18,23 +20,48 @@ public class DistrictController {
 	DistrictService districtService;
 	
 	@RequestMapping(value="/rest/district", method = RequestMethod.GET)
-	ArrayList<District> findAll(){
-		return districtService.findAl();
+	Map<String, Object> findAll(){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", districtService.findAl()); 
+		return map;
+	}
+	
+	@RequestMapping(value="/rest/district/{provinceID}", method = RequestMethod.GET)
+	Map<String, Object> findAllByProvinceID(@PathVariable("provinceID")int provinceID){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", districtService.findAllByProvinceID(provinceID)); 
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/district", method = RequestMethod.POST)
-	boolean save(@RequestBody District district){
-		System.out.println(district.getDistrictName());
-		return districtService.save(district);
+	Map<String, Object> save(@RequestBody District district){
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA",districtService.save(district)); 
+		return map; 
 	}
 	
 	@RequestMapping(value="/rest/district", method = RequestMethod.PUT)
-	boolean update(@RequestBody District district){
-		return districtService.update(district);
+	Map<String, Object> update(@RequestBody District district){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", districtService.update(district)); 
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/district/{districtID}", method = RequestMethod.DELETE)
-	boolean delete(@PathVariable("districtID")int districtID){
-		return districtService.delete(districtID);
+	Map<String, Object> delete(@PathVariable("districtID")int districtID){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", districtService.delete(districtID)); 
+		return map;
 	}
 }

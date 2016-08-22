@@ -1,6 +1,8 @@
 package org.khmeracademy.epseeker.controllers.rest;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.khmeracademy.epseeker.entities.Country;
 import org.khmeracademy.epseeker.services.CountryService;
@@ -18,23 +20,39 @@ public class CountryController {
 	CountryService countryService;
 	
 	@RequestMapping(value="/rest/country", method = RequestMethod.GET)
-	ArrayList<Country> findAll(){
-		return countryService.findAll();
+	Map<String, Object> findAll(){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", countryService.findAll()); 
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/country", method = RequestMethod.POST)
-	boolean save(@RequestBody Country country){
-		return countryService.save(country);
+	Map<String, Object> save(@RequestBody Country country){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", countryService.save(country));
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/country", method = RequestMethod.PUT)
-	boolean update(@RequestBody Country country){
-		return countryService.update(country);
+	Map<String, Object> update(@RequestBody Country country){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", countryService.update(country));
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/country/{countryID}", method = RequestMethod.DELETE)
-	boolean delete(@PathVariable("countryID")int countryID){
-		return countryService.delete(countryID);
+	Map<String, Object> delete(@PathVariable("countryID")int countryID){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", countryService.delete(countryID));
+		return map;
 	}
 	
 }

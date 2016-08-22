@@ -18,17 +18,6 @@ public class FileDocument {
 	}
 
 	/**
-	 * @param fileID
-	 * @param fileName
-	 * @param fielDescription
-	 */
-	public FileDocument(int fileID, String fileName, String fielDescription) {
-		this.fileID = fileID;
-		this.fileName = fileName;
-		this.fileDescription = fielDescription;
-	}
-
-	/**
 	 * @return the fileID
 	 */
 	public int getFileID() {
@@ -57,18 +46,30 @@ public class FileDocument {
 	}
 
 	/**
-	 * @return the fielDescription
+	 * @return the fileDescription
 	 */
-	public String getFielDescription() {
+	public String getFileDescription() {
 		return fileDescription;
 	}
 
 	/**
-	 * @param fielDescription the fielDescription to set
+	 * @param fileDescription the fileDescription to set
 	 */
-	public void setFielDescription(String fielDescription) {
-		this.fileDescription = fielDescription;
+	public void setFileDescription(String fileDescription) {
+		this.fileDescription = fileDescription;
 	}
+
+	/**
+	 * @param fileID
+	 * @param fileName
+	 * @param fileDescription
+	 */
+	public FileDocument(int fileID, String fileName, String fileDescription) {
+		this.fileID = fileID;
+		this.fileName = fileName;
+		this.fileDescription = fileDescription;
+	}
+
 	
 	
 }

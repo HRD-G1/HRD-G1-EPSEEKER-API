@@ -19,7 +19,8 @@ public interface CityOrProvinceReposity {
 	@Results({
 		@Result(property="cityOrProvinceID", column="city_or_province_id"),
 		@Result(property="cityOrProvinceName", column="city_or_province_name"),
-		@Result(property="countryID", column="country_id")
+		@Result(property="countryID", column="country_id"),
+		@Result(property="countryName", column="country_name")
 	})
 	ArrayList<CityOrProvince> findAll();
 	
@@ -27,7 +28,8 @@ public interface CityOrProvinceReposity {
 	@Results({
 		@Result(property="cityOrProvinceID", column="city_or_province_id"),
 		@Result(property="cityOrProvinceName", column="city_or_province_name"),
-		@Result(property="countryID", column="country_id")
+		@Result(property="countryID", column="country_id"),
+		@Result(property="countryName", column="country_name")
 	})
 	ArrayList<CityOrProvince> findAllByCountry(@Param("countryID")int countryID);
 	
@@ -41,10 +43,14 @@ public interface CityOrProvinceReposity {
 	boolean delete(@Param("cityOrProvinceID")int cityOrProvinceID);
 
 	interface SQL{
-		String SELECT = "SELECT * FROM exp_city_or_provinces";
+		String SELECT = "SELECT cp.*, co.country_name "
+			+"FROM exp_city_or_provinces cp "
+			+"INNER JOIN exp_countries co ON cp.country_id = co.country_id";
 		
-		String SELECTAllBYCOUNTRY = "SELECT * FROM exp_city_or_provinces "
-				+ "WHERE country_id = #{countryID}";
+		String SELECTAllBYCOUNTRY = "SELECT cp.*, co.country_name "
+				+"FROM exp_city_or_provinces cp "
+				+"INNER JOIN exp_countries co ON cp.country_id = co.country_id "
+				+"WHERE co.country_id = #{countryID}";
 		
 		String INSERT = "INSERT INTO exp_city_or_provinces "
 				+ "(city_or_province_name, country_id) "

@@ -1,6 +1,8 @@
 package org.khmeracademy.epseeker.controllers.rest;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.khmeracademy.epseeker.entities.CurrentJob;
 import org.khmeracademy.epseeker.services.CurrentJobService;
@@ -18,29 +20,49 @@ public class CurrentJobController {
 	CurrentJobService currentJobService;
 
 	@RequestMapping(value="/rest/currentjob", method = RequestMethod.GET)
-	ArrayList<CurrentJob> findAll(){
-		return currentJobService.findAll();
+	Map<String, Object> findAll(){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", currentJobService.findAll()); 
+		return map;
 	}
 	
 	
 	@RequestMapping(value="/rest/currentjob/{expertID}", method = RequestMethod.GET)
-	ArrayList<CurrentJob> findAllByExpertID(@PathVariable("expertID")int expertID){
-		return currentJobService.findAllByExpertID(expertID);
+	Map<String, Object> findAllByExpertID(@PathVariable("expertID")int expertID){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", currentJobService.findAllByExpertID(expertID)); 
+		return map;
 	}
 
 	@RequestMapping(value="/rest/currentjob", method = RequestMethod.POST)
-	boolean save(@RequestBody CurrentJob currentJob){
-		return currentJobService.save(currentJob); 
+	Map<String, Object> save(@RequestBody CurrentJob currentJob){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", currentJobService.save(currentJob)); 
+		return map; 
 	}
 	
 	@RequestMapping(value="/rest/currentjob", method = RequestMethod.PUT)
-	boolean update(@RequestBody CurrentJob currentJob){
-		return currentJobService.update(currentJob);
+	Map<String, Object> update(@RequestBody CurrentJob currentJob){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", currentJobService.update(currentJob)); 
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/currentjob/{expertID}/{institutionID}/{positionID}", method = RequestMethod.DELETE)
-	boolean delete(@PathVariable("expertID")int expertID, @PathVariable("institutionID")int institutionID,@PathVariable("positionID")int positionID){
-		return currentJobService.delete(expertID, institutionID, positionID);
+	Map<String, Object> delete(@PathVariable("expertID")int expertID, @PathVariable("institutionID")int institutionID,@PathVariable("positionID")int positionID){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", currentJobService.delete(expertID, institutionID, positionID)); 
+		return map;
 	}
 }
 

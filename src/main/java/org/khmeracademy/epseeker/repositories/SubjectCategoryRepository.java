@@ -11,8 +11,10 @@ import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.UpdateProvider;
 import org.khmeracademy.epseeker.entities.Subject;
 import org.khmeracademy.epseeker.entities.SubjectCategory;
+import org.khmeracademy.epseeker.repositories.provider.SubjectCategoryProvider;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -45,7 +47,7 @@ public interface SubjectCategoryRepository {
 	@Insert(SQL.INSERT)
 	boolean save(SubjectCategory sub);
 	
-	@Update(SQL.UPDATE)
+	@UpdateProvider(type=SubjectCategoryProvider.class, method="updateSubject")
 	boolean update(SubjectCategory sub);
 	
 	@Delete(SQL.DELETE)

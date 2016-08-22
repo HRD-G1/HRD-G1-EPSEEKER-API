@@ -1,6 +1,8 @@
 package org.khmeracademy.epseeker.controllers.rest;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.khmeracademy.epseeker.entities.CurrentAddress;
 import org.khmeracademy.epseeker.services.CurrentAddressService;
@@ -18,33 +20,57 @@ public class CurrentAddressController {
 	CurrentAddressService currentAddressService;
 	
 	@RequestMapping(value="/rest/currentAddress", method = RequestMethod.GET)
-	ArrayList<CurrentAddress> findAll(){
-		return currentAddressService.findAll();
+	Map<String, Object> findAll(){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", currentAddressService.findAll()); 
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/currentAddress/{expertID}", method = RequestMethod.GET)
-	CurrentAddress findOne(@PathVariable("expertID")int expertID){
-		return currentAddressService.findOne(expertID);
+	Map<String, Object> findOne(@PathVariable("expertID")int expertID){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", currentAddressService.findOne(expertID)); 
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/currentAddressFull/{expertID}", method = RequestMethod.GET)
-	CurrentAddress findOneByExpertID(@PathVariable("expertID")int expertID){
-		return currentAddressService.findOneByExpertID(expertID);
+	Map<String, Object> findOneByExpertID(@PathVariable("expertID")int expertID){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", currentAddressService.findOneByExpertID(expertID)); 
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/currentAddress", method = RequestMethod.POST)
-	boolean save(@RequestBody CurrentAddress currentAddress){
-		return currentAddressService.save(currentAddress);
+	Map<String, Object> save(@RequestBody CurrentAddress currentAddress){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", currentAddressService.save(currentAddress)); 
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/currentAddress", method = RequestMethod.PUT)
-	boolean update(@RequestBody CurrentAddress currentAddress){
-		return currentAddressService.update(currentAddress);
+	Map<String, Object> update(@RequestBody CurrentAddress currentAddress){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", currentAddressService.update(currentAddress)); 
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/currentAddress/{expertID}", method = RequestMethod.DELETE)
-	boolean delete(@PathVariable("expertID")int expertID){
-		return currentAddressService.delete(expertID);
+	Map<String, Object> delete(@PathVariable("expertID")int expertID){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", currentAddressService.delete(expertID)); 
+		return map;
 	}
 	
 }

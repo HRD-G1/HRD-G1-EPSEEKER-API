@@ -9,81 +9,86 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SubjectServiceImpl implements SubjectService{
+public class SubjectServiceImpl implements SubjectService {
 
 	@Autowired
 	SubjectRepository subjectRepository;
-	
+
 	@Override
 	public ArrayList<Subject> findAll() {
-		try{
+		try {
 			return subjectRepository.findAll();
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
 		}
-		return null;
+
 	}
 
 	@Override
 	public Subject findOne(int subjectID) {
-		try{
+		try {
 			return subjectRepository.findOne();
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
 		}
-		return null;
+
 	}
 
 	@Override
 	public boolean save(Subject sub) {
-		try{
+		try {
 			return subjectRepository.save(sub);
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
+			return false;
 		}
-		return false;
+
 	}
 
 	@Override
 	public boolean update(Subject sub) {
-		try{
+		try {
 			return subjectRepository.update(sub);
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
+			return false;
 		}
-		return false;
+
 	}
 
 	@Override
 	public boolean delete(int subjectID) {
-		try{
+		try {
 			return subjectRepository.delete(subjectID);
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
+			return false;
 		}
-		return false;
+
 	}
 
 	@Override
 	public ArrayList<Subject> findAllBySubjectCategory(int subjectCategoryID) {
-		try{
+		try {
 			return subjectRepository.findAllBySubjectCategory(subjectCategoryID);
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
 		}
-		return null;
+
 	}
 
 	@Override
 	public ArrayList<Subject> countSkill() {
-		try{
+		try {
 			return subjectRepository.countSkill();
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
 		}
-		return null;
+
 	}
 
-	
-	
 }

@@ -1,6 +1,8 @@
 package org.khmeracademy.epseeker.controllers.rest;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.khmeracademy.epseeker.entities.ExpertLanguageDetail;
 import org.khmeracademy.epseeker.services.ExpertLanguageDetailService;
@@ -18,28 +20,48 @@ public class ExpertLanguageDetailController {
 	ExpertLanguageDetailService expertLanguageDetailService;
 
 	@RequestMapping(value="/rest/expertlanguagedetail", method = RequestMethod.GET)
-	public ArrayList<ExpertLanguageDetail> findAll(){
-		return expertLanguageDetailService.findAll();
+	public Map<String, Object> findAll(){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", expertLanguageDetailService.findAll());
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/expertlanguagedetail/{expertID}", method = RequestMethod.GET)
-	public ArrayList<ExpertLanguageDetail> findAllByExpertID(@PathVariable("expertID")int expertID){
-		return expertLanguageDetailService.findAllByExpertID(expertID);
+	public Map<String, Object> findAllByExpertID(@PathVariable("expertID")int expertID){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", expertLanguageDetailService.findAllByExpertID(expertID));
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/expertlanguagedetail", method = RequestMethod.POST)
-	public boolean save(@RequestBody ExpertLanguageDetail expertLanguageDetail){
-		return expertLanguageDetailService.save(expertLanguageDetail);
+	public Map<String, Object> save(@RequestBody ExpertLanguageDetail expertLanguageDetail){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", expertLanguageDetailService.save(expertLanguageDetail));
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/expertlanguagedetail", method = RequestMethod.PUT)
-	public boolean update(@RequestBody ExpertLanguageDetail expertLanguageDetail){
-		return expertLanguageDetailService.update(expertLanguageDetail);
+	public Map<String, Object> update(@RequestBody ExpertLanguageDetail expertLanguageDetail){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", expertLanguageDetailService.update(expertLanguageDetail)); 
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/expertlanguagedetail/{expertID}/{languageID}", method = RequestMethod.DELETE)
-	public boolean delete(@PathVariable("expertID")int expertID, @PathVariable("languageID")int languageID){
-		return expertLanguageDetailService.delete(expertID, languageID);
+	public Map<String, Object> delete(@PathVariable("expertID")int expertID, @PathVariable("languageID")int languageID){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", expertLanguageDetailService.delete(expertID, languageID));
+		return map;
 	}
 	
 }

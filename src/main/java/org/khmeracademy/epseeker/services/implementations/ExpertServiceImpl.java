@@ -79,4 +79,16 @@ public class ExpertServiceImpl implements ExpertService {
 		return null;
 	}
 
+	@Override
+	public ArrayList<Expert> advanceSearch(Expert expert, Pagination pagination) {
+		try{
+			System.out.println("Count: "+ expertRepository.advanceSearchCount(expert));
+			pagination.setTotalCount(expertRepository.advanceSearchCount(expert));
+			return expertRepository.advanceSearch(expert, pagination);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

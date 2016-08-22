@@ -11,6 +11,8 @@ public interface ExpertService {
 	
 	ArrayList<Expert> findAllByRandom();
 	
+	ArrayList<Expert> advanceSearch(Expert expert, Pagination pagination);
+	
 	ArrayList<Expert> findExpertsBySubjectID(int subjectID, Pagination pagination);
 	
 	Expert findOne(int expertID);

@@ -1,6 +1,7 @@
 package org.khmeracademy.epseeker.controllers.rest;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.khmeracademy.epseeker.entities.POB;
 import org.khmeracademy.epseeker.services.POBService;
@@ -18,33 +19,57 @@ public class POBController {
 	POBService pobService;
 	
 	@RequestMapping(value="/rest/pob", method = RequestMethod.GET)
-	ArrayList<POB> findAll(){
-		return pobService.findAll();
+	Map<String, Object> findAll(){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", pobService.findAll()); 
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/pob/{expertID}", method = RequestMethod.GET)
-	POB findOne(@PathVariable("expertID")int expertID){
-		return pobService.findOne(expertID);
+	Map<String, Object> findOne(@PathVariable("expertID")int expertID){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", pobService.findOne(expertID)); 
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/pobFull/{expertID}", method = RequestMethod.GET)
-	POB findOneByExpertID(@PathVariable("expertID")int expertID){
-		return pobService.findOneByExpertID(expertID);
+	Map<String, Object> findOneByExpertID(@PathVariable("expertID")int expertID){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", pobService.findOneByExpertID(expertID)); 
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/pob", method = RequestMethod.POST)
-	boolean save(@RequestBody POB pob){
-		return pobService.save(pob);
+	Map<String, Object> save(@RequestBody POB pob){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", pobService.save(pob));
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/pob", method = RequestMethod.PUT)
-	boolean update(@RequestBody POB pob){
-		return pobService.update(pob);
+	Map<String, Object> update(@RequestBody POB pob){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", pobService.update(pob)); 
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/pob/{expertID}", method = RequestMethod.DELETE)
-	boolean delete(@PathVariable("expertID")int expertID){
-		return pobService.delete(expertID);
+	Map<String, Object> delete(@PathVariable("expertID")int expertID){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", pobService.delete(expertID));
+		return map;
 	}
 	
 }

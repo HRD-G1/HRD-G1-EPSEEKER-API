@@ -1,6 +1,8 @@
 package org.khmeracademy.epseeker.controllers.rest;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.khmeracademy.epseeker.entities.CityOrProvince;
 import org.khmeracademy.epseeker.services.CityOrProvinceService;
@@ -18,28 +20,48 @@ public class CityOrProvinceController {
 	CityOrProvinceService cityOrProvinceService;
 	
 	@RequestMapping(value="/rest/cityorprovince", method = RequestMethod.GET)
-	ArrayList<CityOrProvince> findAll(){
-		return cityOrProvinceService.findAll();
+	Map<String, Object> findAll(){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", cityOrProvinceService.findAll());
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/cityorprovince/findAllBy/{countryID}", method = RequestMethod.GET)
-	ArrayList<CityOrProvince> findAllByCountry(@PathVariable("countryID")int countryID){
-		return cityOrProvinceService.findAllByCountry(countryID);
+	Map<String, Object> findAllByCountry(@PathVariable("countryID")int countryID){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", cityOrProvinceService.findAllByCountry(countryID));
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/cityorprovince", method = RequestMethod.POST)
-	boolean save(@RequestBody CityOrProvince cityOrProvince){
-		return cityOrProvinceService.save(cityOrProvince);
+	Map<String, Object> save(@RequestBody CityOrProvince cityOrProvince){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", cityOrProvinceService.save(cityOrProvince));
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/cityorprovince", method = RequestMethod.PUT)
-	boolean update(@RequestBody CityOrProvince cityOrProvince){
-		return cityOrProvinceService.update(cityOrProvince);
+	Map<String, Object> update(@RequestBody CityOrProvince cityOrProvince){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", cityOrProvinceService.update(cityOrProvince));
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/cityorprovince/{cityOrProvinceID}", method = RequestMethod.DELETE)
-	boolean delete(@PathVariable("cityOrProvinceID")int cityOrProvinceID){
-		return cityOrProvinceService.delete(cityOrProvinceID);
+	Map<String, Object> delete(@PathVariable("cityOrProvinceID")int cityOrProvinceID){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", cityOrProvinceService.delete(cityOrProvinceID)); 
+		return map;
 	}
 
 }

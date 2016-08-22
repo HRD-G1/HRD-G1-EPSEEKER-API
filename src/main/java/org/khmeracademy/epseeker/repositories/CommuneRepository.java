@@ -19,9 +19,27 @@ public interface CommuneRepository {
 	@Results({
 		@Result(property="communeID", column="commune_id"),
 		@Result(property="communeName", column="commune_name"),
-		@Result(property="districtID", column="district_id")
+		@Result(property="districtID", column="district_id"),
+		@Result(property="districtName", column="district_name"),
+		@Result(property="cityOrProvinceID", column="city_or_province_id"),
+		@Result(property="cityOrProvinceName", column="city_or_province_name"),
+		@Result(property="countryID", column="country_id"),
+		@Result(property="countryName", column="country_name")
 	})
 	ArrayList<Commune> findAll();
+	
+	@Select(SQL.SELECT_ALL_BY_DISTRICT_ID)
+	@Results({
+		@Result(property="communeID", column="commune_id"),
+		@Result(property="communeName", column="commune_name"),
+		@Result(property="districtID", column="district_id"),
+		@Result(property="districtName", column="district_name"),
+		@Result(property="cityOrProvinceID", column="city_or_province_id"),
+		@Result(property="cityOrProvinceName", column="city_or_province_name"),
+		@Result(property="countryID", column="country_id"),
+		@Result(property="countryName", column="country_name")
+	})
+	ArrayList<Commune> findAllByDistrictID(@Param("districtID")int districtID);
 	
 	@Insert(SQL.INSERT)
 	boolean save(Commune commune);
@@ -33,8 +51,23 @@ public interface CommuneRepository {
 	boolean delete(@Param("communeID")int communeID);
 
 	interface SQL{
-		String SELECT = "SELECT * FROM "
-				+ "exp_communes";
+		String SELECT = "SELECT com.*, di.district_name, ci.city_or_province_id, ci.city_or_province_name, co.* "
+				+"FROM exp_countries co "
+				+"INNER JOIN exp_city_or_provinces ci ON co.country_id = ci.country_id "
+				+"INNER JOIN exp_districts di ON di.province_id = ci.city_or_province_id "
+				+"INNER JOIN exp_communes com ON com.district_id = di.district_id";
+		
+		String SELECT_ALL_BY_DISTRICT_ID = "SELECT "
+					+"com.*, di.district_name, "
+					+"ci.city_or_province_id, "
+					+"ci.city_or_province_name, "
+					+"co.* "
+				+"FROM "
+					+"exp_countries co "
+				+"INNER JOIN exp_city_or_provinces ci ON co.country_id = ci.country_id "
+				+"INNER JOIN exp_districts di ON di.province_id = ci.city_or_province_id "
+				+"INNER JOIN exp_communes com ON com.district_id = di.district_id "
+				+"WHERE di.district_id = #{districtID}";
 		
 		String INSERT = "INSERT INTO exp_communes "
 				+ "(commune_name, district_id) "

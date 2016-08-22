@@ -13,6 +13,9 @@ public class CityOrProvince {
 	@JsonProperty("COUNTRY_ID")
 	private int countryID;
 	
+	@JsonProperty("COUNTRY_NAME")
+	private String countryName;
+	
 	public CityOrProvince() {
 		// TODO Auto-generated constructor stub
 	}
@@ -21,11 +24,13 @@ public class CityOrProvince {
 	 * @param cityOrProvinceID
 	 * @param cityOrProvinceName
 	 * @param countryID
+	 * @param countryName
 	 */
-	public CityOrProvince(int cityOrProvinceID, String cityOrProvinceName, int countryID) {
+	public CityOrProvince(int cityOrProvinceID, String cityOrProvinceName, int countryID, String countryName) {
 		this.cityOrProvinceID = cityOrProvinceID;
 		this.cityOrProvinceName = cityOrProvinceName;
 		this.countryID = countryID;
+		this.countryName = countryName;
 	}
 
 	/**
@@ -69,6 +74,20 @@ public class CityOrProvince {
 	public void setCountryID(int countryID) {
 		this.countryID = countryID;
 	}
-	
-	
+
+	/**
+	 * @return the countryName
+	 */
+	public String getCountryName() {
+		return countryName;
+	}
+
+	/**
+	 * @param countryName the countryName to set
+	 */
+	public void setCountryName(String countryName) {
+		this.countryName = countryName;
+	}
+
+		
 }

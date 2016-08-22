@@ -1,6 +1,8 @@
 package org.khmeracademy.epseeker.controllers.rest;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.khmeracademy.epseeker.entities.Education;
 import org.khmeracademy.epseeker.services.EducationService;
@@ -18,31 +20,48 @@ public class EducationController {
 	EducationService educationService;
 	
 	@RequestMapping(value="/rest/education", method = RequestMethod.GET)
-	ArrayList<Education> findAll(){
-		if(educationService.findAll() != null){
-			System.out.println("Yes");
-		}
-		return educationService.findAll();
+	Map<String, Object> findAll(){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", educationService.findAll()); 
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/education/{expertID}", method = RequestMethod.GET)
-	ArrayList<Education> findAllByExpertID(@PathVariable("expertID")int expertID){		
-		return educationService.findAllByExpertID(expertID);
+	Map<String, Object> findAllByExpertID(@PathVariable("expertID")int expertID){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", educationService.findAllByExpertID(expertID));
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/education", method = RequestMethod.POST)
-	boolean save(@RequestBody Education edu){
-		return educationService.save(edu);
+	Map<String, Object> save(@RequestBody Education edu){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", educationService.save(edu));
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/education", method = RequestMethod.PUT)
-	boolean update(@RequestBody Education edu){
-		return educationService.update(edu);
+	Map<String, Object> update(@RequestBody Education edu){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", educationService.update(edu)); 
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/education/{expertID}/{universityID}/{majorID}", method = RequestMethod.DELETE)
-	boolean delete(@PathVariable("expertID")int expertID, @PathVariable("universityID")int universityID, @PathVariable("majorID")int majorID){
-		return educationService.delete(expertID, universityID, majorID);
+	Map<String, Object> delete(@PathVariable("expertID")int expertID, @PathVariable("universityID")int universityID, @PathVariable("majorID")int majorID){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", educationService.delete(expertID, universityID, majorID)); 
+		return map;
 	}
 	
 }

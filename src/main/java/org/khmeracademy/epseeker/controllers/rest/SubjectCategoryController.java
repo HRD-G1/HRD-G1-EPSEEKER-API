@@ -1,6 +1,8 @@
-package org.khmeracademy.epseeker.controllers.rest;
+	package org.khmeracademy.epseeker.controllers.rest;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.khmeracademy.epseeker.entities.SubjectCategory;
 import org.khmeracademy.epseeker.services.SubjectCategoryService;
@@ -18,28 +20,49 @@ public class SubjectCategoryController {
 	SubjectCategoryService subjectCategoryService;
 
 	@RequestMapping(value="/rest/subjectcategory", method = RequestMethod.GET)
-	public ArrayList<SubjectCategory> findAll(){
-		return subjectCategoryService.findAll(); 
+	public Map<String, Object> findAll(){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", subjectCategoryService.findAll());
+		return map; 
 	}
 	
 	@RequestMapping(value="/rest/subjectcategory", method = RequestMethod.POST)
-	public boolean save(@RequestBody SubjectCategory subCate){
-		return subjectCategoryService.save(subCate);
+	public Map<String, Object> save(@RequestBody SubjectCategory subCate){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", subjectCategoryService.save(subCate));
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/subjectcategory/byname/{subjectCategoryName}", method = RequestMethod.GET)
-	public SubjectCategory findOneByName(@PathVariable("subjectCategoryName")String subjectCategoryName){
-		return subjectCategoryService.findOneByName(subjectCategoryName);
+	public Map<String, Object> findOneByName(@PathVariable("subjectCategoryName")String subjectCategoryName){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", subjectCategoryService.findOneByName(subjectCategoryName)); 
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/subjectcategory", method = RequestMethod.PUT)
-	public boolean update(@RequestBody SubjectCategory subCate){
-		return subjectCategoryService.update(subCate);
+	public Map<String, Object> update(@RequestBody SubjectCategory subCate){
+		System.out.println("Name: " + subCate.getSubjectCategoryName());
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", subjectCategoryService.update(subCate)); 
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/subjectcategory/{subjectCategoryID}", method = RequestMethod.DELETE)
-	public boolean delete(@PathVariable("subjectCategoryID") int subjectCategoryID){
-		return subjectCategoryService.delete(subjectCategoryID);
+	public Map<String, Object> delete(@PathVariable("subjectCategoryID") int subjectCategoryID){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", subjectCategoryService.delete(subjectCategoryID));
+		return map;
 	}
 	
 }

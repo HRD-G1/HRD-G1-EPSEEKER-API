@@ -7,7 +7,7 @@ public class Institution {
 	@JsonProperty("INSTITUTION_ID")
 	private int institutionID;
 	
-	@JsonProperty("ISTITUTION_ID")
+	@JsonProperty("INSTITUTION_NAME")
 	private String institutionName;
 	
 	@JsonProperty("INSTITUTION_ADDRESS")

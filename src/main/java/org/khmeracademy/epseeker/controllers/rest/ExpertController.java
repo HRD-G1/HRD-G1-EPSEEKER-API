@@ -1,12 +1,9 @@
 package org.khmeracademy.epseeker.controllers.rest;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.khmeracademy.epseeker.entities.CurrentAddress;
 import org.khmeracademy.epseeker.entities.Expert;
-import org.khmeracademy.epseeker.entities.Subject;
 import org.khmeracademy.epseeker.services.ExpertService;
 import org.khmeracademy.epseeker.utils.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +23,21 @@ public class ExpertController {
 	ExpertService expertService;
 	
 	@RequestMapping(value="/rest/expert", method = RequestMethod.GET)
-	public ArrayList<Expert> findAll(){
-		return expertService.findAll();
+	public Map<String, Object> findAll(){
+		Map<String, Object> map = new HashMap<>();		
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", expertService.findAll());
+		return map;
 	}
 		
 	@RequestMapping(value="/rest/expertbyrandom", method = RequestMethod.GET)
-	public ArrayList<Expert> findAllByRandom(){
-		return expertService.findAllByRandom();
+	public Map<String, Object> findAllByRandom(){
+		Map<String, Object> map = new HashMap<>();		
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", expertService.findAllByRandom());
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/findExpertsBySubjectID/{subjectID}", method = RequestMethod.GET)
@@ -42,40 +47,70 @@ public class ExpertController {
 	})
 	
 	public Map<String, Object> replaceAllExpertsBySubjectID(@PathVariable("subjectID")int subjectID, Pagination pagination){
+		System.out.println("Subject Page: ");
 		System.out.println(pagination.getLimit());
 		System.out.println(pagination.getPage());
 		System.out.println(pagination.offset());
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<>();		
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
 		map.put("PAGINATION", pagination);
 		map.put("DATA", expertService.findExpertsBySubjectID(subjectID, pagination));
 		return map;
 	}
 	
 	@RequestMapping(value="/rest/expert/{expertID}", method = RequestMethod.GET)
-	public Expert findOne(@PathVariable("expertID") int expertID){
-		return expertService.findOne(expertID);
+	public  Map<String, Object> findOne(@PathVariable("expertID") int expertID){
+		Map<String, Object> map = new HashMap<>();		
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", expertService.findOne(expertID)); 
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/expert", method = RequestMethod.POST)
-	public boolean save(@RequestBody Expert exp){
-		return expertService.save(exp);
+	public  Map<String, Object> save(@RequestBody Expert exp){
+		Map<String, Object> map = new HashMap<>();		
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", expertService.save(exp));
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/expert", method = RequestMethod.PUT)
-	public boolean update(@RequestBody Expert exp){
-		return expertService.update(exp);	
+	public  Map<String, Object> update(@RequestBody Expert exp){
+		Map<String, Object> map = new HashMap<>();		
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", expertService.update(exp)); 
+		return map;	
 	}
 	
 	@RequestMapping(value="/rest/expert/{expertID}", method = RequestMethod.DELETE)
-	public boolean delete(@PathVariable("expertID") int expertID){
-		return expertService.delete(expertID);
+	public  Map<String, Object> delete(@PathVariable("expertID") int expertID){
+		Map<String, Object> map = new HashMap<>();		
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", expertService.delete(expertID));
+		return map;
 	}
 		
 	@RequestMapping(value="/rest/expert/advance", method = RequestMethod.POST)
-	public ArrayList<Expert> advanceSearch(@RequestBody Expert expert){
-		System.out.println(expert.getCurrentJobs().get(0).getInstitutionAddress());
-		System.out.println(expert.getSubjects().get(1).getSubjectID() );
-		return null;
+	@ApiImplicitParams({
+		@ApiImplicitParam(name="page", paramType="query", defaultValue="1"),
+		@ApiImplicitParam(name="limit", paramType="query", defaultValue="1")
+	})
+	public Map<String, Object>  advanceSearch(@RequestBody Expert expert, Pagination pagination){
+		System.out.println("Advance Page: ");
+		System.out.println(pagination.getLimit());
+		System.out.println(pagination.getPage());
+		System.out.println(pagination.offset());
+		Map<String , Object> map = new HashMap<String, Object>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("PAGINATION", pagination);
+		map.put("DATA", expertService.advanceSearch(expert, pagination));
+		return map;
 	}
 	
 }

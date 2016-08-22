@@ -1,6 +1,7 @@
 package org.khmeracademy.epseeker.controllers.rest;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.khmeracademy.epseeker.entities.ExpertSubjectDetail;
 import org.khmeracademy.epseeker.services.ExpertSubjectDetailService;
@@ -18,28 +19,48 @@ public class ExpertSubjectDetailController {
 	ExpertSubjectDetailService expertSubjectDetailService;
 	
 	@RequestMapping(value="/rest/expertsubjectdetail", method = RequestMethod.GET)
-	ArrayList<ExpertSubjectDetail> findAll(){
-		return expertSubjectDetailService.findAll();
+	Map<String, Object> findAll(){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", expertSubjectDetailService.findAll());
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/expertsubjectdetail/{expertID}", method = RequestMethod.GET)
-	ArrayList<ExpertSubjectDetail> findAllByExpertID(@PathVariable("expertID")int expertID){
-		return expertSubjectDetailService.findAllByExpertID(expertID);
+	Map<String, Object> findAllByExpertID(@PathVariable("expertID")int expertID){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", expertSubjectDetailService.findAllByExpertID(expertID));
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/expertsubjectdetail", method = RequestMethod.POST)
-	boolean save(@RequestBody ExpertSubjectDetail expertSubjectDetail){
-		return expertSubjectDetailService.save(expertSubjectDetail);
+	Map<String, Object> save(@RequestBody ExpertSubjectDetail expertSubjectDetail){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", expertSubjectDetailService.save(expertSubjectDetail));
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/expertsubjectdetail", method = RequestMethod.PUT)
-	boolean update(@RequestBody ExpertSubjectDetail expertSubjectDetail){
-		return expertSubjectDetailService.update(expertSubjectDetail);
+	Map<String, Object> update(@RequestBody ExpertSubjectDetail expertSubjectDetail){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", expertSubjectDetailService.update(expertSubjectDetail));
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/expertsubjectdetail/{expertID}/{subjectID}", method = RequestMethod.DELETE)
-	boolean delete(@PathVariable("expertID")int exertID, @PathVariable("subjectID")int subjectID){
-		return expertSubjectDetailService.delete(exertID, subjectID);
+	Map<String, Object> delete(@PathVariable("expertID")int exertID, @PathVariable("subjectID")int subjectID){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", expertSubjectDetailService.delete(exertID, subjectID));
+		return map;
 	}
 	
 }

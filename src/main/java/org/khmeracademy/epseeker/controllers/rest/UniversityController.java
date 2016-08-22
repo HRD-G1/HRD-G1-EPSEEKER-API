@@ -1,6 +1,8 @@
 package org.khmeracademy.epseeker.controllers.rest;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.khmeracademy.epseeker.entities.University;
 import org.khmeracademy.epseeker.services.UniversityService;
@@ -18,23 +20,39 @@ public class UniversityController {
 	UniversityService universityService;
 
 	@RequestMapping(value="/rest/university", method = RequestMethod.GET)
-	ArrayList<University> findAll(){
-		return universityService.findAll();
+	Map<String, Object> findAll(){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", universityService.findAll()); 
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/university", method = RequestMethod.POST)
-	boolean save(@RequestBody University uni){
-		return universityService.save(uni);
+	Map<String, Object> save(@RequestBody University uni){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", universityService.save(uni)); 
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/university", method = RequestMethod.PUT)
-	boolean update(@RequestBody University uni){
-		return universityService.update(uni);
+	Map<String, Object> update(@RequestBody University uni){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", universityService.update(uni));
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/university/{universityID}", method = RequestMethod.DELETE)
-	boolean delete(@PathVariable("universityID") int universityID){
-		return universityService.delete(universityID);
+	Map<String, Object> delete(@PathVariable("universityID") int universityID){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", universityService.delete(universityID)); 
+		return map;
 	}
 	
 }

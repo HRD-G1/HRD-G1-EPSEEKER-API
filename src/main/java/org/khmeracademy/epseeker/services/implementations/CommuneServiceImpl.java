@@ -54,6 +54,16 @@ public class CommuneServiceImpl implements CommuneService{
 		return false;
 	}
 
+	@Override
+	public ArrayList<Commune> findAllByDistrictID(int districtID) {
+		try{
+			return communeRepository.findAllByDistrictID(districtID);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 
 
 }

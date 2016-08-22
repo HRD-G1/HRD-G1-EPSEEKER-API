@@ -1,6 +1,8 @@
 package org.khmeracademy.epseeker.controllers.rest;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.khmeracademy.epseeker.entities.JobExpectation;
 import org.khmeracademy.epseeker.services.JobExpectationService;
@@ -18,28 +20,48 @@ public class JobExpectationController {
 	JobExpectationService jobExpectationService;
 	
 	@RequestMapping(value="/rest/jobexpectation", method = RequestMethod.GET)
-	ArrayList<JobExpectation> findAll(){
-		return jobExpectationService.findAll();
+	 Map<String, Object> findAll(){
+		Map<String, Object> map = new HashMap<>();		
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", jobExpectationService.findAll());
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/jobexpectation/{expertID}", method = RequestMethod.GET)
-	ArrayList<JobExpectation> findAllByExpertID(@PathVariable("expertID")int expertID){
-		return jobExpectationService.findAllByExpertID(expertID);
+	Map<String, Object> findAllByExpertID(@PathVariable("expertID")int expertID){
+		Map<String, Object> map = new HashMap<>();		
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", jobExpectationService.findAllByExpertID(expertID));
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/jobexpectation", method = RequestMethod.POST)
-	boolean save(@RequestBody JobExpectation jobExpectation){
-		return jobExpectationService.save(jobExpectation);				
+	Map<String, Object> save(@RequestBody JobExpectation jobExpectation){
+		Map<String, Object> map = new HashMap<>();		
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", jobExpectationService.save(jobExpectation)); 
+		return map;				
 	}
 	
 	
 	@RequestMapping(value="/rest/jobexpectation", method = RequestMethod.PUT)
-	boolean update(@RequestBody JobExpectation jobExpectation){
-		return jobExpectationService.update(jobExpectation);
+	Map<String, Object> update(@RequestBody JobExpectation jobExpectation){
+		Map<String, Object> map = new HashMap<>();		
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", jobExpectationService.update(jobExpectation));
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/jobexpectation/{expertID}/{positionID}", method = RequestMethod.DELETE)
-	boolean delete(@PathVariable("expertID")int expertID, @PathVariable("positionID")int positionID){
-		return jobExpectationService.delete(expertID, positionID);
+	Map<String, Object> delete(@PathVariable("expertID")int expertID, @PathVariable("positionID")int positionID){
+		Map<String, Object> map = new HashMap<>();		
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", jobExpectationService.delete(expertID, positionID)); 
+		return map;
 	}
 }

@@ -8,6 +8,8 @@ public interface CommuneService {
 
 	ArrayList<Commune> findAl();
 	
+	ArrayList<Commune> findAllByDistrictID(int districtID);
+	
 	boolean save(Commune commune);
 	
 	boolean update(Commune commune);

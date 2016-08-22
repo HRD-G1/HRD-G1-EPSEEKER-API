@@ -27,7 +27,6 @@ import org.khmeracademy.epseeker.repositories.provider.ExpertProvider;
 import org.khmeracademy.epseeker.utils.Pagination;
 import org.springframework.stereotype.Repository;
 
-@SuppressWarnings("unused")
 @Repository
 public interface ExpertRespository {
 
@@ -68,7 +67,9 @@ public interface ExpertRespository {
 		@Result(property="expertFirstName", column="expert_firstname"),
 		@Result(property="expertLastName", column="expert_lastname"),
 		@Result(property="expertPhoto", column="expert_photo"),				
-		@Result(property="expertAdvanceCourse", column="expert_advance_course")
+		@Result(property="expertAdvanceCourse", column="expert_advance_course"),
+		@Result(property="currentAddress", column="expert_id", one = @One(select="findOneCurrentAddressByExpertID")),
+		@Result(property="expertExperiences", javaType=List.class, column="expert_id", many = @Many(select="findAllExperiencesByExpertID")),
 	}) 
 	ArrayList<Expert> findAllByRandom(); /*@Result(property="currentAddress", column="", one = @One(select="findOneCurrentAddressByExpertID"))*/
 	
@@ -110,6 +111,19 @@ public interface ExpertRespository {
 		@Result(property="jobExpectations", column="expert_id", many = @Many(select="findAllJobExpectationsByExpertID"))
 	})
 	ArrayList<Expert> findExpertsBySubjectID(@Param("subjectID")int subjectID, @Param("pagination") Pagination pagination);
+	
+	@SelectProvider(type=ExpertProvider.class, method="advanceSearch")
+	@Results({
+		@Result(property="expertID", column="expert_id"),
+		@Result(property="expertFirstName", column="expert_firstname"),
+		@Result(property="expertLastName", column="expert_lastname"),
+		@Result(property="expertAdvanceCourse", column="expert_advance_course"),
+		@Result(property="jobExpectations", column="expert_id", many = @Many(select="findAllJobExpectationsByExpertID"))
+	})
+	ArrayList<Expert> advanceSearch(Expert expert, Pagination pagination);
+	
+	@SelectProvider(type=ExpertProvider.class, method="advanceSearchCount")
+	long advanceSearchCount(Expert expert);
 	
 	@Select(SQL.RELACE_VIEW_ALL_EXPERTS_BY_SUBJECT_ID_COUNT)
 	public Long count(@Param("subjectID")int subjectID);

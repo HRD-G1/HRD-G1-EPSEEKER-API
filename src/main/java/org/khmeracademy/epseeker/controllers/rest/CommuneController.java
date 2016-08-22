@@ -1,6 +1,7 @@
 package org.khmeracademy.epseeker.controllers.rest;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.khmeracademy.epseeker.entities.Commune;
 import org.khmeracademy.epseeker.services.CommuneService;
@@ -18,22 +19,48 @@ public class CommuneController {
 	CommuneService communeService;
 	
 	@RequestMapping(value="/rest/commune", method = RequestMethod.GET)
-	ArrayList<Commune> findAll(){
-		return communeService.findAl();
+	Map<String, Object> findAll(){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", communeService.findAl());
+		return map; 
+	}
+	
+	@RequestMapping(value="/rest/commune/{districtID}", method = RequestMethod.GET)
+	Map<String, Object> findAllByDistrictID(@PathVariable("districtID")int districtID){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", communeService.findAllByDistrictID(districtID));
+		return map; 
 	}
 	
 	@RequestMapping(value="/rest/commune", method = RequestMethod.POST)
-	boolean save(@RequestBody Commune commune){
-		return communeService.save(commune);
+	Map<String, Object> save(@RequestBody Commune commune){
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", communeService.save(commune));
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/commune", method = RequestMethod.PUT)
-	boolean update(@RequestBody Commune commune){
-		return communeService.update(commune);
+	Map<String, Object> update(@RequestBody Commune commune){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", communeService.update(commune));
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/commune/{communeID}", method = RequestMethod.DELETE)
-	boolean delete(@PathVariable("communeID")int communeID){
-		return communeService.delete(communeID);
+	Map<String, Object> delete(@PathVariable("communeID")int communeID){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", communeService.delete(communeID));
+		return map;
 	}
 }

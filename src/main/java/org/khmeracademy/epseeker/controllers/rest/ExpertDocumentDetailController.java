@@ -1,6 +1,8 @@
 package org.khmeracademy.epseeker.controllers.rest;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.khmeracademy.epseeker.entities.ExpertDocumentDetail;
 import org.khmeracademy.epseeker.services.FileDocumentDetailService;
@@ -19,34 +21,58 @@ public class ExpertDocumentDetailController {
 	FileDocumentDetailService fileDocumentDetailService;
 	
 	@RequestMapping(value="rest/allexpertdocumentdetail", method = RequestMethod.GET)
-	ArrayList<ExpertDocumentDetail> findAll(){
-		return fileDocumentDetailService.findAll();
+	 Map<String, Object> findAll(){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", fileDocumentDetailService.findAll());
+		return map;
 	}
 	
 	@RequestMapping(value="rest/allexpertdocumentdetail/{expertID}", method = RequestMethod.GET)
-	ArrayList<ExpertDocumentDetail> findAllByExpertID(@PathVariable("expertID")int expertID){
-		return fileDocumentDetailService.findAllByExpertID(expertID);
+	 Map<String, Object> findAllByExpertID(@PathVariable("expertID")int expertID){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", fileDocumentDetailService.findAllByExpertID(expertID)); 
+		return map;
 	}
 	
 	@RequestMapping(value="rest/expertdocumentdetail", method = RequestMethod.GET)
-	ExpertDocumentDetail findOne(@RequestParam("expertID")int expertID, @RequestParam("fileDocumentID")int fileDocumentID, @RequestParam("filePath")String filePath){
+	 Map<String, Object> findOne(@RequestParam("expertID")int expertID, @RequestParam("fileDocumentID")int fileDocumentID, @RequestParam("filePath")String filePath){
 		System.out.println(filePath);
-		return fileDocumentDetailService.findOne(expertID, fileDocumentID, filePath);
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", fileDocumentDetailService.findOne(expertID, fileDocumentID, filePath)); 
+		return map;
 	}
 	
 	@RequestMapping(value="rest/expertdocumentdetail", method = RequestMethod.POST)
-	boolean save(@RequestBody ExpertDocumentDetail expertDocumentDetail){
-		return fileDocumentDetailService.save(expertDocumentDetail);
+	 Map<String, Object> save(@RequestBody ExpertDocumentDetail expertDocumentDetail){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", fileDocumentDetailService.save(expertDocumentDetail)); 
+		return map;
 	}
 	
 	@RequestMapping(value="rest/expertdocumentdetail", method = RequestMethod.PUT)
-	boolean update(@RequestBody ExpertDocumentDetail expertDocumentDetail){
-		return fileDocumentDetailService.update(expertDocumentDetail);
+	 Map<String, Object> update(@RequestBody ExpertDocumentDetail expertDocumentDetail){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", fileDocumentDetailService.update(expertDocumentDetail)); 
+		return map;
 	}
 	
 	@RequestMapping(value="rest/expertdocumentdetail/{expertID}/{fileDocumentID}/{filePath}", method = RequestMethod.DELETE)
-	boolean delete(@PathVariable("expertID")int expertID, @PathVariable("fileDocumentID")int fileDocumentID, @PathVariable("filePath")String filePath){
-		return fileDocumentDetailService.delete(expertID, fileDocumentID, filePath);
+	 Map<String, Object> delete(@PathVariable("expertID")int expertID, @PathVariable("fileDocumentID")int fileDocumentID, @PathVariable("filePath")String filePath){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", fileDocumentDetailService.delete(expertID, fileDocumentID, filePath)); 
+		return map;
 	}
 	
 }

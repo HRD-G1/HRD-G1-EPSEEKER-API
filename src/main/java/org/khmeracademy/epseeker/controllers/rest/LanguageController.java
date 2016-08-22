@@ -1,6 +1,7 @@
 package org.khmeracademy.epseeker.controllers.rest;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.khmeracademy.epseeker.entities.Language;
 import org.khmeracademy.epseeker.services.LanguageService;
@@ -18,23 +19,39 @@ public class LanguageController {
 	LanguageService languageService;
 
 	@RequestMapping(value="/rest/language", method = RequestMethod.GET)
-	public ArrayList<Language> findAll(){
-		return languageService.findAll();
+	public Map<String, Object> findAll(){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", languageService.findAll());
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/language", method = RequestMethod.POST)
-	public boolean save(@RequestBody Language lang){
-		return languageService.save(lang);
+	public  Map<String, Object> save(@RequestBody Language lang){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", languageService.save(lang)); 
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/language", method = RequestMethod.PUT)
-	public boolean update(@RequestBody Language lang){
-		return languageService.update(lang);
+	public  Map<String, Object> update(@RequestBody Language lang){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", languageService.update(lang)); 
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/language/{languageID}", method = RequestMethod.DELETE)
-	public boolean delete(@PathVariable("languageID") int languageID){
-		return languageService.delete(languageID);
+	public  Map<String, Object> delete(@PathVariable("languageID") int languageID){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", languageService.delete(languageID));
+		return map;
 	}
 	
 }

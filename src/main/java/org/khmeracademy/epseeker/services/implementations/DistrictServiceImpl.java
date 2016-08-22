@@ -54,4 +54,14 @@ public class DistrictServiceImpl implements DistrictService{
 		return false;
 	}
 
+	@Override
+	public ArrayList<District> findAllByProvinceID(int provinceID) {
+		try{
+			return districtRepository.findAllByProvinceID(provinceID);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

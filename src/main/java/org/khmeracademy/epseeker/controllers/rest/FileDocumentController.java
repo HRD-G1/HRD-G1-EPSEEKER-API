@@ -1,6 +1,8 @@
 package org.khmeracademy.epseeker.controllers.rest;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.khmeracademy.epseeker.entities.FileDocument;
 import org.khmeracademy.epseeker.services.FileDocumentService;
@@ -18,28 +20,48 @@ public class FileDocumentController {
 	FileDocumentService fileDocumentService;
 	
 	@RequestMapping(value="/rest/filedocument", method = RequestMethod.GET)
-	ArrayList<FileDocument> findAll(){
-		return fileDocumentService.findAll();
+	 Map<String, Object>  findAll(){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", fileDocumentService.findAll());
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/filedocument/{fileID}", method = RequestMethod.GET)
-	FileDocument findOne(@PathVariable("fileID")int fileID){
-		return fileDocumentService.findOne(fileID);
+	 Map<String, Object>  findOne(@PathVariable("fileID")int fileID){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", fileDocumentService.findOne(fileID));
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/filedocument", method = RequestMethod.POST)
-	boolean save(@RequestBody FileDocument fileDocument){
-		return fileDocumentService.save(fileDocument);
+	 Map<String, Object>  save(@RequestBody FileDocument fileDocument){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", fileDocumentService.save(fileDocument));
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/filedocument", method = RequestMethod.PUT)
-	boolean update(@RequestBody FileDocument fileDocument){
-		return fileDocumentService.update(fileDocument);
+	 Map<String, Object>  update(@RequestBody FileDocument fileDocument){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", fileDocumentService.update(fileDocument));
+		return map;
 	}
 	
 	@RequestMapping(value="/rest/filedocument/{fileID}", method = RequestMethod.DELETE)
-	boolean delete(@PathVariable("fileID")int fileID){
-		return fileDocumentService.delete(fileID);
+	 Map<String, Object>  delete(@PathVariable("fileID")int fileID){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", fileDocumentService.delete(fileID));
+		return map;
 	}
 
 }
