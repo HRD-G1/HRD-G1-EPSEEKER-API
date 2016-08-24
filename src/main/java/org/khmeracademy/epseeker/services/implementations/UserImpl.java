@@ -27,5 +27,16 @@ public class UserImpl implements UserService{
 		return userRepository.findUserByUserID(roleID);
 	}
 
+	@Override
+	public User findUserById(int userId) {
+	
+		return userRepository.findUserByID(userId);
+	}
+
+	@Override
+	public boolean save(User user) {
+		return userRepository.save(user);
+	}
+
 
 }

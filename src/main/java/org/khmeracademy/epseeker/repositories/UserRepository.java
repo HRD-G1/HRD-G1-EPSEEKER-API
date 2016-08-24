@@ -2,6 +2,7 @@ package org.khmeracademy.epseeker.repositories;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
@@ -32,6 +33,20 @@ public User loadUserByUsername(@Param("userEmail") String userEmail);
 })
 public List<Role> findUserByUserID(@Param("roleID") int roleID);
 
+@Select("SELECT * FROM exp_user_ka WHERE user_id=#{userId}" )	
+@Results(value={
+		@Result(property="id",column="user_id"),
+		@Result(property="password",column="user_password"),
+		@Result(property="email",column="user_email"),
+		@Result(property="username",column="user_username"),
+		@Result(property="status",column="user_status")
+})
+public User findUserByID(@Param("userId") int userId);
 
+@Insert("INSERT INTO "
+		+ "exp_user_ka"
+		+ "(user_username, user_email,user_password,user_status) "
+		+ "VALUES(#{username}, #{email},#{password},#{status})")
+public boolean save(User user);
 }
 

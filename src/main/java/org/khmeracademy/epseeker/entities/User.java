@@ -6,8 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class User{
 
-
-private static final long serialVersionUID = 1L;
 //@JsonProperty("USER_ID")
 private int id;
 //@JsonProperty("USER_EMAIL")
@@ -64,6 +62,10 @@ public String getPassword(){
 
 public void setUsername(String username) {
 	this.username = username;
+}
+public String getUsername()
+{
+	return username;
 }
 
 public boolean getStatus() {
