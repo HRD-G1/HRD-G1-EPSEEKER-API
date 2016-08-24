@@ -1,13 +1,13 @@
 package org.khmeracademy.epseeker.services.implementations;
 
 import java.util.ArrayList;
-
 import org.khmeracademy.epseeker.entities.Expert;
 import org.khmeracademy.epseeker.repositories.ExpertRespository;
 import org.khmeracademy.epseeker.services.ExpertService;
 import org.khmeracademy.epseeker.utils.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ExpertServiceImpl implements ExpertService {
@@ -33,8 +33,107 @@ public class ExpertServiceImpl implements ExpertService {
 	}
 
 	@Override
-	public boolean save(Expert exp) {
-		return expertRepository.save(exp);
+	public boolean save(Expert exp) throws Exception {
+		int expertID = 0;
+		try {
+			expertRepository.save(exp);
+			expertID = exp.getExpertID();
+			System.out.println("Expert ID: " + expertID);
+			
+			exp.getCurrentAddress().setExpertID(expertID);
+			expertRepository.saveCurrentAddress(exp.getCurrentAddress());
+			
+			exp.getPlaceOfBirth().setExpertID(expertID);
+			expertRepository.savePOB(exp.getPlaceOfBirth());
+
+			
+			// if inserted expert getting done
+
+			System.out.println("Count EDU: " + exp.getEducations().size());
+
+			for (int i = 0; i < exp.getEducations().size(); i++) {
+				exp.getEducations().get(i).setExpertID(expertID);
+
+				expertRepository.saveEductionOnExpert(exp.getEducations().get(i));
+
+			}
+
+			// if inserted education done
+
+			for (int i = 0; i < exp.getExpertExperiences().size(); i++) {
+
+				exp.getExpertExperiences().get(i).setExpertID(expertID);
+
+				expertRepository.saveExperienceExpert(exp.getExpertExperiences().get(i));
+
+			}
+
+			// if inserted experience
+
+			for (int i = 0; i < exp.getCurrentJobs().size(); i++) {
+				exp.getCurrentJobs().get(i).setExpertID(expertID);
+
+				expertRepository.saveCurrentJob(exp.getCurrentJobs().get(i));
+
+			}
+
+			// if inserted current job
+
+			for (int i = 0; i < exp.getExpertLanguageDetail().size(); i++) {
+				exp.getExpertLanguageDetail().get(i).setExpertID(expertID);
+				try {
+
+					expertRepository.saveExpertLangauge(exp.getExpertLanguageDetail().get(i));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+			// if inserted language detail
+
+			for (int i = 0; i < exp.getJobExpectations().size(); i++) {
+				exp.getJobExpectations().get(i).setExpertID(expertID);
+				try {
+
+					expertRepository.saveJobExpectation(exp.getJobExpectations().get(i));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+			}
+
+			
+
+			// if inserted language
+
+			for (int i = 0; i < exp.getExpertSubjectDetail().size(); i++) {
+				exp.getExpertSubjectDetail().get(i).setExpertID(expertID);
+				try {
+
+					expertRepository.saveSkillDetail(exp.getExpertSubjectDetail().get(i));
+				} catch (Exception e) {
+				}
+			}
+
+			// if inserted skill
+
+			for (int i = 0; i < exp.getExpertDocuments().size(); i++) {
+				exp.getExpertDocuments().get(i).setExpertID(expertID);
+				try {
+
+					expertRepository.saveDocument(exp.getExpertDocuments().get(i));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+			}
+			
+
+		} catch (Exception e) {
+			throw new Exception("ERROR");
+		}
+
+		return true;
 	}
 
 	@Override
@@ -81,11 +180,11 @@ public class ExpertServiceImpl implements ExpertService {
 
 	@Override
 	public ArrayList<Expert> advanceSearch(Expert expert, Pagination pagination) {
-		try{
-			System.out.println("Count: "+ expertRepository.advanceSearchCount(expert));
+		try {
+			System.out.println("Count: " + expertRepository.advanceSearchCount(expert));
 			pagination.setTotalCount(expertRepository.advanceSearchCount(expert));
 			return expertRepository.advanceSearch(expert, pagination);
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;

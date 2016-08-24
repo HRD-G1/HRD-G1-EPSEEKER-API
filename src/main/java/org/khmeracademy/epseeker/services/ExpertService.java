@@ -17,7 +17,7 @@ public interface ExpertService {
 	
 	Expert findOne(int expertID);
 	
-	boolean save(Expert exp);
+	boolean save(Expert exp) throws Exception;
 	
 	boolean update(Expert exp);
 	

@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.apache.ibatis.jdbc.SQL;
 import org.khmeracademy.epseeker.entities.Expert;
+import org.khmeracademy.epseeker.entities.ExpertLanguageDetail;
 import org.khmeracademy.epseeker.utils.Pagination;
 
 public class ExpertProvider {
@@ -21,6 +22,13 @@ public class ExpertProvider {
 		}.toString();
 
 		return sql;
+	}
+	
+	public String saveExpertLanguageDetail(ExpertLanguageDetail detail){
+		String INSERT_LANGUAGE_EXPERT = "INSERT INTO exp_expert_language_detail (expert_id, language_id, mention) "
+				+ "VALUES( " + detail.getExpertID() +  " , " + detail.getLanguageID() + " , '" + detail.getMention() + "')";
+		System.out.println(INSERT_LANGUAGE_EXPERT);
+		return INSERT_LANGUAGE_EXPERT;
 	}
 
 	public String advanceSearch(Expert expert, Pagination pagination) {
@@ -49,7 +57,7 @@ public class ExpertProvider {
 			}
 		}
 
-		if (Integer.parseInt(expert.getExpertExperiences().get(0).getPositionID()) != 0) {
+		if (expert.getExpertExperiences().get(0).getPositionID() != 0) {
 			sqlQuery += " AND eed.position_id =" + expert.getExpertExperiences().get(0).getPositionID();
 		}
 
@@ -125,7 +133,7 @@ public class ExpertProvider {
 			}
 		}
 
-		if (Integer.parseInt(expert.getExpertExperiences().get(0).getPositionID()) != 0) {
+		if (expert.getExpertExperiences().get(0).getPositionID() != 0) {
 			sqlQuery += " AND eed.position_id =" + expert.getExpertExperiences().get(0).getPositionID();
 		}
 

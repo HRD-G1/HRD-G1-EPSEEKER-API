@@ -58,8 +58,8 @@ public interface ExperienceDetailRepository {
 				+ "WHERE expe.expert_id = #{expertID}"; 
 		
 		String INSERT = "INSERT INTO exp_experience_detail "
-				+ "(expert_id, institution_id, major_id, experience_start_year, experience_end_year) "
-				+ "VALUES(#{expertID}, #{institutionID}, #{majorID}, to_date(#{experienceStartYear}, 'YYYY-MM-DD'), to_date(#{experienceEndYear}, 'YYYY-MM-DD'))";
+				+ "(expert_id, institution_id, position_id, period, project_experience) "
+				+ "VALUES(#{expertID}, #{institutionID}, #{positionID}, #{peroid}, #{projectExperience})";
 		
 		String UPDATE = "UPDATE exp_experience_detail SET "
 				+ "experience_start_year = to_date(#{experienceStartYear}, 'YYYY-MM-DD'), "

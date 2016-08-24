@@ -60,8 +60,8 @@ public interface CurrentJobSRepository {
 				+ "WHERE cur.expert_id = #{expertID}";
 		
 		String INSERT = "INSERT INTO exp_current_job "
-				+ "(expert_id, institution_id, position_id, salary, institution_phone, institution_email) "
-				+ "VALUES(#{expertID}, #{institutionID}, #{positionID}, #{salary}, #{institutionPhone}, #{institutionEmail})";
+				+ "(expert_id, institution_id, position_id, salary, institution_phone, institution_email, institution_address) "
+				+ "VALUES(#{expertID}, #{institutionID}, #{positionID}, #{salary}, #{institutionPhone}, #{institutionEmail}, #{institutionAddress})";
 		
 		String UPDATE = "UPDATE exp_current_job SET "
 				+ "expert_id = #{expertID},"

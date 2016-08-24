@@ -1,7 +1,6 @@
 package org.khmeracademy.epseeker.entities;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -75,6 +74,13 @@ public class Expert {
 
 	@JsonProperty("PLACE_OF_BIRTH")
 	private POB placeOfBirth;
+	
+	@JsonProperty("EXPERT_LANGUAGE_DETAIL")
+	private ArrayList<ExpertLanguageDetail> expertLanguageDetail;
+	
+	@JsonProperty("EXPERT_SUBJECT_DETAIL")
+	private ArrayList<ExpertSubjectDetail> expertSubjectDetail;
+	
 
 	@JsonProperty("MAX_AGE")
 	private int maxAge;
@@ -100,8 +106,7 @@ public class Expert {
 	}
 
 	/**
-	 * @param expertID
-	 *            the expertID to set
+	 * @param expertID the expertID to set
 	 */
 	public void setExpertID(int expertID) {
 		this.expertID = expertID;
@@ -115,8 +120,7 @@ public class Expert {
 	}
 
 	/**
-	 * @param expertFirstName
-	 *            the expertFirstName to set
+	 * @param expertFirstName the expertFirstName to set
 	 */
 	public void setExpertFirstName(String expertFirstName) {
 		this.expertFirstName = expertFirstName;
@@ -130,8 +134,7 @@ public class Expert {
 	}
 
 	/**
-	 * @param expertLastName
-	 *            the expertLastName to set
+	 * @param expertLastName the expertLastName to set
 	 */
 	public void setExpertLastName(String expertLastName) {
 		this.expertLastName = expertLastName;
@@ -145,8 +148,7 @@ public class Expert {
 	}
 
 	/**
-	 * @param expertPhone1
-	 *            the expertPhone1 to set
+	 * @param expertPhone1 the expertPhone1 to set
 	 */
 	public void setExpertPhone1(String expertPhone1) {
 		this.expertPhone1 = expertPhone1;
@@ -160,8 +162,7 @@ public class Expert {
 	}
 
 	/**
-	 * @param expertPhoto
-	 *            the expertPhoto to set
+	 * @param expertPhoto the expertPhoto to set
 	 */
 	public void setExpertPhoto(String expertPhoto) {
 		this.expertPhoto = expertPhoto;
@@ -175,8 +176,7 @@ public class Expert {
 	}
 
 	/**
-	 * @param expertStatus
-	 *            the expertStatus to set
+	 * @param expertStatus the expertStatus to set
 	 */
 	public void setExpertStatus(String expertStatus) {
 		this.expertStatus = expertStatus;
@@ -190,8 +190,7 @@ public class Expert {
 	}
 
 	/**
-	 * @param expertPhone2
-	 *            the expertPhone2 to set
+	 * @param expertPhone2 the expertPhone2 to set
 	 */
 	public void setExpertPhone2(String expertPhone2) {
 		this.expertPhone2 = expertPhone2;
@@ -205,8 +204,7 @@ public class Expert {
 	}
 
 	/**
-	 * @param expertEmail
-	 *            the expertEmail to set
+	 * @param expertEmail the expertEmail to set
 	 */
 	public void setExpertEmail(String expertEmail) {
 		this.expertEmail = expertEmail;
@@ -220,8 +218,7 @@ public class Expert {
 	}
 
 	/**
-	 * @param expertGeneration
-	 *            the expertGeneration to set
+	 * @param expertGeneration the expertGeneration to set
 	 */
 	public void setExpertGeneration(int expertGeneration) {
 		this.expertGeneration = expertGeneration;
@@ -235,8 +232,7 @@ public class Expert {
 	}
 
 	/**
-	 * @param expertAdvanceCourse
-	 *            the expertAdvanceCourse to set
+	 * @param expertAdvanceCourse the expertAdvanceCourse to set
 	 */
 	public void setExpertAdvanceCourse(String expertAdvanceCourse) {
 		this.expertAdvanceCourse = expertAdvanceCourse;
@@ -250,8 +246,7 @@ public class Expert {
 	}
 
 	/**
-	 * @param expertGender
-	 *            the expertGender to set
+	 * @param expertGender the expertGender to set
 	 */
 	public void setExpertGender(String expertGender) {
 		this.expertGender = expertGender;
@@ -265,8 +260,7 @@ public class Expert {
 	}
 
 	/**
-	 * @param dob
-	 *            the dob to set
+	 * @param dob the dob to set
 	 */
 	public void setDob(String dob) {
 		this.dob = dob;
@@ -280,8 +274,7 @@ public class Expert {
 	}
 
 	/**
-	 * @param kaID
-	 *            the kaID to set
+	 * @param kaID the kaID to set
 	 */
 	public void setKaID(int kaID) {
 		this.kaID = kaID;
@@ -295,8 +288,7 @@ public class Expert {
 	}
 
 	/**
-	 * @param projectLinkDemo
-	 *            the projectLinkDemo to set
+	 * @param projectLinkDemo the projectLinkDemo to set
 	 */
 	public void setProjectLinkDemo(String projectLinkDemo) {
 		this.projectLinkDemo = projectLinkDemo;
@@ -310,8 +302,7 @@ public class Expert {
 	}
 
 	/**
-	 * @param educations
-	 *            the educations to set
+	 * @param educations the educations to set
 	 */
 	public void setEducations(ArrayList<Education> educations) {
 		this.educations = educations;
@@ -325,8 +316,7 @@ public class Expert {
 	}
 
 	/**
-	 * @param subjects
-	 *            the subjects to set
+	 * @param subjects the subjects to set
 	 */
 	public void setSubjects(ArrayList<Subject> subjects) {
 		this.subjects = subjects;
@@ -340,8 +330,7 @@ public class Expert {
 	}
 
 	/**
-	 * @param languages
-	 *            the languages to set
+	 * @param languages the languages to set
 	 */
 	public void setLanguages(ArrayList<Language> languages) {
 		this.languages = languages;
@@ -355,8 +344,7 @@ public class Expert {
 	}
 
 	/**
-	 * @param expertDocuments
-	 *            the expertDocuments to set
+	 * @param expertDocuments the expertDocuments to set
 	 */
 	public void setExpertDocuments(ArrayList<ExpertDocumentDetail> expertDocuments) {
 		this.expertDocuments = expertDocuments;
@@ -370,8 +358,7 @@ public class Expert {
 	}
 
 	/**
-	 * @param expertExperiences
-	 *            the expertExperiences to set
+	 * @param expertExperiences the expertExperiences to set
 	 */
 	public void setExpertExperiences(ArrayList<ExperienceDetail> expertExperiences) {
 		this.expertExperiences = expertExperiences;
@@ -385,8 +372,7 @@ public class Expert {
 	}
 
 	/**
-	 * @param currentJobs
-	 *            the currentJobs to set
+	 * @param currentJobs the currentJobs to set
 	 */
 	public void setCurrentJobs(ArrayList<CurrentJob> currentJobs) {
 		this.currentJobs = currentJobs;
@@ -400,8 +386,7 @@ public class Expert {
 	}
 
 	/**
-	 * @param jobExpectations
-	 *            the jobExpectations to set
+	 * @param jobExpectations the jobExpectations to set
 	 */
 	public void setJobExpectations(ArrayList<JobExpectation> jobExpectations) {
 		this.jobExpectations = jobExpectations;
@@ -415,8 +400,7 @@ public class Expert {
 	}
 
 	/**
-	 * @param currentAddress
-	 *            the currentAddress to set
+	 * @param currentAddress the currentAddress to set
 	 */
 	public void setCurrentAddress(CurrentAddress currentAddress) {
 		this.currentAddress = currentAddress;
@@ -430,14 +414,39 @@ public class Expert {
 	}
 
 	/**
-	 * @param placeOfBirth
-	 *            the placeOfBirth to set
+	 * @param placeOfBirth the placeOfBirth to set
 	 */
 	public void setPlaceOfBirth(POB placeOfBirth) {
 		this.placeOfBirth = placeOfBirth;
 	}
-	
-	
+
+	/**
+	 * @return the expertLanguageDetail
+	 */
+	public ArrayList<ExpertLanguageDetail> getExpertLanguageDetail() {
+		return expertLanguageDetail;
+	}
+
+	/**
+	 * @param expertLanguageDetail the expertLanguageDetail to set
+	 */
+	public void setExpertLanguageDetail(ArrayList<ExpertLanguageDetail> expertLanguageDetail) {
+		this.expertLanguageDetail = expertLanguageDetail;
+	}
+
+	/**
+	 * @return the expertSubjectDetail
+	 */
+	public ArrayList<ExpertSubjectDetail> getExpertSubjectDetail() {
+		return expertSubjectDetail;
+	}
+
+	/**
+	 * @param expertSubjectDetail the expertSubjectDetail to set
+	 */
+	public void setExpertSubjectDetail(ArrayList<ExpertSubjectDetail> expertSubjectDetail) {
+		this.expertSubjectDetail = expertSubjectDetail;
+	}
 
 	/**
 	 * @return the maxAge
@@ -466,8 +475,6 @@ public class Expert {
 	public void setMinAge(int minAge) {
 		this.minAge = minAge;
 	}
-	
-	
 
 	/**
 	 * @return the minSalary
@@ -521,6 +528,8 @@ public class Expert {
 	 * @param jobExpectations
 	 * @param currentAddress
 	 * @param placeOfBirth
+	 * @param expertLanguageDetail
+	 * @param expertSubjectDetail
 	 * @param maxAge
 	 * @param minAge
 	 * @param minSalary
@@ -532,7 +541,8 @@ public class Expert {
 			ArrayList<Education> educations, ArrayList<Subject> subjects, ArrayList<Language> languages,
 			ArrayList<ExpertDocumentDetail> expertDocuments, ArrayList<ExperienceDetail> expertExperiences,
 			ArrayList<CurrentJob> currentJobs, ArrayList<JobExpectation> jobExpectations, CurrentAddress currentAddress,
-			POB placeOfBirth, int maxAge, int minAge, int minSalary, int maxSalary) {
+			POB placeOfBirth, ArrayList<ExpertLanguageDetail> expertLanguageDetail,
+			ArrayList<ExpertSubjectDetail> expertSubjectDetail, int maxAge, int minAge, int minSalary, int maxSalary) {
 		this.expertID = expertID;
 		this.expertFirstName = expertFirstName;
 		this.expertLastName = expertLastName;
@@ -556,9 +566,13 @@ public class Expert {
 		this.jobExpectations = jobExpectations;
 		this.currentAddress = currentAddress;
 		this.placeOfBirth = placeOfBirth;
+		this.expertLanguageDetail = expertLanguageDetail;
+		this.expertSubjectDetail = expertSubjectDetail;
 		this.maxAge = maxAge;
 		this.minAge = minAge;
 		this.minSalary = minSalary;
 		this.maxSalary = maxSalary;
 	}
+
+	
 }

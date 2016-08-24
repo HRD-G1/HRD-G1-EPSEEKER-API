@@ -20,7 +20,7 @@ public class ExperienceDetail {
 	private String period;
 	
 	@JsonProperty("POSITION_ID")
-	private String positionID;
+	private int positionID;
 	
 	@JsonProperty("POSITION_NAME")
 	private String positionName;
@@ -51,7 +51,7 @@ public class ExperienceDetail {
 	 * @param projectExperience
 	 */
 	public ExperienceDetail(int expertID, int institutionID, String institutionName, String institutionAddress,
-			String period, String positionID, String positionName, String experienceStartYear, String experienceEndYear,
+			String period, int positionID, String positionName, String experienceStartYear, String experienceEndYear,
 			String projectExperience) {
 		this.expertID = expertID;
 		this.institutionID = institutionID;
@@ -138,14 +138,14 @@ public class ExperienceDetail {
 	/**
 	 * @return the positionID
 	 */
-	public String getPositionID() {
+	public int getPositionID() {
 		return positionID;
 	}
 
 	/**
 	 * @param positionID the positionID to set
 	 */
-	public void setPositionID(String positionID) {
+	public void setPositionID(int positionID) {
 		this.positionID = positionID;
 	}
 
@@ -205,5 +205,6 @@ public class ExperienceDetail {
 		this.projectExperience = projectExperience;
 	}
 
+	
 		
 }

@@ -23,7 +23,7 @@ import net.coobird.thumbnailator.name.Rename;
 public class RestUploadController {
 
 	@RequestMapping(value="/rest/uploadphoto", method=RequestMethod.POST)
-	public Image uploadSingleFile(@RequestParam("image") MultipartFile file){
+	public Image uploadSingleFile(@RequestParam MultipartFile file){
 
 		Image image = new Image();
 		System.out.println("FILE=" + file.getOriginalFilename());
@@ -66,23 +66,24 @@ public class RestUploadController {
 				
 				
 				BufferedOutputStream stream = new BufferedOutputStream(
-						new FileOutputStream(new File(originalSavePath + filename)));
+						new FileOutputStream(new File( System.getProperty("user.dir")+originalSavePath + filename)));
 				stream.write(bytes);
 				stream.close();
-
 				try {
 //					BufferedImage watermarkImage = ImageIO.read(new File("543a6de1-728e-4fe2-afa5-657084ff0001.jpg"));
 					//TODO: USING THUMBNAILS TO RESIZE THE IMAGE
-					Thumbnails.of(originalSavePath + filename)
-						.forceSize(500, 500)
+					Thumbnails.of( System.getProperty("user.dir")+originalSavePath + filename)
+						.forceSize(300, 300)
 						.toFiles(thumbnailPath, Rename.NO_CHANGE);
 				} catch (Exception ex) {
+					
 					stream = new BufferedOutputStream(new FileOutputStream(new File(thumbnailSavePath +  filename)));
 					stream.write(bytes);
 					stream.close();
 				}
-				image.setOriginalImage("http://localhost:3333" + "/files/images/" + filename);
-				image.setThumbnailImage("http://localhost:3333" + "/files/images/thumbnails/" + filename);
+				System.out.println("Present Project Directory : "+  System.getProperty("user.dir")+originalSavePath + filename);
+				image.setOriginalImage("http://localhost:3333" + originalSavePath + filename);
+				image.setThumbnailImage("http://localhost:3333" + thumbnailSavePath + filename);
 				System.out.println("You successfully uploaded " + originalSavePath + filename + "!");
 				return image;
 			} catch (Exception e) {
