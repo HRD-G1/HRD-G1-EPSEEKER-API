@@ -23,10 +23,11 @@ public class ExpertProvider {
 
 		return sql;
 	}
-	
-	public String saveExpertLanguageDetail(ExpertLanguageDetail detail){
+
+	public String saveExpertLanguageDetail(ExpertLanguageDetail detail) {
 		String INSERT_LANGUAGE_EXPERT = "INSERT INTO exp_expert_language_detail (expert_id, language_id, mention) "
-				+ "VALUES( " + detail.getExpertID() +  " , " + detail.getLanguageID() + " , '" + detail.getMention() + "')";
+				+ "VALUES( " + detail.getExpertID() + " , " + detail.getLanguageID() + " , '" + detail.getMention()
+				+ "')";
 		System.out.println(INSERT_LANGUAGE_EXPERT);
 		return INSERT_LANGUAGE_EXPERT;
 	}
@@ -44,11 +45,10 @@ public class ExpertProvider {
 				+ "INNER JOIN exp_city_or_provinces cop ON cop.city_or_province_id = cur.city_or_province_id "
 				+ "INNER JOIN exp_job_expectation jex ON jex.expert_id = ee.expert_id ";
 
-		
 		if (expert.getSubjects() != null) {
 			String num = "";
 			for (int i = 0; i < expert.getSubjects().size(); i++) {
-				if (i != 0)	
+				if (i != 0)
 					num += ",";
 				num += expert.getSubjects().get(i).getSubjectID();
 			}
@@ -177,7 +177,23 @@ public class ExpertProvider {
 					+ expert.getMinAge() + "AND " + expert.getMaxAge() + ") ";
 		}
 
-		sqlQuery += " )";		
+		sqlQuery += " )";
+
+		return sqlQuery;
+	}
+
+	public String insertExpert(Expert expert) {
+		String sqlQuery = "INSERT INTO " + "exp_expert " + "(expert_firstname," + " expert_lastname,"
+				+ " expert_phone1," + " expert_photo," + " expert_status, " + "expert_phone2," + " expert_email,"
+				+ " expert_generation," + " expert_advance_course," + " expert_gender," + " ka_id,"
+				+ " project_link_demo," + " expert_dob ) " + "VALUES( '" + expert.getExpertFirstName() + "','"
+				+ expert.getExpertLastName() + "','" + expert.getExpertPhone1() + "','" + expert.getExpertPhoto() + "',"
+				+ expert.getExpertStatus() + ",'" + expert.getExpertPhone2() + "','" + expert.getExpertEmail() + "',"
+				+ expert.getExpertGeneration() + ",'" + expert.getExpertAdvanceCourse() + "','"
+				+ expert.getExpertGender() + "'," + expert.getKaID() + ", '" + expert.getProjectLinkDemo() + "','"
+				+ expert.getDob() + "')";
+
+		System.out.println(sqlQuery);
 
 		return sqlQuery;
 	}

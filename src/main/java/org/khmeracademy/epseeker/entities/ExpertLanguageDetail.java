@@ -14,22 +14,14 @@ public class ExpertLanguageDetail {
 	@JsonProperty("MENTION")
 	private String mention;
 	
+	@JsonProperty("LEVEL_NUMBER")
+	private int levelNumber;
+	
 	@JsonProperty("LANGUAGE_NAME")
 	private String languageName;
 	
 	public ExpertLanguageDetail() {
 		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @param expertID
-	 * @param languageID
-	 * @param mention
-	 */
-	public ExpertLanguageDetail(int expertID, int languageID, String mention) {
-		this.expertID = expertID;
-		this.languageID = languageID;
-		this.mention = mention;
 	}
 
 	/**
@@ -75,6 +67,20 @@ public class ExpertLanguageDetail {
 	}
 
 	/**
+	 * @return the levelNumber
+	 */
+	public int getLevelNumber() {
+		return levelNumber;
+	}
+
+	/**
+	 * @param levelNumber the levelNumber to set
+	 */
+	public void setLevelNumber(int levelNumber) {
+		this.levelNumber = levelNumber;
+	}
+
+	/**
 	 * @return the languageName
 	 */
 	public String getLanguageName() {
@@ -92,16 +98,17 @@ public class ExpertLanguageDetail {
 	 * @param expertID
 	 * @param languageID
 	 * @param mention
+	 * @param levelNumber
 	 * @param languageName
 	 */
-	public ExpertLanguageDetail(int expertID, int languageID, String mention, String languageName) {
+	public ExpertLanguageDetail(int expertID, int languageID, String mention, int levelNumber, String languageName) {
 		this.expertID = expertID;
 		this.languageID = languageID;
 		this.mention = mention;
+		this.levelNumber = levelNumber;
 		this.languageName = languageName;
 	}
-	
-	
+
 	
 	
 }

@@ -1,7 +1,5 @@
 package org.khmeracademy.epseeker.repositories;
 
-import static org.mockito.Mockito.after;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +25,6 @@ import org.khmeracademy.epseeker.entities.ExpertLanguageDetail;
 import org.khmeracademy.epseeker.entities.ExpertSubjectDetail;
 import org.khmeracademy.epseeker.entities.JobExpectation;
 import org.khmeracademy.epseeker.entities.POB;
-import org.khmeracademy.epseeker.repositories.CurrentJobSRepository.SQL;
 import org.khmeracademy.epseeker.repositories.provider.ExpertProvider;
 import org.khmeracademy.epseeker.utils.Pagination;
 import org.springframework.stereotype.Repository;
@@ -51,8 +48,8 @@ public interface ExpertRespository {
 			@Result(property = "dob", column = "expert_dob"), @Result(property = "kaID", column = "ka_id"),
 			@Result(property = "projectLinkDemo", column = "project_link_demo"),
 			@Result(property = "educations", javaType = List.class, column = "expert_id", many = @Many(select = "findAllEducationsByExpertID")),
-			@Result(property = "subjects", javaType = List.class, column = "expert_id", many = @Many(select = "findAllSubjectsByExpertID")),
-			@Result(property = "languages", javaType = List.class, column = "expert_id", many = @Many(select = "findAllLanguagesByExpertID")),
+			@Result(property = "expertSubjectDetail", javaType = List.class, column = "expert_id", many = @Many(select = "findAllSubjectsByExpertID")),
+			@Result(property = "expertLanguageDetail", javaType = List.class, column = "expert_id", many = @Many(select = "findAllLanguagesByExpertID")),
 			@Result(property = "expertDocuments", javaType = List.class, column = "expert_id", many = @Many(select = "findAllFileDocumentsByExpertID")),
 			@Result(property = "expertExperiences", javaType = List.class, column = "expert_id", many = @Many(select = "findAllExperiencesByExpertID")),
 			@Result(property = "currentJobs", javaType = List.class, column = "expert_id", many = @Many(select = "findAllCurrentJobsByExpertID")),
@@ -105,6 +102,7 @@ public interface ExpertRespository {
 	@Select(SQL.REPLACE_VIEW_ALL_EXPERTS_BY_SUBJECT_ID)
 	@Results({ @Result(property = "expertID", column = "expert_id"),
 			@Result(property = "expertFirstName", column = "expert_firstname"),
+			@Result(property = "expertPhoto", column = "expert_photo"),
 			@Result(property = "expertLastName", column = "expert_lastname"),
 			@Result(property = "expertAdvanceCourse", column = "expert_advance_course"),
 			@Result(property = "jobExpectations", column = "expert_id", many = @Many(select = "findAllJobExpectationsByExpertID")) })
@@ -128,7 +126,7 @@ public interface ExpertRespository {
 	// ************************************************************ iNSERT bLOCK
 	// ****************************************************************
 
-	@Insert(SQL.INSERT)
+	@InsertProvider(type = ExpertProvider.class, method = "insertExpert")
 	@SelectKey(statement = "SELECT last_value FROM exp_expert_expert_id_seq", keyProperty = "expertID", before = false, resultType = int.class)
 	int save(Expert exp);
 
@@ -141,21 +139,21 @@ public interface ExpertRespository {
 	@Insert(SQL.INSERT_CURRENT_JOB)
 	int saveCurrentJob(CurrentJob currentJob);
 
-	@InsertProvider(type = ExpertProvider.class, method="saveExpertLanguageDetail")
+	@InsertProvider(type = ExpertProvider.class, method = "saveExpertLanguageDetail")
 	int saveExpertLangauge(ExpertLanguageDetail expertLanguageDetail);
 
 	@Insert(SQL.INSERT_JOB_EXPECTATION)
 	int saveJobExpectation(JobExpectation jobExpectation);
-	
+
 	@Insert(SQL.INSERT_SKILL_DETAIL)
 	int saveSkillDetail(ExpertSubjectDetail expertSubjectDetail);
-	
+
 	@Insert(SQL.INSERT_DOCUEMNT)
 	int saveDocument(ExpertDocumentDetail expertDocumentDetail);
-	
+
 	@Insert(SQL.INSERT_CURRENT_ADDRESS)
 	int saveCurrentAddress(CurrentAddress currentAddress);
-	
+
 	@Insert(SQL.INSERT_POB)
 	int savePOB(POB pob);
 
@@ -182,6 +180,7 @@ public interface ExpertRespository {
 	@Results({ @Result(property = "expertID", column = "expert_id"),
 			@Result(property = "subjectID", column = "subject_id"),
 			@Result(property = "expertSubjectDetailLevel", column = "expert_subject_detail_level"),
+			@Result(property = "levelNumber", column = "level_Number"),
 			@Result(property = "subjectName", column = "subject_name"),
 			@Result(property = "subjectCategoryID", column = "subject_category_id"),
 			@Result(property = "subjectCategoryName", column = "subject_category_name")
@@ -192,6 +191,7 @@ public interface ExpertRespository {
 	@Select(SQL.SELECT_ALL_LANGUAGES_BY_EXPERT_ID)
 	@Results({ @Result(property = "expertID", column = "expert_id"),
 			@Result(property = "languageID", column = "language_id"), @Result(property = "mention", column = "mention"),
+			@Result(property = "levelNumber", column = "level_number"),
 			@Result(property = "languageName", column = "language_name") })
 	ArrayList<ExpertLanguageDetail> findAllLanguagesByExpertID(@Param("expertID") int expertID);
 
@@ -263,7 +263,7 @@ public interface ExpertRespository {
 
 		String SELECT_RANDOM = "SELECT * FROM exp_expert ORDER BY random() LIMIT 5";
 
-		String REPLACE_VIEW_ALL_EXPERTS_BY_SUBJECT_ID = "SELECT ex.expert_id, ex.expert_firstname, ex.expert_lastname, ex.expert_advance_course, jex.min_salary, jex.max_salary "
+		String REPLACE_VIEW_ALL_EXPERTS_BY_SUBJECT_ID = "SELECT ex.expert_id, ex.expert_firstname, ex.expert_lastname, ex.expert_photo, ex.expert_advance_course, jex.min_salary, jex.max_salary "
 				+ " FROM exp_expert_subject_detail as esd "
 				+ " INNER JOIN exp_expert as ex ON ex.expert_id = esd.expert_id "
 				+ " INNER JOIN exp_job_expectation as jex on ex.expert_id = jex.expert_id "
@@ -278,13 +278,7 @@ public interface ExpertRespository {
 
 		String SELECTONE = "SELECT * FROM exp_expert WHERE expert_id = #{expertID}";
 
-		String INSERT = "INSERT INTO " + "exp_expert " + "(expert_firstname," + " expert_lastname," + " expert_phone1,"
-				+ " expert_photo," + " expert_status, " + "expert_phone2," + " expert_email," + " expert_generation,"
-				+ " expert_advance_course," + " expert_gender," + " ka_id," + " project_link_demo," + " expert_dob"
-				+ ") " + "VALUES(#{expertFirstName}," + " #{expertLastName}," + " #{expertPhone1}," + " #{expertPhoto},"
-				+ " #{expertStatus}," + " #{expertPhone2}," + " #{expertEmail}," + " #{expertGeneration},"
-				+ " #{expertAdvanceCourse}," + " #{expertGender},"
-				+ " #{kaID}, #{projectLinkDemo}, to_date(#{dob}, 'YYYY-MM-DD'))";
+		
 
 		String INSERT_EDUCATION = "INSERT INTO exp_education "
 				+ "(expert_id, university_id, education_start_year, education_end_year, major_id) "
@@ -301,18 +295,21 @@ public interface ExpertRespository {
 		String INSERT_JOB_EXPECTATION = "INSERT INTO " + "exp_job_expectation "
 				+ "(expert_id, position_id, min_salary, location, max_salary) "
 				+ "VALUES(#{expertID}, #{positionID}, #{minSalary}, #{location}, #{maxSalary})";
-		
+
 		String INSERT_CURRENT_ADDRESS = "INSERT INTO exp_current_address "
 				+ "(expert_id, commune_id, district_id, city_or_province_id, country_id) "
 				+ "VALUES(#{expertID}, #{communeID}, #{districtID}, #{cityOrProvinceID}, #{countryID})";
-		
+
 		String INSERT_POB = "INSERT INTO exp_pob "
 				+ "(expert_id, commune_id, district_id, city_or_province_id, country_id) "
 				+ "VALUES(#{expertID}, #{communeID}, #{districtID}, #{cityOrProvinceID}, #{countryID})";
 
-		/*String INSERT_LANGUAGE_EXPERT = "INSERT INTO exp_expert_language_detail (expert_id, language_id, mention) "
-				+ "VALUES(#{expertID}, #{languageID}, #{mention})";*/
-		
+		/*
+		 * String INSERT_LANGUAGE_EXPERT =
+		 * "INSERT INTO exp_expert_language_detail (expert_id, language_id, mention) "
+		 * + "VALUES(#{expertID}, #{languageID}, #{mention})";
+		 */
+
 		String INSERT_SKILL_DETAIL = "INSERT INTO exp_expert_subject_detail"
 				+ "(expert_id, subject_id, expert_subject_detail_level)"
 				+ "VALUES(#{expertID}, #{subjectID}, #{expertSubjectDetailLevel})";
@@ -320,7 +317,7 @@ public interface ExpertRespository {
 		String INSERT_DOCUEMNT = "INSERT INTO exp_expert_document_detail "
 				+ "(expert_id, file_document_id, file_path, description) "
 				+ "VALUES(#{expertID}, #{fileDocumentID}, #{filePath}, #{description})";
-		
+
 		String UPDATE = "UPDATE exp_expert SET " + "expert_firstname  = #{expertFirstName}, "
 				+ "expert_lastname = #{expertLastName}, " + "expert_phone1 = #{expertPhone1}, "
 				+ "expert_photo = #{expertPhoto}, " + "expert_status = #{expertStatus}, "

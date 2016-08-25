@@ -64,15 +64,14 @@ public class RestUploadController {
 				
 				filename = randomUUIDFileName + "." + extension;
 				
-				
 				BufferedOutputStream stream = new BufferedOutputStream(
-						new FileOutputStream(new File( System.getProperty("user.dir")+originalSavePath + filename)));
+						new FileOutputStream(new File(originalSavePath + filename)));
 				stream.write(bytes);
 				stream.close();
 				try {
 //					BufferedImage watermarkImage = ImageIO.read(new File("543a6de1-728e-4fe2-afa5-657084ff0001.jpg"));
 					//TODO: USING THUMBNAILS TO RESIZE THE IMAGE
-					Thumbnails.of( System.getProperty("user.dir")+originalSavePath + filename)
+					Thumbnails.of(originalSavePath + filename)
 						.forceSize(300, 300)
 						.toFiles(thumbnailPath, Rename.NO_CHANGE);
 				} catch (Exception ex) {
@@ -81,9 +80,9 @@ public class RestUploadController {
 					stream.write(bytes);
 					stream.close();
 				}
-				System.out.println("Present Project Directory : "+  System.getProperty("user.dir")+originalSavePath + filename);
-				image.setOriginalImage("http://localhost:3333" + originalSavePath + filename);
-				image.setThumbnailImage("http://localhost:3333" + thumbnailSavePath + filename);
+				System.out.println("Present Project Directory : "+  originalSavePath + filename);
+				image.setOriginalImage("http://localhost:3333/resources/" + filename);
+				image.setThumbnailImage("http://localhost:3333/resources/thumbnails/" + filename);
 				System.out.println("You successfully uploaded " + originalSavePath + filename + "!");
 				return image;
 			} catch (Exception e) {

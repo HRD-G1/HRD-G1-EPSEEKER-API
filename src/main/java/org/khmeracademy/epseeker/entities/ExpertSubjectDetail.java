@@ -12,6 +12,9 @@ public class ExpertSubjectDetail {
 
 	@JsonProperty("EXPERT_SUBJECT_DETAIL_LEVEL")
 	private String expertSubjectDetailLevel;
+	
+	@JsonProperty("LEVEL_NUMBER")
+	private int levelNumber;
 
 	@JsonProperty("SUBJECT_NAME")
 	private String subjectName;
@@ -21,8 +24,6 @@ public class ExpertSubjectDetail {
 
 	@JsonProperty("SUBJECT_CATEGORY_NAME")
 	private String subjectCategoryName;
-	
-	
 
 	public ExpertSubjectDetail() {
 		// TODO Auto-generated constructor stub
@@ -119,21 +120,39 @@ public class ExpertSubjectDetail {
 	}
 
 	/**
+	 * @return the levelNumber
+	 */
+	public int getLevelNumber() {
+		return levelNumber;
+	}
+
+	/**
+	 * @param levelNumber the levelNumber to set
+	 */
+	public void setLevelNumber(int levelNumber) {
+		this.levelNumber = levelNumber;
+	}
+
+	/**
 	 * @param expertID
 	 * @param subjectID
 	 * @param expertSubjectDetailLevel
+	 * @param levelNumber
 	 * @param subjectName
 	 * @param subjectCategoryID
 	 * @param subjectCategoryName
 	 */
-	public ExpertSubjectDetail(int expertID, int subjectID, String expertSubjectDetailLevel, String subjectName,
-			String subjectCategoryID, String subjectCategoryName) {
+	public ExpertSubjectDetail(int expertID, int subjectID, String expertSubjectDetailLevel, int levelNumber,
+			String subjectName, String subjectCategoryID, String subjectCategoryName) {
 		this.expertID = expertID;
 		this.subjectID = subjectID;
 		this.expertSubjectDetailLevel = expertSubjectDetailLevel;
+		this.levelNumber = levelNumber;
 		this.subjectName = subjectName;
 		this.subjectCategoryID = subjectCategoryID;
 		this.subjectCategoryName = subjectCategoryName;
 	}
+
+	
 
 }

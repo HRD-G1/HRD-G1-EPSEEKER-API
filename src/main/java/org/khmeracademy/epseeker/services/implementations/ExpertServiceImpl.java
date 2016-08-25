@@ -36,6 +36,7 @@ public class ExpertServiceImpl implements ExpertService {
 	public boolean save(Expert exp) throws Exception {
 		int expertID = 0;
 		try {
+			exp.setExpertStatus("1");
 			expertRepository.save(exp);
 			expertID = exp.getExpertID();
 			System.out.println("Expert ID: " + expertID);
