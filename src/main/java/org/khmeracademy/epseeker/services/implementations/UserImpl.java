@@ -8,6 +8,7 @@ import org.khmeracademy.epseeker.repositories.UserRepository;
 import org.khmeracademy.epseeker.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserImpl implements UserService{
@@ -34,8 +35,20 @@ public class UserImpl implements UserService{
 	}
 
 	@Override
+	@Transactional
 	public boolean save(User user) {
-		return userRepository.save(user);
+		try{
+			//TODO: 1- INSERT INTO TABLE USER
+			userRepository.save(user);
+			//TODO: 2- LOOP INSERT INTO TABLE USER ROLE DETAILS
+			for(Role role: user.getRoles()){
+				userRepository.saveUserRoleDetails(user.getId(), role.getId());
+			}
+			return true;
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		return false;
 	}
 
 

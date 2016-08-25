@@ -1,14 +1,11 @@
 package org.khmeracademy.epseeker.entities;
 
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class Role{
 
-	private static final long serialVersionUID = 1L;
-	//@JsonProperty("ROLE_ID")
+	/*@JsonProperty("ROLE_ID")*/
 	private int id;
-	//@JsonProperty("ROLE_NAME")
+	/*@JsonProperty("ROLE_NAME")*/
 	private String roleName;
 	
 
