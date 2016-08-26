@@ -6,12 +6,16 @@ import java.util.Map;
 
 import org.khmeracademy.epseeker.entities.Position;
 import org.khmeracademy.epseeker.services.PositionService;
+import org.khmeracademy.epseeker.utils.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 
 @RestController
 public class PositionController {
@@ -20,11 +24,14 @@ public class PositionController {
 	PositionService positionService;
 	
 	@RequestMapping(value="/rest/position", method = RequestMethod.GET)
-	Map<String, Object> findAll(){
+	@ApiImplicitParams({ @ApiImplicitParam(name = "page", paramType = "query", defaultValue = "1"),
+		@ApiImplicitParam(name = "limit", paramType = "query", defaultValue = "1") })
+	Map<String, Object> findAll(Pagination pagination){
 		Map<String, Object> map = new HashMap<>();
 		map.put("MESSAGE", "SUCCESSFULLY");
 		map.put("CODE", "200");
-		map.put("DATA", positionService.findAll());
+		map.put("PAGINATION", pagination);
+		map.put("DATA", positionService.findAll(pagination));
 		return map;
 	}
 	

@@ -20,7 +20,10 @@ public interface PositionRepository {
 		@Result(property="positionID", column="position_id"),
 		@Result(property="positionName", column="position_name")
 	})
-	ArrayList<Position> findAll();
+	ArrayList<Position> findAll(@Param("limit")int limit, @Param("offset") int offset);
+	
+	@Select(SQL.SELECT_COUNT)
+	long findAllAndCount();
 	
 	@Insert(SQL.INSERT)
 	boolean save(Position position);
@@ -33,7 +36,9 @@ public interface PositionRepository {
 
 	interface SQL{
 		
-		String SELECT = "SELECT * FROM exp_positions";
+		String SELECT = "SELECT * FROM exp_positions LIMIT #{limit} OFFSET #{offset}";
+		
+		String SELECT_COUNT = "SELECT COUNT(*) FROM exp_positions";
 		
 		String INSERT = "INSERT INTO exp_positions "
 				+ "(position_name) VALUES(#{positionName})";

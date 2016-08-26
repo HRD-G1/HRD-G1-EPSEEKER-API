@@ -21,7 +21,10 @@ public interface LanguageRepository {
 		@Result(property="languageName", column="language_name"),
 		@Result(property="languageDescription", column="language_description")
 	})
-	ArrayList<Language> findAll();
+	ArrayList<Language> findAll(@Param("limit")int limit, @Param("offset")int offset);
+	
+	@Select(SQL.SELECT_COUNT)
+	long findAllAndCount();
 	
 	@Insert(SQL.INSERT)
 	boolean save(Language lang);
@@ -33,7 +36,9 @@ public interface LanguageRepository {
 	boolean delete(@Param("languageID")int languageID);
 
 	interface SQL{
-		String SELECT = "SELECT * FROM exp_language";
+		String SELECT = "SELECT * FROM exp_language LIMIT #{limit} OFFSET #{offset}";
+		
+		String SELECT_COUNT = "SELECT COUNT(*) FROM exp_language";
 		
 		String SELECTONE = "SELECT * FROM exp_language WHERE language_id = #{languageID}";
 		

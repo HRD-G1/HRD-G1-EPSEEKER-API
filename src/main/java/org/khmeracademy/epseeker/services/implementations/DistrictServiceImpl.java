@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.khmeracademy.epseeker.entities.District;
 import org.khmeracademy.epseeker.repositories.DistrictRepository;
 import org.khmeracademy.epseeker.services.DistrictService;
+import org.khmeracademy.epseeker.utils.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,12 @@ public class DistrictServiceImpl implements DistrictService{
 	DistrictRepository districtRepository;
 	
 	@Override
-	public ArrayList<District> findAl() {
+	public ArrayList<District> findAl(Pagination pagination) {
 		try{
-			return districtRepository.findAll();
+			pagination.setTotalCount(districtRepository.findAllAndCount());
+			int limit = pagination.getLimit();
+			int offset = pagination.getOffset();
+			return districtRepository.findAll(limit, offset);
 		}catch(Exception e){
 			e.printStackTrace();
 		}

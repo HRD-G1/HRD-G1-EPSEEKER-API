@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.khmeracademy.epseeker.entities.Position;
 import org.khmeracademy.epseeker.repositories.PositionRepository;
 import org.khmeracademy.epseeker.services.PositionService;
+import org.khmeracademy.epseeker.utils.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,12 @@ public class PositionServiceImpl implements PositionService{
 	PositionRepository positionRepository;
 
 	@Override
-	public ArrayList<Position> findAll() {
+	public ArrayList<Position> findAll(Pagination pagination) {
 		try{
-			return positionRepository.findAll();
+			pagination.setTotalCount(positionRepository.findAllAndCount());
+			int limit = pagination.getLimit();
+			int offset = pagination.getOffset();
+			return positionRepository.findAll(limit, offset);
 		}catch(Exception e){
 			e.printStackTrace();
 		}

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.khmeracademy.epseeker.entities.University;
 import org.khmeracademy.epseeker.repositories.UniversityRepository;
 import org.khmeracademy.epseeker.services.UniversityService;
+import org.khmeracademy.epseeker.utils.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,12 @@ public class UniversityServiceImpl implements UniversityService{
 	UniversityRepository universityRepository;
 	
 	@Override
-	public ArrayList<University> findAll() {
+	public ArrayList<University> findAll(Pagination pagination) {
 		try{
-			return universityRepository.findAll();
+			pagination.setTotalCount(universityRepository.findAllAndAcount());
+			int limit = pagination.getLimit();
+			int offset = pagination.getOffset();
+			return universityRepository.findAll(limit, offset);
 		}catch(Exception e){
 			e.printStackTrace();
 		}

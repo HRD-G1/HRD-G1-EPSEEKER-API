@@ -1,13 +1,13 @@
 package org.khmeracademy.epseeker.services.implementations;
 
 import java.util.ArrayList;
+
 import org.khmeracademy.epseeker.entities.Expert;
 import org.khmeracademy.epseeker.repositories.ExpertRespository;
 import org.khmeracademy.epseeker.services.ExpertService;
 import org.khmeracademy.epseeker.utils.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ExpertServiceImpl implements ExpertService {

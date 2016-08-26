@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.khmeracademy.epseeker.entities.Major;
 import org.khmeracademy.epseeker.repositories.MajorRepository;
 import org.khmeracademy.epseeker.services.MajorService;
+import org.khmeracademy.epseeker.utils.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,12 @@ public class MajorServiceImpl implements MajorService{
 	MajorRepository majorRepository;
 	
 	@Override
-	public ArrayList<Major> findAll() {
+	public ArrayList<Major> findAll(Pagination pagination) {
 		try{
-			return majorRepository.findAll();
+			pagination.setTotalCount(majorRepository.findAllAndCount());
+			int limit = pagination.getLimit();
+			int offset = pagination.getOffset();
+			return majorRepository.findAll(limit, offset);
 		}catch(Exception e){
 			e.printStackTrace();
 		}

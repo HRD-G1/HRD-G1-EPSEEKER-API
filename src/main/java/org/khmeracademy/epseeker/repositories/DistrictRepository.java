@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.khmeracademy.epseeker.entities.District;
+import org.khmeracademy.epseeker.utils.Pagination;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -23,7 +24,10 @@ public interface DistrictRepository {
 			@Result(property = "countryName", column = "country_name"),
 			@Result(property="countryID", column="country_id")
 	})
-	ArrayList<District> findAll();
+	ArrayList<District> findAll(@Param("limit")int limit, @Param("offset")int offset);
+	
+	@Select(SQL.SELECT_COUNT)
+	long findAllAndCount();
 	
 	@Select(SQL.SELECT_ALL_BY_PROVINCE_ID)
 	@Results({ @Result(property = "districtID", column = "district_id"),
@@ -46,6 +50,10 @@ public interface DistrictRepository {
 
 	interface SQL {
 		String SELECT = "SELECT di.*, ci.city_or_province_name, co.* "
+				+ "FROM exp_countries co " + "INNER JOIN exp_city_or_provinces ci ON co.country_id = ci.country_id "
+				+ "INNER JOIN exp_districts di ON di.province_id = ci.city_or_province_id LIMIT #{limit} OFFSET #{offset}";
+		
+		String SELECT_COUNT = "SELECT COUNT(*) "
 				+ "FROM exp_countries co " + "INNER JOIN exp_city_or_provinces ci ON co.country_id = ci.country_id "
 				+ "INNER JOIN exp_districts di ON di.province_id = ci.city_or_province_id";
 		

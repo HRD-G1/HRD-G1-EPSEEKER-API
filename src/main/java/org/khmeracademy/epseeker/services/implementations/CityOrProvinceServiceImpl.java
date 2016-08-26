@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.khmeracademy.epseeker.entities.CityOrProvince;
 import org.khmeracademy.epseeker.repositories.CityOrProvinceReposity;
 import org.khmeracademy.epseeker.services.CityOrProvinceService;
+import org.khmeracademy.epseeker.utils.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,12 @@ public class CityOrProvinceServiceImpl implements CityOrProvinceService{
 	CityOrProvinceReposity cityOrProvinceReposity;
 	
 	@Override
-	public ArrayList<CityOrProvince> findAll() {
+	public ArrayList<CityOrProvince> findAll(Pagination pagination) {
 		try{
-			return cityOrProvinceReposity.findAll();
+			pagination.setTotalCount(cityOrProvinceReposity.findAllAndCount());
+			int limit = pagination.getLimit();
+			int offset = pagination.getOffset();
+			return cityOrProvinceReposity.findAll(limit, offset);
 		}catch(Exception e){
 			e.printStackTrace();
 		}

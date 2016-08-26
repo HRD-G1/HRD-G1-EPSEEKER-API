@@ -3,10 +3,11 @@ package org.khmeracademy.epseeker.services;
 import java.util.ArrayList;
 
 import org.khmeracademy.epseeker.entities.Subject;
+import org.khmeracademy.epseeker.utils.Pagination;
 
 public interface SubjectService {
 
-	ArrayList<Subject> findAll();
+	ArrayList<Subject> findAll(Pagination pagination);
 	
 	Subject findOne(int subjectID);
 	

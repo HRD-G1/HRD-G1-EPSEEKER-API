@@ -21,7 +21,10 @@ public interface SubjectRepository {
 		@Result(property="subjectCategoryName", column="subject_category_name"),
 		@Result(property="numberOfExpertEachSkilll", column="number_of_expert_each_skills")
 	})
-	ArrayList<Subject> findAll();
+	ArrayList<Subject> findAll(@Param("limit")int limit, @Param("offset")int offset);
+	
+	@Select(SQL.SELECT_COUNT)
+	long findAllAndCount();
 	
 	@Select(SQL.SELECT_COUNT_EXPERT_SKILLS)
 	@Results({
@@ -65,7 +68,12 @@ public interface SubjectRepository {
 						+ "\"subCat\".subject_category_id as subject_category_id "
 						+ "FROM "
 						+ "exp_subject_category as \"subCat\" "
-						+ "INNER JOIN exp_subject as sub ON  \"subCat\".subject_category_id = sub.subject_category_id";
+						+ "INNER JOIN exp_subject as sub ON  \"subCat\".subject_category_id = sub.subject_category_id LIMIT #{limit} OFFSET #{offset}";
+		
+		String SELECT_COUNT = "SELECT COUNT(*)"
+				+ "FROM "
+				+ "exp_subject_category as \"subCat\" "
+				+ "INNER JOIN exp_subject as sub ON  \"subCat\".subject_category_id = sub.subject_category_id";
 		
 		String SELECTONE = "SELECT * FROM exp_subject WHERE subject_name = #{subjectCategoryID}";
 		

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.khmeracademy.epseeker.entities.Subject;
 import org.khmeracademy.epseeker.repositories.SubjectRepository;
 import org.khmeracademy.epseeker.services.SubjectService;
+import org.khmeracademy.epseeker.utils.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,13 @@ public class SubjectServiceImpl implements SubjectService {
 	SubjectRepository subjectRepository;
 
 	@Override
-	public ArrayList<Subject> findAll() {
+	public ArrayList<Subject> findAll(Pagination pagination) {
 		try {
-			return subjectRepository.findAll();
+			
+			pagination.setTotalCount(subjectRepository.findAllAndCount());
+			int limit = pagination.getLimit();
+			int offset = pagination.getOffset();
+			return subjectRepository.findAll(limit, offset);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

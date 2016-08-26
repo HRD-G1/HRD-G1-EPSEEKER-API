@@ -20,7 +20,10 @@ public interface MajorRepository {
 		@Result(property="majorID", column="major_id"),
 		@Result(property="majorName", column="major_name")
 	})
-	ArrayList<Major> findAll();
+	ArrayList<Major> findAll(@Param("limit")int limit, @Param("offset")int offset);
+	
+	@Select(SQL.SELECT_COUNT)
+	long findAllAndCount();
 	
 	@Insert(SQL.INSERT)
 	boolean save(Major maj);
@@ -32,7 +35,9 @@ public interface MajorRepository {
 	boolean delete(@Param("majorID")int majorID);
 
 	interface SQL{
-		String SELECT = "SELECT * FROM exp_major";
+		String SELECT = "SELECT * FROM exp_major LIMIT #{limit} OFFSET #{offset}";
+		
+		String SELECT_COUNT = "SELECT COUNT(*) FROM exp_major";
 		
 		String INSERT = "INSERT INTO exp_major "
 				+ "(major_name) "

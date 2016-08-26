@@ -113,6 +113,7 @@ public interface ExpertRespository {
 	@Results({ @Result(property = "expertID", column = "expert_id"),
 			@Result(property = "expertFirstName", column = "expert_firstname"),
 			@Result(property = "expertLastName", column = "expert_lastname"),
+			@Result(property = "expertPhoto", column = "expert_photo"),
 			@Result(property = "expertAdvanceCourse", column = "expert_advance_course"),
 			@Result(property = "jobExpectations", column = "expert_id", many = @Many(select = "findAllJobExpectationsByExpertID")) })
 	ArrayList<Expert> advanceSearch(Expert expert, Pagination pagination);

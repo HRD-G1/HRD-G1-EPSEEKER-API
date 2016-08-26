@@ -21,7 +21,10 @@ public interface InstitutionRepository {
 		@Result(property="institutionName", column="institution_name"),
 		@Result(property="institutionAddress", column="institution_address")
 	})
-	ArrayList<Institution> findAll();
+	ArrayList<Institution> findAll(@Param("limit")int limit, @Param("offset")int offset);
+	
+	@Select(SQL.SELECT_COUNT)
+	long findAllAndCount();
 	
 	@Insert(SQL.INSERT)
 	boolean save(Institution institution);
@@ -33,7 +36,9 @@ public interface InstitutionRepository {
 	boolean delete(@Param("institutionID")int institutionID);
 
 	interface SQL{
-		String SELECT = "SELECT * FROM exp_institutions";
+		String SELECT = "SELECT * FROM exp_institutions LIMIT #{limit} OFFSET #{offset}";
+		
+		String SELECT_COUNT = "SELECT COUNT(*) FROM exp_institutions";
 		
 		String INSERT = "INSERT INTO exp_institutions "
 				+ "(institution_name, institution_address) "

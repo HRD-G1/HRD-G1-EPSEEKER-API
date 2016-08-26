@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.khmeracademy.epseeker.entities.Language;
 import org.khmeracademy.epseeker.repositories.LanguageRepository;
 import org.khmeracademy.epseeker.services.LanguageService;
+import org.khmeracademy.epseeker.utils.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,12 @@ public class LanguageServiceImpl implements LanguageService{
 	LanguageRepository languageRepository;
 	
 	@Override
-	public ArrayList<Language> findAll() {
+	public ArrayList<Language> findAll(Pagination pagination) {
 		try{
-			return languageRepository.findAll();
+			pagination.setTotalCount(languageRepository.findAllAndCount());
+			int limit = pagination.getLimit();
+			int offset = pagination.getOffset();
+			return languageRepository.findAll(limit, offset);
 		}catch(Exception e){
 			e.printStackTrace();
 		}

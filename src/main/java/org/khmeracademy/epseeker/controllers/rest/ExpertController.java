@@ -79,7 +79,7 @@ public class ExpertController {
 			e.printStackTrace();
 		}
 
-		System.out.println("Expert OBJ: " + exp);
+		/*System.out.println("Expert OBJ: " + exp);
 		System.out.println("Name: " + exp.getExpertFirstName() + " " + exp.getExpertLastName());
 		System.out.println("Gender: " + exp.getExpertGender());
 		System.out.println("Phone1: " + exp.getExpertPhone1());
@@ -146,7 +146,7 @@ public class ExpertController {
 			System.out.println("File Type ID: " + exp.getExpertDocuments().get(i).getFileDocumentID());
 			System.out.println("File Path: " + exp.getExpertDocuments().get(i).getFilePath());
 		}
-
+*/
 		return map;
 	}
 
@@ -172,7 +172,6 @@ public class ExpertController {
 	@ApiImplicitParams({ @ApiImplicitParam(name = "page", paramType = "query", defaultValue = "1"),
 			@ApiImplicitParam(name = "limit", paramType = "query", defaultValue = "1") })
 	public Map<String, Object> advanceSearch(@RequestBody Expert expert, Pagination pagination) {
-
 		System.out.println("Advance Page: ");
 		System.out.println(pagination.getLimit());
 		System.out.println(pagination.getPage());

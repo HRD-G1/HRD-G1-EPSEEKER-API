@@ -21,7 +21,11 @@ public interface UniversityRepository {
 		@Result(property="universityName", column="university_name"),
 		@Result(property="universityDescription", column="university_description")
 	})
-	ArrayList<University> findAll();
+	ArrayList<University> findAll(@Param("limit")int limit, @Param("offset")int offset);
+	
+	@Select(SQL.SELECT_COUNT)
+	Long findAllAndAcount();
+	
 	
 	@Insert(SQL.INSERT)
 	boolean save(University uni);
@@ -34,6 +38,9 @@ public interface UniversityRepository {
 
 	interface SQL{
 		String SELECT = "SELECT * "
+				+ "FROM exp_universities LIMIT #{limit} OFFSET #{offset}";
+		
+		String SELECT_COUNT = "SELECT COUNT(*) "
 				+ "FROM exp_universities";
 		
 		String INSERT = "INSERT INTO "

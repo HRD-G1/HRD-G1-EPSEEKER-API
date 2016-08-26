@@ -22,7 +22,10 @@ public interface CityOrProvinceReposity {
 		@Result(property="countryID", column="country_id"),
 		@Result(property="countryName", column="country_name")
 	})
-	ArrayList<CityOrProvince> findAll();
+	ArrayList<CityOrProvince> findAll(@Param("limit")int limit, @Param("offset")int offset);
+	
+	@Select(SQL.SELECT_COUNT)
+	long findAllAndCount();
 	
 	@Select(SQL.SELECTAllBYCOUNTRY)
 	@Results({
@@ -45,7 +48,11 @@ public interface CityOrProvinceReposity {
 	interface SQL{
 		String SELECT = "SELECT cp.*, co.country_name "
 			+"FROM exp_city_or_provinces cp "
-			+"INNER JOIN exp_countries co ON cp.country_id = co.country_id";
+			+"INNER JOIN exp_countries co ON cp.country_id = co.country_id LIMIT #{limit} OFFSET #{offset}";
+		
+		String SELECT_COUNT = "SELECT COUNT(*) "
+				+"FROM exp_city_or_provinces cp "
+				+"INNER JOIN exp_countries co ON cp.country_id = co.country_id";
 		
 		String SELECTAllBYCOUNTRY = "SELECT cp.*, co.country_name "
 				+"FROM exp_city_or_provinces cp "
