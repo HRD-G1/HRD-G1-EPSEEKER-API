@@ -51,5 +51,10 @@ public class UserImpl implements UserService{
 		return false;
 	}
 
+	@Override
+	public boolean update(User user) {
+		return userRepository.update(user);
+	}
+
 
 }

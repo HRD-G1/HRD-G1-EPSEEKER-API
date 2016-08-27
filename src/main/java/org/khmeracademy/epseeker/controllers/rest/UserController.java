@@ -3,7 +3,6 @@ package org.khmeracademy.epseeker.controllers.rest;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.khmeracademy.epseeker.entities.University;
 import org.khmeracademy.epseeker.entities.User;
 import org.khmeracademy.epseeker.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +40,15 @@ public class UserController {
 		map.put("MESSAGE", "SUCCESSFULLY");
 		map.put("CODE", "200");
 		map.put("DATA", userService.save(user));
+		return map;
+	}
+
+	@RequestMapping(value="/rest/user", method = RequestMethod.PUT)
+	Map<String, Object> update(@RequestBody User user){
+		Map<String, Object> map = new HashMap<>();
+		map.put("MESSAGE", "SUCCESSFULLY");
+		map.put("CODE", "200");
+		map.put("DATA", userService.update(user));
 		return map;
 	}
 	

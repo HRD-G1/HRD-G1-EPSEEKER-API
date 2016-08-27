@@ -10,4 +10,5 @@ public interface UserService {
 	public User findUserById(int userId);
 	public List<Role> findUserByUserID(int roleID);
 	boolean save(User user);
+	boolean update(User user);
 }

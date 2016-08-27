@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
+import org.apache.ibatis.annotations.Update;
 import org.khmeracademy.epseeker.entities.Role;
 import org.khmeracademy.epseeker.entities.User;
 import org.springframework.stereotype.Repository;
@@ -58,5 +59,12 @@ public boolean save(User user);
 		+ "VALUES(#{userId},#{roleId})")
 public boolean saveUserRoleDetails(@Param("userId") int userId,@Param("roleId") int roleId);
 
+@Update("UPDATE exp_user_ka SET "
+		+ " user_username = #{username}, "
+		+ " user_email= #{email}, "
+		+ " user_password = #{password}, "
+		+ " user_status='true'"
+		+ " WHERE user_id = #{id}")
+public boolean update(User user);
 }
 
