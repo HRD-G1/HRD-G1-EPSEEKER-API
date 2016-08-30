@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.apache.ibatis.jdbc.SQL;
 import org.khmeracademy.epseeker.entities.Expert;
+import org.khmeracademy.epseeker.entities.ExpertDocumentDetail;
 import org.khmeracademy.epseeker.entities.ExpertLanguageDetail;
 import org.khmeracademy.epseeker.utils.Pagination;
 
@@ -25,9 +26,9 @@ public class ExpertProvider {
 	}
 
 	public String saveExpertLanguageDetail(ExpertLanguageDetail detail) {
-		String INSERT_LANGUAGE_EXPERT = "INSERT INTO exp_expert_language_detail (expert_id, language_id, mention) "
+		String INSERT_LANGUAGE_EXPERT = "INSERT INTO exp_expert_language_detail (expert_id, language_id, mention, level_number) "
 				+ "VALUES( " + detail.getExpertID() + " , " + detail.getLanguageID() + " , '" + detail.getMention()
-				+ "')";
+				+ "', "+ detail.getLevelNumber() +")";
 		System.out.println(INSERT_LANGUAGE_EXPERT);
 		return INSERT_LANGUAGE_EXPERT;
 	}
@@ -269,6 +270,14 @@ public class ExpertProvider {
 
 		System.out.println(sqlQuery);
 
+		return sqlQuery;
+	}
+	
+	public String saveDocument(ExpertDocumentDetail expertDocumentDetail){
+		String sqlQuery = "INSERT INTO exp_expert_document_detail "
+				+ "(expert_id, file_document_id, file_path, description, file_name) "
+				+ "VALUES("+expertDocumentDetail.getExpertID()+", "+expertDocumentDetail.getFileDocumentID()+", '"+expertDocumentDetail.getFilePath()+"', '"+expertDocumentDetail.getDescription()+"', '"+expertDocumentDetail.getFileName()+"')";
+		System.out.println("SQL ===>"+ sqlQuery);
 		return sqlQuery;
 	}
 

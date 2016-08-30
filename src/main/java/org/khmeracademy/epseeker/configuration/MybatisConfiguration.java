@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
 @MapperScan("org.khmeracademy.epseeker.repositories")
@@ -23,10 +24,14 @@ public class MybatisConfiguration {
 		return sqlSessionFactoryBean;
 	}
 	
-	@Bean
-	public DataSourceTransactionManager transactionManager(){
-		DataSourceTransactionManager transactionManager = new DataSourceTransactionManager(dataSource);
-		return transactionManager;
-	}
+//	@Bean
+//	public DataSourceTransactionManager transactionManager(){
+//		DataSourceTransactionManager transactionManager = new DataSourceTransactionManager(dataSource);
+//		return transactionManager;
+//	}
 	
+	@Bean
+	public PlatformTransactionManager dataSourceTransactionManager() {
+		return new DataSourceTransactionManager(dataSource);
+	}
 }

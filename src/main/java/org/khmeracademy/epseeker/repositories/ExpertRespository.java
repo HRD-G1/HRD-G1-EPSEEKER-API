@@ -56,7 +56,10 @@ public interface ExpertRespository {
 			@Result(property = "jobExpectations", column = "expert_id", many = @Many(select = "findAllJobExpectationsByExpertID")),
 			@Result(property = "currentAddress", column = "expert_id", one = @One(select = "findOneCurrentAddressByExpertID")),
 			@Result(property = "placeOfBirth", column = "expert_id", one = @One(select = "findOnePOBByExpertID")) })
-	ArrayList<Expert> findAll();
+	ArrayList<Expert> findAll(@Param("limit")int limit, @Param("offset")int offset);
+	
+	@Select(SQL.SELECT_COUNT)
+	long findAllAndCount();
 
 	@Select(SQL.SELECT_RANDOM)
 	@Results({ @Result(property = "expertID", column = "expert_id"),
@@ -149,7 +152,7 @@ public interface ExpertRespository {
 	@Insert(SQL.INSERT_SKILL_DETAIL)
 	int saveSkillDetail(ExpertSubjectDetail expertSubjectDetail);
 
-	@Insert(SQL.INSERT_DOCUEMNT)
+	@InsertProvider(type=ExpertProvider.class, method="saveDocument")
 	int saveDocument(ExpertDocumentDetail expertDocumentDetail);
 
 	@Insert(SQL.INSERT_CURRENT_ADDRESS)
@@ -260,7 +263,9 @@ public interface ExpertRespository {
 	// new
 
 	interface SQL {
-		String SELECT = "SELECT * FROM exp_expert";
+		String SELECT = "SELECT * FROM exp_expert LIMIT #{limit} OFFSET #{offset}";
+		
+		String SELECT_COUNT = "SELECT COUNT(*) FROM exp_expert";
 
 		String SELECT_RANDOM = "SELECT * FROM exp_expert ORDER BY random() LIMIT 5";
 
@@ -316,8 +321,8 @@ public interface ExpertRespository {
 				+ "VALUES(#{expertID}, #{subjectID}, #{expertSubjectDetailLevel})";
 
 		String INSERT_DOCUEMNT = "INSERT INTO exp_expert_document_detail "
-				+ "(expert_id, file_document_id, file_path, description) "
-				+ "VALUES(#{expertID}, #{fileDocumentID}, #{filePath}, #{description})";
+				+ "(expert_id, file_document_id, file_path, description, file_name) "
+				+ "VALUES(#{expertID}, #{fileDocumentID}, #{filePath}, #{description}, #{fileName})";
 
 		String UPDATE = "UPDATE exp_expert SET " + "expert_firstname  = #{expertFirstName}, "
 				+ "expert_lastname = #{expertLastName}, " + "expert_phone1 = #{expertPhone1}, "

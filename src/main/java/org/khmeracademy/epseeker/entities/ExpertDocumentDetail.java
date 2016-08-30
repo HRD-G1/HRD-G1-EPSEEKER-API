@@ -24,19 +24,6 @@ public class ExpertDocumentDetail {
 	}
 
 	/**
-	 * @param expertID
-	 * @param fileDocumentID
-	 * @param filePath
-	 * @param description
-	 */
-	public ExpertDocumentDetail(int expertID, int fileDocumentID, String filePath, String description) {
-		this.expertID = expertID;
-		this.fileDocumentID = fileDocumentID;
-		this.filePath = filePath;
-		this.description = description;
-	}
-
-	/**
 	 * @return the expertID
 	 */
 	public int getExpertID() {
@@ -109,12 +96,13 @@ public class ExpertDocumentDetail {
 	/**
 	 * @param expertID
 	 * @param fileDocumentID
+	 * @param fileDocumentName
 	 * @param filePath
 	 * @param description
 	 * @param fileName
 	 */
-	public ExpertDocumentDetail(int expertID, int fileDocumentID, String filePath, String description,
-			String fileName) {
+	public ExpertDocumentDetail(int expertID, int fileDocumentID, String filePath,
+			String description, String fileName) {
 		this.expertID = expertID;
 		this.fileDocumentID = fileDocumentID;
 		this.filePath = filePath;
@@ -122,7 +110,13 @@ public class ExpertDocumentDetail {
 		this.fileName = fileName;
 	}
 
-	
-	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "ExpertDocumentDetail [expertID=" + expertID + ", fileDocumentID=" + fileDocumentID + ", filePath="
+				+ filePath + ", description=" + description + ", fileName=" + fileName + "]";
+	}
 	
 }

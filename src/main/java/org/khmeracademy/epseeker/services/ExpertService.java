@@ -7,7 +7,7 @@ import org.khmeracademy.epseeker.utils.Pagination;
 
 public interface ExpertService {
 
-	ArrayList<Expert> findAll();
+	ArrayList<Expert> findAll(Pagination pagination);
 	
 	ArrayList<Expert> findAllByRandom();
 	

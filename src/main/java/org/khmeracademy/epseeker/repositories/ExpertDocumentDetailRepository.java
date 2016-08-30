@@ -64,13 +64,14 @@ public interface ExpertDocumentDetailRepository {
 				+"WHERE expert_id = #{expertID}";
 		
 		String INSERT = "INSERT INTO exp_expert_document_detail "
-				+ "(expert_id, file_document_id, file_path, description) "
-				+ "VALUES(#{expertID}, #{fileDocumentID}, #{filePath}, #{description})";
+				+ "(expert_id, file_document_id, file_path, description, file_name) "
+				+ "VALUES(#{expertID}, #{fileDocumentID}, #{filePath}, #{description}, #{fileName})";
 		
 		String UPDATE = "UPDATE exp_expert_document_detail SET "
 				+ "file_document_id = #{fileDocumentID}, "
 				+ "file_path = #{filePath},"
 				+ "description = #{description} "
+				+ "file_name = #{fileName}"
 				+ "WHERE "
 				+ "expert_id = #{expertID} "
 				+ "AND file_document_id = #{fileDocumentID} "
