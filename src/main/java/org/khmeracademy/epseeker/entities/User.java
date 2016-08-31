@@ -2,8 +2,6 @@ package org.khmeracademy.epseeker.entities;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class User{
 
 //@JsonProperty("USER_ID")
@@ -16,6 +14,11 @@ private String password;
 private String username;
 //@JsonProperty("USER_STATUS")
 private boolean status;
+//@JsonProperty("USER_IMAGE")
+/*private String image;*/
+private String gender;
+private String dob;
+private String phone; 
 //@JsonProperty("USER_ROLES")
 private List<Role> roles;
 
@@ -76,11 +79,46 @@ public void setStatus(boolean status) {
 	this.status = status;
 }
 
+
+/*
+public String getImage() {
+	return image;
+}
+
+public void setImage(String image) {
+	this.image = image;
+}
+*/
 @Override
 public String toString() {
 	return "User [id=" + id + ", email=" + email + ", password=" + password + ", username=" + username + ", status="
-			+ status + ", roles=" + roles + ", accountNonExpired=" + accountNonExpired + ", accountNonLocked="
-			+ accountNonLocked + ", credentialsNonExpired=" + credentialsNonExpired + ", enabled=" + enabled + "]";
+			+ status + ", roles=" + roles + ", accountNonExpired=" + accountNonExpired
+			+ ", accountNonLocked=" + accountNonLocked + ", credentialsNonExpired=" + credentialsNonExpired
+			+ ", enabled=" + enabled + "]";
+}
+
+public String getGender() {
+	return gender;
+}
+
+public void setGender(String gender) {
+	this.gender = gender;
+}
+
+public String getDob() {
+	return dob;
+}
+
+public void setDob(String dob) {
+	this.dob = dob;
+}
+
+public String getPhone() {
+	return phone;
+}
+
+public void setPhone(String phone) {
+	this.phone = phone;
 }
 
 }

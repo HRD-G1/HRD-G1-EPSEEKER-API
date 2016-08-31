@@ -23,6 +23,9 @@ public interface UserRepository {
 			@Result(property="email",column="user_email"),
 			@Result(property="username",column="user_username"),
 			@Result(property="status",column="user_status"),
+			@Result(property="gender",column="user_gender"),
+			@Result(property="dob",column="user_dob"),
+			@Result(property="phone",column="user_phone"),
 			@Result(property="roles",column="user_id",
 				many=@Many(select="findUserByUserID"))
 	})
@@ -41,15 +44,29 @@ public List<Role> findUserByUserID(@Param("userid") int userid);
 		@Result(property="password",column="user_password"),
 		@Result(property="email",column="user_email"),
 		@Result(property="username",column="user_username"),
-		@Result(property="status",column="user_status")
+		@Result(property="status",column="user_status"),
+		@Result(property="gender",column="user_gender"),
+		@Result(property="dob",column="user_dob"),
+		@Result(property="phone",column="user_phone")
+		/*@Result(property="image",column="user_image")*/
 })
 public User findUserByID(@Param("userId") int userId);
 
 
 @Insert("INSERT INTO "
-		+ "exp_user_ka"
-		+ "(user_username, user_email,user_password,user_status) "
-		+ "VALUES(#{username}, #{email},#{password},#{status})")
+		+ " exp_user_ka"
+		+ " ("
+		+ " user_username,"
+		+ " user_email,"
+		+ " user_password,"
+		+ " user_status,"
+		+ " user_gender,"
+		+ " user_dob,"
+		+ "	user_phone"
+		+ " ) "
+		+ " VALUES(#{username}, #{email},#{password},#{status},#{gender},#{dob},#{phone})")
+/*		+ " user_image"*/
+		/*+ "VALUES(#{username}, #{email},#{password},#{status},#{image})")*/
 @SelectKey(statement="SELECT last_value FROM exp_user_ka_user_id_seq", keyProperty="id", before=false, resultType=int.class)
 public boolean save(User user);
 
@@ -63,7 +80,11 @@ public boolean saveUserRoleDetails(@Param("userId") int userId,@Param("roleId") 
 		+ " user_username = #{username}, "
 		+ " user_email= #{email}, "
 		+ " user_password = #{password}, "
-		+ " user_status='true'"
+		+ " user_status='true',"
+		+ " user_gender=#{gender},"
+		+ " user_dob = #{dob},"
+		+ " user_phone = #{phone}"
+		/*+ " user_image = #{image}"*/
 		+ " WHERE user_id = #{id}")
 public boolean update(User user);
 }
